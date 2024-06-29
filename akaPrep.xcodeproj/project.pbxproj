@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C56460A2C2B10D100956423 /* akaPrepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5646092C2B10D100956423 /* akaPrepApp.swift */; };
-		5C56460C2C2B10D100956423 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56460B2C2B10D100956423 /* ContentView.swift */; };
+		5C56460C2C2B10D100956423 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56460B2C2B10D100956423 /* DashboardView.swift */; };
 		5C56460E2C2B10D200956423 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C56460D2C2B10D200956423 /* Assets.xcassets */; };
 		5C5646112C2B10D200956423 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C5646102C2B10D200956423 /* Preview Assets.xcassets */; };
 		5C5646132C2B10D200956423 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5646122C2B10D200956423 /* Persistence.swift */; };
@@ -16,6 +16,21 @@
 		5C5646202C2B10D200956423 /* akaPrepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56461F2C2B10D200956423 /* akaPrepTests.swift */; };
 		5C56462A2C2B10D200956423 /* akaPrepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5646292C2B10D200956423 /* akaPrepUITests.swift */; };
 		5C56462C2C2B10D200956423 /* akaPrepUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56462B2C2B10D200956423 /* akaPrepUITestsLaunchTests.swift */; };
+		5C5646412C2B1DAE00956423 /* TaskEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5646402C2B1DAE00956423 /* TaskEntity.swift */; };
+		5C5646462C2C417400956423 /* NewTaskViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5646452C2C417400956423 /* NewTaskViewViewModel.swift */; };
+		5CB608BE2C2C44D3003DB576 /* AkaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608BD2C2C44D3003DB576 /* AkaButton.swift */; };
+		5CB608C02C2C4770003DB576 /* AddNewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608BF2C2C4770003DB576 /* AddNewTaskView.swift */; };
+		5CB608C32C2C4B0E003DB576 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608C22C2C4B0E003DB576 /* Utilities.swift */; };
+		5CB608C52C2C4DD1003DB576 /* AkaPrepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608C42C2C4DD1003DB576 /* AkaPrepView.swift */; };
+		5CB608C72C2C4DE7003DB576 /* AkaListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608C62C2C4DE7003DB576 /* AkaListViewViewModel.swift */; };
+		5CB608C92C2C6676003DB576 /* FocusableTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608C82C2C6676003DB576 /* FocusableTextEditor.swift */; };
+		5CB608CB2C2DB3D4003DB576 /* AddNewListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608CA2C2DB3D4003DB576 /* AddNewListView.swift */; };
+		5CB608CD2C2DB552003DB576 /* AkaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608CC2C2DB552003DB576 /* AkaListView.swift */; };
+		5CB608D02C2DBB1C003DB576 /* FloatingPromptTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 5CB608CF2C2DBB1C003DB576 /* FloatingPromptTextField */; };
+		5CB608D22C2DC2BF003DB576 /* ListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608D12C2DC2BF003DB576 /* ListEntity.swift */; };
+		5CB608D52C302D21003DB576 /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608D42C302D21003DB576 /* ProfileEntity.swift */; };
+		5CB608D72C303729003DB576 /* BabyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608D62C303729003DB576 /* BabyEntity.swift */; };
+		5CB608D92C303F83003DB576 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608D82C303F83003DB576 /* BottomBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +53,7 @@
 /* Begin PBXFileReference section */
 		5C5646062C2B10D100956423 /* akaPrep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = akaPrep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5646092C2B10D100956423 /* akaPrepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepApp.swift; sourceTree = "<group>"; };
-		5C56460B2C2B10D100956423 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5C56460B2C2B10D100956423 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		5C56460D2C2B10D200956423 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C5646102C2B10D200956423 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5C5646122C2B10D200956423 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -48,6 +63,20 @@
 		5C5646252C2B10D200956423 /* akaPrepUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = akaPrepUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5646292C2B10D200956423 /* akaPrepUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepUITests.swift; sourceTree = "<group>"; };
 		5C56462B2C2B10D200956423 /* akaPrepUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5C5646402C2B1DAE00956423 /* TaskEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEntity.swift; sourceTree = "<group>"; };
+		5C5646452C2C417400956423 /* NewTaskViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewViewModel.swift; sourceTree = "<group>"; };
+		5CB608BD2C2C44D3003DB576 /* AkaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkaButton.swift; sourceTree = "<group>"; };
+		5CB608BF2C2C4770003DB576 /* AddNewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTaskView.swift; sourceTree = "<group>"; };
+		5CB608C22C2C4B0E003DB576 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		5CB608C42C2C4DD1003DB576 /* AkaPrepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkaPrepView.swift; sourceTree = "<group>"; };
+		5CB608C62C2C4DE7003DB576 /* AkaListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkaListViewViewModel.swift; sourceTree = "<group>"; };
+		5CB608C82C2C6676003DB576 /* FocusableTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusableTextEditor.swift; sourceTree = "<group>"; };
+		5CB608CA2C2DB3D4003DB576 /* AddNewListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewListView.swift; sourceTree = "<group>"; };
+		5CB608CC2C2DB552003DB576 /* AkaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkaListView.swift; sourceTree = "<group>"; };
+		5CB608D12C2DC2BF003DB576 /* ListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEntity.swift; sourceTree = "<group>"; };
+		5CB608D42C302D21003DB576 /* ProfileEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEntity.swift; sourceTree = "<group>"; };
+		5CB608D62C303729003DB576 /* BabyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyEntity.swift; sourceTree = "<group>"; };
+		5CB608D82C303F83003DB576 /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CB608D02C2DBB1C003DB576 /* FloatingPromptTextField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,11 +128,13 @@
 		5C5646082C2B10D100956423 /* akaPrep */ = {
 			isa = PBXGroup;
 			children = (
+				5CB608C12C2C4938003DB576 /* Utilities */,
 				5C5646092C2B10D100956423 /* akaPrepApp.swift */,
-				5C56460B2C2B10D100956423 /* ContentView.swift */,
+				5C5646472C2C433400956423 /* Views */,
+				5C5646442C2C415600956423 /* ViewModels */,
+				5C5646392C2B130200956423 /* Models */,
+				5C5646382C2B12BF00956423 /* CoreData */,
 				5C56460D2C2B10D200956423 /* Assets.xcassets */,
-				5C5646122C2B10D200956423 /* Persistence.swift */,
-				5C5646142C2B10D200956423 /* akaPrep.xcdatamodeld */,
 				5C56460F2C2B10D200956423 /* Preview Content */,
 			);
 			path = akaPrep;
@@ -133,6 +165,58 @@
 			path = akaPrepUITests;
 			sourceTree = "<group>";
 		};
+		5C5646382C2B12BF00956423 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				5C5646122C2B10D200956423 /* Persistence.swift */,
+				5C5646142C2B10D200956423 /* akaPrep.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		5C5646392C2B130200956423 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5C5646402C2B1DAE00956423 /* TaskEntity.swift */,
+				5CB608D12C2DC2BF003DB576 /* ListEntity.swift */,
+				5CB608D42C302D21003DB576 /* ProfileEntity.swift */,
+				5CB608D62C303729003DB576 /* BabyEntity.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5C5646442C2C415600956423 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5C5646452C2C417400956423 /* NewTaskViewViewModel.swift */,
+				5CB608C62C2C4DE7003DB576 /* AkaListViewViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5C5646472C2C433400956423 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5C56460B2C2B10D100956423 /* DashboardView.swift */,
+				5CB608BD2C2C44D3003DB576 /* AkaButton.swift */,
+				5CB608BF2C2C4770003DB576 /* AddNewTaskView.swift */,
+				5CB608C42C2C4DD1003DB576 /* AkaPrepView.swift */,
+				5CB608C82C2C6676003DB576 /* FocusableTextEditor.swift */,
+				5CB608CA2C2DB3D4003DB576 /* AddNewListView.swift */,
+				5CB608CC2C2DB552003DB576 /* AkaListView.swift */,
+				5CB608D82C303F83003DB576 /* BottomBarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5CB608C12C2C4938003DB576 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5CB608C22C2C4B0E003DB576 /* Utilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,6 +233,9 @@
 			dependencies = (
 			);
 			name = akaPrep;
+			packageProductDependencies = (
+				5CB608CF2C2DBB1C003DB576 /* FloatingPromptTextField */,
+			);
 			productName = akaPrep;
 			productReference = 5C5646062C2B10D100956423 /* akaPrep.app */;
 			productType = "com.apple.product-type.application";
@@ -221,6 +308,9 @@
 				Base,
 			);
 			mainGroup = 5C5645FD2C2B10D100956423;
+			packageReferences = (
+				5CB608CE2C2DBA50003DB576 /* XCRemoteSwiftPackageReference "FloatingPromptTextField" */,
+			);
 			productRefGroup = 5C5646072C2B10D100956423 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -264,9 +354,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C5646162C2B10D200956423 /* akaPrep.xcdatamodeld in Sources */,
+				5CB608C72C2C4DE7003DB576 /* AkaListViewViewModel.swift in Sources */,
 				5C5646132C2B10D200956423 /* Persistence.swift in Sources */,
-				5C56460C2C2B10D100956423 /* ContentView.swift in Sources */,
+				5C5646412C2B1DAE00956423 /* TaskEntity.swift in Sources */,
+				5CB608C92C2C6676003DB576 /* FocusableTextEditor.swift in Sources */,
+				5CB608CB2C2DB3D4003DB576 /* AddNewListView.swift in Sources */,
+				5C56460C2C2B10D100956423 /* DashboardView.swift in Sources */,
+				5CB608C52C2C4DD1003DB576 /* AkaPrepView.swift in Sources */,
+				5CB608CD2C2DB552003DB576 /* AkaListView.swift in Sources */,
+				5CB608D92C303F83003DB576 /* BottomBarView.swift in Sources */,
+				5CB608C02C2C4770003DB576 /* AddNewTaskView.swift in Sources */,
 				5C56460A2C2B10D100956423 /* akaPrepApp.swift in Sources */,
+				5CB608C32C2C4B0E003DB576 /* Utilities.swift in Sources */,
+				5CB608D52C302D21003DB576 /* ProfileEntity.swift in Sources */,
+				5CB608D22C2DC2BF003DB576 /* ListEntity.swift in Sources */,
+				5CB608BE2C2C44D3003DB576 /* AkaButton.swift in Sources */,
+				5CB608D72C303729003DB576 /* BabyEntity.swift in Sources */,
+				5C5646462C2C417400956423 /* NewTaskViewViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +700,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5CB608CE2C2DBA50003DB576 /* XCRemoteSwiftPackageReference "FloatingPromptTextField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmilioPelaez/FloatingPromptTextField";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5CB608CF2C2DBB1C003DB576 /* FloatingPromptTextField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CB608CE2C2DBA50003DB576 /* XCRemoteSwiftPackageReference "FloatingPromptTextField" */;
+			productName = FloatingPromptTextField;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		5C5646142C2B10D200956423 /* akaPrep.xcdatamodeld */ = {
