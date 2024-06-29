@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D50C5822C30664C00648A2A /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5812C30664C00648A2A /* OpenAIService.swift */; };
+		4D50C5842C3066A000648A2A /* PromptTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5832C3066A000648A2A /* PromptTemplate.swift */; };
+		4D50C5862C30672500648A2A /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D50C5852C30672500648A2A /* Config.plist */; };
+		4D50C5882C30675400648A2A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5872C30675400648A2A /* Config.swift */; };
 		5C56460A2C2B10D100956423 /* akaPrepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5646092C2B10D100956423 /* akaPrepApp.swift */; };
 		5C56460C2C2B10D100956423 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56460B2C2B10D100956423 /* DashboardView.swift */; };
 		5C56460E2C2B10D200956423 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C56460D2C2B10D200956423 /* Assets.xcassets */; };
@@ -51,6 +55,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D50C5812C30664C00648A2A /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
+		4D50C5832C3066A000648A2A /* PromptTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplate.swift; sourceTree = "<group>"; };
+		4D50C5852C30672500648A2A /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
+		4D50C5872C30675400648A2A /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		5C5646062C2B10D100956423 /* akaPrep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = akaPrep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5646092C2B10D100956423 /* akaPrepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepApp.swift; sourceTree = "<group>"; };
 		5C56460B2C2B10D100956423 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -105,9 +113,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D50C5802C30663700648A2A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4D50C5812C30664C00648A2A /* OpenAIService.swift */,
+				4D50C5832C3066A000648A2A /* PromptTemplate.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		5C5645FD2C2B10D100956423 = {
 			isa = PBXGroup;
 			children = (
+				4D50C5852C30672500648A2A /* Config.plist */,
 				5C5646082C2B10D100956423 /* akaPrep */,
 				5C56461E2C2B10D200956423 /* akaPrepTests */,
 				5C5646282C2B10D200956423 /* akaPrepUITests */,
@@ -128,6 +146,7 @@
 		5C5646082C2B10D100956423 /* akaPrep */ = {
 			isa = PBXGroup;
 			children = (
+				4D50C5802C30663700648A2A /* Services */,
 				5CB608C12C2C4938003DB576 /* Utilities */,
 				5C5646092C2B10D100956423 /* akaPrepApp.swift */,
 				5C5646472C2C433400956423 /* Views */,
@@ -136,6 +155,7 @@
 				5C5646382C2B12BF00956423 /* CoreData */,
 				5C56460D2C2B10D200956423 /* Assets.xcassets */,
 				5C56460F2C2B10D200956423 /* Preview Content */,
+				4D50C5872C30675400648A2A /* Config.swift */,
 			);
 			path = akaPrep;
 			sourceTree = "<group>";
@@ -328,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C5646112C2B10D200956423 /* Preview Assets.xcassets in Resources */,
+				4D50C5862C30672500648A2A /* Config.plist in Resources */,
 				5C56460E2C2B10D200956423 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,9 +379,11 @@
 				5C5646132C2B10D200956423 /* Persistence.swift in Sources */,
 				5C5646412C2B1DAE00956423 /* TaskEntity.swift in Sources */,
 				5CB608C92C2C6676003DB576 /* FocusableTextEditor.swift in Sources */,
+				4D50C5822C30664C00648A2A /* OpenAIService.swift in Sources */,
 				5CB608CB2C2DB3D4003DB576 /* AddNewListView.swift in Sources */,
 				5C56460C2C2B10D100956423 /* DashboardView.swift in Sources */,
 				5CB608C52C2C4DD1003DB576 /* AkaPrepView.swift in Sources */,
+				4D50C5842C3066A000648A2A /* PromptTemplate.swift in Sources */,
 				5CB608CD2C2DB552003DB576 /* AkaListView.swift in Sources */,
 				5CB608D92C303F83003DB576 /* BottomBarView.swift in Sources */,
 				5CB608C02C2C4770003DB576 /* AddNewTaskView.swift in Sources */,
@@ -368,6 +391,7 @@
 				5CB608C32C2C4B0E003DB576 /* Utilities.swift in Sources */,
 				5CB608D52C302D21003DB576 /* ProfileEntity.swift in Sources */,
 				5CB608D22C2DC2BF003DB576 /* ListEntity.swift in Sources */,
+				4D50C5882C30675400648A2A /* Config.swift in Sources */,
 				5CB608BE2C2C44D3003DB576 /* AkaButton.swift in Sources */,
 				5CB608D72C303729003DB576 /* BabyEntity.swift in Sources */,
 				5C5646462C2C417400956423 /* NewTaskViewViewModel.swift in Sources */,

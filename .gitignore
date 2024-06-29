@@ -83,3 +83,5 @@ fastlane/test_output
 *~
 *.dat
 *.dep
+
+*.plist

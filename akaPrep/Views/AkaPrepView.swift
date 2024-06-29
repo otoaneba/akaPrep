@@ -29,11 +29,25 @@ struct AkaPrepView: View {
                 .padding()
                 
                 Button("Generate Tasks") {
-                    //                    viewModel.generateTasks(taskType: taskType, context: context)
+                    viewModel.generateTasks(taskType: taskType, context: context)
                 }
             }
             .padding()
             Spacer()
+            List {
+                ForEach(viewModel.tasks) { task in
+                    HStack {
+                        Text(task.title)
+                        Spacer()
+                        Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
+                            .onTapGesture {
+                                if let index = viewModel.tasks.firstIndex(where: { $0.id == task.id }) {
+                                    viewModel.tasks[index].isCompleted.toggle()
+                                }
+                            }
+                    }
+                }
+            }
             VStack {
                 
             }
