@@ -9,14 +9,10 @@ import SwiftUI
 import CoreData
 
 struct AkaPrepView: View {
-    @StateObject var viewModel: AkaPrepViewViewModel
+//    @StateObject var viewModel: AkaPrepViewViewModel
+    @EnvironmentObject var viewModel: AkaPrepViewViewModel
     @State private var context = ""
     @State private var taskType = "daily"
-    
-    init(context: NSManagedObjectContext) {
-        _viewModel = StateObject(wrappedValue: AkaPrepViewViewModel(context: context))
-    }
-    
     
     var body: some View {
         NavigationStack {
@@ -97,6 +93,8 @@ struct AkaPrepView: View {
 struct AkaPrepView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
-                return AkaPrepView(context: context)
+        let viewModel = AkaPrepViewViewModel(context: context, useSampleData: true) // Use sample data for preview
+        return AkaPrepView()
+            .environmentObject(viewModel)
     }
 }

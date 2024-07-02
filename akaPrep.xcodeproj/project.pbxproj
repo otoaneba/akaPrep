@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4D50C5822C30664C00648A2A /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5812C30664C00648A2A /* OpenAIService.swift */; };
-		4D50C5842C3066A000648A2A /* PromptTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5832C3066A000648A2A /* PromptTemplate.swift */; };
 		4D50C5862C30672500648A2A /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D50C5852C30672500648A2A /* Config.plist */; };
 		4D50C5882C30675400648A2A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5872C30675400648A2A /* Config.swift */; };
+		4D50C5912C342ECC00648A2A /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C58C2C342ECC00648A2A /* OpenAIService.swift */; };
+		4D50C5922C342ECC00648A2A /* PromptTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C58D2C342ECC00648A2A /* PromptTemplate.swift */; };
+		4D50C5962C342F9100648A2A /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D50C5952C342F9100648A2A /* SampleData.json */; };
 		5C56460A2C2B10D100956423 /* akaPrepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5646092C2B10D100956423 /* akaPrepApp.swift */; };
 		5C56460C2C2B10D100956423 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56460B2C2B10D100956423 /* DashboardView.swift */; };
 		5C56460E2C2B10D200956423 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C56460D2C2B10D200956423 /* Assets.xcassets */; };
@@ -57,10 +58,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4D50C5812C30664C00648A2A /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
-		4D50C5832C3066A000648A2A /* PromptTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptTemplate.swift; sourceTree = "<group>"; };
 		4D50C5852C30672500648A2A /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		4D50C5872C30675400648A2A /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		4D50C58C2C342ECC00648A2A /* OpenAIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
+		4D50C58D2C342ECC00648A2A /* PromptTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptTemplate.swift; sourceTree = "<group>"; };
+		4D50C5952C342F9100648A2A /* SampleData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleData.json; sourceTree = "<group>"; };
 		5C5646062C2B10D100956423 /* akaPrep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = akaPrep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5646092C2B10D100956423 /* akaPrepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepApp.swift; sourceTree = "<group>"; };
 		5C56460B2C2B10D100956423 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -120,8 +122,9 @@
 		4D50C5802C30663700648A2A /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				4D50C5812C30664C00648A2A /* OpenAIService.swift */,
-				4D50C5832C3066A000648A2A /* PromptTemplate.swift */,
+				4D50C58C2C342ECC00648A2A /* OpenAIService.swift */,
+				4D50C58D2C342ECC00648A2A /* PromptTemplate.swift */,
+				4D50C5952C342F9100648A2A /* SampleData.json */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				5C5646112C2B10D200956423 /* Preview Assets.xcassets in Resources */,
 				4D50C5862C30672500648A2A /* Config.plist in Resources */,
 				5C56460E2C2B10D200956423 /* Assets.xcassets in Resources */,
+				4D50C5962C342F9100648A2A /* SampleData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,14 +390,14 @@
 				5C5646412C2B1DAE00956423 /* TaskEntity.swift in Sources */,
 				5CB608C92C2C6676003DB576 /* FocusableTextEditor.swift in Sources */,
 				5CB608E32C3405F2003DB576 /* YearMonthPickerView.swift in Sources */,
-				4D50C5822C30664C00648A2A /* OpenAIService.swift in Sources */,
 				5CB608CB2C2DB3D4003DB576 /* AddNewListView.swift in Sources */,
 				5C56460C2C2B10D100956423 /* DashboardView.swift in Sources */,
 				5CB608C52C2C4DD1003DB576 /* AkaPrepView.swift in Sources */,
-				4D50C5842C3066A000648A2A /* PromptTemplate.swift in Sources */,
 				5CB608E12C33FF75003DB576 /* PersonalInfoView.swift in Sources */,
 				5CB608D92C303F83003DB576 /* BottomBarView.swift in Sources */,
+				4D50C5922C342ECC00648A2A /* PromptTemplate.swift in Sources */,
 				5CB608C02C2C4770003DB576 /* AddNewTaskView.swift in Sources */,
+				4D50C5912C342ECC00648A2A /* OpenAIService.swift in Sources */,
 				5C56460A2C2B10D100956423 /* akaPrepApp.swift in Sources */,
 				5CB608C32C2C4B0E003DB576 /* Utilities.swift in Sources */,
 				5CB608D52C302D21003DB576 /* ProfileEntity.swift in Sources */,
