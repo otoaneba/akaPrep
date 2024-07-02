@@ -30,7 +30,6 @@
 		5CB608C92C2C6676003DB576 /* FocusableTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608C82C2C6676003DB576 /* FocusableTextEditor.swift */; };
 		5CB608CB2C2DB3D4003DB576 /* AddNewListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608CA2C2DB3D4003DB576 /* AddNewListView.swift */; };
 		5CB608CD2C2DB552003DB576 /* AkaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608CC2C2DB552003DB576 /* AkaListView.swift */; };
-		5CB608D02C2DBB1C003DB576 /* FloatingPromptTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 5CB608CF2C2DBB1C003DB576 /* FloatingPromptTextField */; };
 		5CB608D22C2DC2BF003DB576 /* ListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608D12C2DC2BF003DB576 /* ListEntity.swift */; };
 		5CB608D52C302D21003DB576 /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608D42C302D21003DB576 /* ProfileEntity.swift */; };
 		5CB608D72C303729003DB576 /* BabyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608D62C303729003DB576 /* BabyEntity.swift */; };
@@ -100,7 +99,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CB608D02C2DBB1C003DB576 /* FloatingPromptTextField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +264,6 @@
 			);
 			name = akaPrep;
 			packageProductDependencies = (
-				5CB608CF2C2DBB1C003DB576 /* FloatingPromptTextField */,
 			);
 			productName = akaPrep;
 			productReference = 5C5646062C2B10D100956423 /* akaPrep.app */;
@@ -341,7 +338,6 @@
 			);
 			mainGroup = 5C5645FD2C2B10D100956423;
 			packageReferences = (
-				5CB608CE2C2DBA50003DB576 /* XCRemoteSwiftPackageReference "FloatingPromptTextField" */,
 			);
 			productRefGroup = 5C5646072C2B10D100956423 /* Products */;
 			projectDirPath = "";
@@ -740,25 +736,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		5CB608CE2C2DBA50003DB576 /* XCRemoteSwiftPackageReference "FloatingPromptTextField" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/EmilioPelaez/FloatingPromptTextField";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.4.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		5CB608CF2C2DBB1C003DB576 /* FloatingPromptTextField */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5CB608CE2C2DBA50003DB576 /* XCRemoteSwiftPackageReference "FloatingPromptTextField" */;
-			productName = FloatingPromptTextField;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		5C5646142C2B10D200956423 /* akaPrep.xcdatamodeld */ = {
