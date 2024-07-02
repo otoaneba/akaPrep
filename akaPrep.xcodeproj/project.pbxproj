@@ -37,6 +37,9 @@
 		5CB608DD2C32E4A2003DB576 /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608DC2C32E4A2003DB576 /* ProfileCardView.swift */; };
 		5CB608E12C33FF75003DB576 /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608E02C33FF75003DB576 /* PersonalInfoView.swift */; };
 		5CB608E32C3405F2003DB576 /* YearMonthPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608E22C3405F2003DB576 /* YearMonthPickerView.swift */; };
+		5CB608E52C342999003DB576 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608E42C342999003DB576 /* Enums.swift */; };
+		5CB608E92C342A13003DB576 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5CB608E72C342A13003DB576 /* Localizable.strings */; };
+		5CB608EB2C343C92003DB576 /* PersonalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608EA2C343C92003DB576 /* PersonalInfoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +93,9 @@
 		5CB608DC2C32E4A2003DB576 /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
 		5CB608E02C33FF75003DB576 /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
 		5CB608E22C3405F2003DB576 /* YearMonthPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthPickerView.swift; sourceTree = "<group>"; };
+		5CB608E42C342999003DB576 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		5CB608E82C342A13003DB576 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5CB608EA2C343C92003DB576 /* PersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +156,7 @@
 		5C5646082C2B10D100956423 /* akaPrep */ = {
 			isa = PBXGroup;
 			children = (
+				5CB608E62C3429DA003DB576 /* Resources */,
 				4D50C5802C30663700648A2A /* Services */,
 				5CB608C12C2C4938003DB576 /* Utilities */,
 				5C5646092C2B10D100956423 /* akaPrepApp.swift */,
@@ -205,6 +212,7 @@
 				5CB608D12C2DC2BF003DB576 /* ListEntity.swift */,
 				5CB608D42C302D21003DB576 /* ProfileEntity.swift */,
 				5CB608D62C303729003DB576 /* BabyEntity.swift */,
+				5CB608E42C342999003DB576 /* Enums.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -214,6 +222,7 @@
 			children = (
 				5C5646452C2C417400956423 /* NewTaskViewViewModel.swift */,
 				5CB608C62C2C4DE7003DB576 /* AkaListViewViewModel.swift */,
+				5CB608EA2C343C92003DB576 /* PersonalInfoViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -242,6 +251,14 @@
 				5CB608C22C2C4B0E003DB576 /* Utilities.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		5CB608E62C3429DA003DB576 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5CB608E72C342A13003DB576 /* Localizable.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C5646112C2B10D200956423 /* Preview Assets.xcassets in Resources */,
+				5CB608E92C342A13003DB576 /* Localizable.strings in Resources */,
 				4D50C5862C30672500648A2A /* Config.plist in Resources */,
 				5C56460E2C2B10D200956423 /* Assets.xcassets in Resources */,
 			);
@@ -381,6 +399,7 @@
 			files = (
 				5CB608DD2C32E4A2003DB576 /* ProfileCardView.swift in Sources */,
 				5C5646162C2B10D200956423 /* akaPrep.xcdatamodeld in Sources */,
+				5CB608E52C342999003DB576 /* Enums.swift in Sources */,
 				5CB608C72C2C4DE7003DB576 /* AkaListViewViewModel.swift in Sources */,
 				5C5646132C2B10D200956423 /* Persistence.swift in Sources */,
 				5C5646412C2B1DAE00956423 /* TaskEntity.swift in Sources */,
@@ -396,6 +415,7 @@
 				5CB608C02C2C4770003DB576 /* AddNewTaskView.swift in Sources */,
 				5C56460A2C2B10D100956423 /* akaPrepApp.swift in Sources */,
 				5CB608C32C2C4B0E003DB576 /* Utilities.swift in Sources */,
+				5CB608EB2C343C92003DB576 /* PersonalInfoViewModel.swift in Sources */,
 				5CB608D52C302D21003DB576 /* ProfileEntity.swift in Sources */,
 				5CB608D22C2DC2BF003DB576 /* ListEntity.swift in Sources */,
 				4D50C5882C30675400648A2A /* Config.swift in Sources */,
@@ -437,6 +457,17 @@
 			targetProxy = 5C5646262C2B10D200956423 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5CB608E72C342A13003DB576 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5CB608E82C342A13003DB576 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		5C56462D2C2B10D200956423 /* Debug */ = {

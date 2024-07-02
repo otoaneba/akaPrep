@@ -19,7 +19,9 @@
     </entity>
     <entity name="ProfileEntity" representedClassName="ProfileEntity" syncable="YES">
         <attribute name="dateOfBirth" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="genderRaw" optional="YES" attributeType="String"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
         <attribute name="workScheduleRaw" optional="YES" attributeType="String"/>
         <relationship name="currentLists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListEntity"/>
         <relationship name="savedLists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListEntity"/>

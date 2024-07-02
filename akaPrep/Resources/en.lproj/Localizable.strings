@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  akaPrep
+
+  Created by Naoto Abe on 7/2/24.
+  
+*/
+"first_name" = "First Name";
+"last_name" = "Last Name";
+"birth_date" = "Birth Date";

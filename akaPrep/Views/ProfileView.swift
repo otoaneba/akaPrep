@@ -6,16 +6,20 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ProfileView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    
     @State public var name = ""
+    
     var body: some View {
         NavigationStack {
             VStack {
             ProfileCardView(profileName: "Cynthia Li", profileDetails: "Edit picture")
             
                 let primaryList = [
-                   NavigationItem(name: "Personal Info", destination: AnyView(ProfileView())),
+                   NavigationItem(name: "Personal Info", destination: AnyView(PersonalInfoView(viewModel: PersonalInfoViewModel(context: viewContext)))),
                    NavigationItem(name: "Baby Info", destination: AnyView(ProfileView())),
                 ]
                 let secondaryList = [
@@ -76,6 +80,10 @@ struct NavigationItem: Identifiable {
     var destination: AnyView
 }
 
-#Preview {
-    ProfileView()
+struct ProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        let context = PersistenceController.preview.container.viewContext
+        return ProfileView()
+            .environment(\.managedObjectContext, context)
+    }
 }

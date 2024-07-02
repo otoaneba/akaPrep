@@ -12,8 +12,8 @@ struct YearMonthPickerView: View {
     
     let months: [String] = Calendar.current.shortMonthSymbols
     let columns = [
-            GridItem(.adaptive(minimum: 80))
-        ]
+        GridItem(.adaptive(minimum: 80))
+    ]
     
     var body: some View {
         VStack {
