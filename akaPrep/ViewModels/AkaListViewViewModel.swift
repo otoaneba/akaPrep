@@ -15,39 +15,77 @@ class AkaPrepViewViewModel: ObservableObject {
     @Published var monthlyTasks: [TaskEntity] = []
     @Published var selectedTaskType: String = "daily"
     
-    private let context: NSManagedObjectContext
     
-    private let openAIService = OpenAIService()
+    private let context: NSManagedObjectContext
+        private let openAIService: OpenAIService
+        private let useSampleData: Bool // for LLM testing
+    
+    init(context: NSManagedObjectContext, useSampleData: Bool = false) {
+        self.context = context
+        self.openAIService = OpenAIService()
+        self.useSampleData = useSampleData // for LLM testing
+        
+        // for LLM testing
+        if useSampleData {
+            loadSampleData()
+        } else {
+            loadTasks()
+        }
+    }
+    
+    // for LLM testing
+    func loadSampleData() {
+        if let url = Bundle.main.url(forResource: "SampleData", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                if let tasks = json?["tasks"] as? [String] {
+                    let list = fetchOrCreateList(for: .daily) // Assuming daily for simplicity
+                    list.addToTasks(NSSet(array: tasks.map { TaskEntity(context: self.context, title: $0, taskType: "daily") }))
+                    self.dailyTasks = list.taskArray
+                }
+            } catch {
+                print("Failed to load sample data: \(error)")
+            }
+        } else {
+            print("SampleData.json not found")
+        }
+    }
+        
     
     func generateTasks(taskType: String, context: String) {
-        print(taskType)
-        let prompt = PromptTemplate.generatePrompt(taskType: taskType, context: context)
-        openAIService.fetchTasks(prompt: prompt) { [weak self] generatedTasks in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                // Clear existing tasks of the same type
-                self.clearTasks(ofType: taskType)
-                switch taskType {
-                case "daily":
-//                    self.dailyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0)}
-                    let list = self.fetchOrCreateList(for: .daily)
-                    list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "daily") }))
-                    self.dailyTasks = list.taskArray
-                case "weekly":
-//                    self.weeklyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0) }
-                    let list = self.fetchOrCreateList(for: .weekly)
-                    list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "weekly") }))
-                    self.weeklyTasks = list.taskArray
-                case "monthly":
-//                    self.monthlyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0) }
-                    let list = self.fetchOrCreateList(for: .monthly)
-                    list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "monthly") }))
-                    self.monthlyTasks = list.taskArray
-                default:
-//                    self.dailyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0) }
-                    break
+        if useSampleData {
+            // Use sample data
+            loadSampleData()
+        } else {
+            // Fetch from API
+            let prompt = PromptTemplate.generatePrompt(taskType: taskType, context: context)
+            openAIService.fetchTasks(prompt: prompt) { [weak self] generatedTasks in
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    // Clear existing tasks of the same type
+                    self.clearTasks(ofType: taskType)
+                    switch taskType {
+                    case "daily":
+                        //                    self.dailyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0)}
+                        let list = self.fetchOrCreateList(for: .daily)
+                        list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "daily") }))
+                        self.dailyTasks = list.taskArray
+                    case "weekly":
+                        //                    self.weeklyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0) }
+                        let list = self.fetchOrCreateList(for: .weekly)
+                        list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "weekly") }))
+                        self.weeklyTasks = list.taskArray
+                    case "monthly":
+                        //                    self.monthlyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0) }
+                        let list = self.fetchOrCreateList(for: .monthly)
+                        list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "monthly") }))
+                        self.monthlyTasks = list.taskArray
+                    default:
+                        //                    self.dailyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0) }
+                        break
+                    }
                 }
-                
             }
         }
     }
@@ -63,10 +101,6 @@ class AkaPrepViewViewModel: ObservableObject {
          default:
              return []
          }
-     }
-    
-    init(context: NSManagedObjectContext) {
-         self.context = context
      }
     
     func toggleTaskCompletion(task: TaskEntity) {
@@ -134,11 +168,5 @@ class AkaPrepViewViewModel: ObservableObject {
         list.expirationDate = Date().addingTimeInterval(24 * 60 * 60 * (frequency == .daily ? 1 : (frequency == .weekly ? 7 : 30))) // Example expiration logic
         return list
     }
-
-}
-
-struct TaskItem: Identifiable {
-    let id = UUID()
-    let title: String
-    var isCompleted: Bool = false
+    
 }

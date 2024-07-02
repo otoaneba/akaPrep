@@ -9,26 +9,32 @@ import SwiftUI
 
 struct BottomBarView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @StateObject private var viewModel = AkaPrepViewViewModel(context: PersistenceController.shared.container.viewContext, useSampleData: false)
+
     var body: some View {
         TabView {
-            AkaPrepView(context: viewContext)
+            AkaPrepView()
+                .environmentObject(viewModel)
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Tasks")
                 }
-            
             
             ProfileView()
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Profile")
                 }
-                    
-           
-            }
+        }
     }
 }
 
-#Preview {
-    BottomBarView()
+struct BottomBarView_Previews: PreviewProvider {
+    static var previews: some View {
+        BottomBarView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
 }
+
+
+
