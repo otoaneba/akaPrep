@@ -14,35 +14,8 @@ struct PersonalInfoView: View {
     init(viewModel: PersonalInfoViewModel) {
         self.viewModel = viewModel
     }
-    
-//    @State private var firstName: String = ""
-//    @State private var lastName: String = ""
-//    @State private var birthMonthAndYear: String = ""
-//    @State private var gender: Gender = Gender.female
-//    @State private var workSchedule: WorkSchedule = WorkSchedule.fullTime
-//    @State private var showDatePicker = false
-//    @State private var selectedDate = Date()
-//    
-//    // Initial values
-//    private let initialFirstName = ""
-//    private let initialLastName = ""
-//    private let initialBirthMonthAndYear = ""
-//    private let initialGender: Gender = .female
-//    private let initialWorkSchedule: WorkSchedule = .fullTime
-    
-    
-    
-//    var isSaveDisabled: Bool {
-//        firstName == initialFirstName &&
-//        lastName == initialLastName &&
-//        birthMonthAndYear == initialBirthMonthAndYear &&
-//        gender == initialGender &&
-//        workSchedule == initialWorkSchedule
-//    }
-    
     var body: some View {
         NavigationStack {
-//            Form {
             List {
                 Section(header: Text("Personal Info")) {
                     HStack {
@@ -84,7 +57,7 @@ struct PersonalInfoView: View {
                     Picker("Gender", selection: $viewModel.gender) {
                         Text("Female").tag(Gender.female)
                         Text("Male").tag(Gender.male)
-                        Text("Other").tag(Gender.male)
+                        Text("Other").tag(Gender.other)
                     }
                     Picker("Work Schedule", selection: $viewModel.workSchedule) {
                         Text("Swamped").tag(WorkSchedule.fullTime)
@@ -100,6 +73,7 @@ struct PersonalInfoView: View {
                     Button("Save") {
                         // Handle save action
                         print("Saved!")
+                        viewModel.saveProfile()
                         presentationMode.wrappedValue.dismiss()
                     }.disabled(viewModel.isSaveDisabled)
                 }

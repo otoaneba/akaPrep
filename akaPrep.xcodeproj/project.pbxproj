@@ -159,6 +159,7 @@
 		5C5646082C2B10D100956423 /* akaPrep */ = {
 			isa = PBXGroup;
 			children = (
+				5CB608EC2C34462A003DB576 /* Features */,
 				5CB608E62C3429DA003DB576 /* Resources */,
 				4D50C5802C30663700648A2A /* Services */,
 				5CB608C12C2C4938003DB576 /* Utilities */,
@@ -262,6 +263,45 @@
 				5CB608E72C342A13003DB576 /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		5CB608EC2C34462A003DB576 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				5CB608F02C34468A003DB576 /* SavedLists */,
+				5CB608EF2C344685003DB576 /* Goals */,
+				5CB608EE2C34464D003DB576 /* Profile */,
+				5CB608ED2C344645003DB576 /* Tasks */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		5CB608ED2C344645003DB576 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		5CB608EE2C34464D003DB576 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		5CB608EF2C344685003DB576 /* Goals */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Goals;
+			sourceTree = "<group>";
+		};
+		5CB608F02C34468A003DB576 /* SavedLists */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SavedLists;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

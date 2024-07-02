@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import Combine
 
 class PersonalInfoViewModel: ObservableObject {
     @Published var firstName: String = ""
@@ -16,6 +17,9 @@ class PersonalInfoViewModel: ObservableObject {
     @Published var workSchedule: WorkSchedule = .fullTime
     @Published var selectedDate: Date?
     @Published var showDatePicker: Bool = false
+    
+    @Published var isSaveDisabled: Bool = true
+    private var cancellables: Set<AnyCancellable> = []
     
     private var initialFirstName: String = ""
     private var initialLastName: String = ""
@@ -37,14 +41,7 @@ class PersonalInfoViewModel: ObservableObject {
         }
         
         loadProfile()
-    }
-    
-    var isSaveDisabled: Bool {
-        firstName.isEmpty || firstName == initialFirstName &&
-        lastName == initialLastName &&
-        birthMonthAndYear == initialBirthMonthAndYear &&
-        gender == initialGender &&
-        workSchedule == initialWorkSchedule
+        setupSubscribers()
     }
     
     var formattedDate: String {
@@ -77,6 +74,46 @@ class PersonalInfoViewModel: ObservableObject {
         
         workSchedule = profile.workSchedule
         initialWorkSchedule = workSchedule
+        
+        updateSaveDisabled()
+    }
+    
+    private func setupSubscribers() {
+        // Combine first four properties
+               let firstFour = Publishers.CombineLatest4(
+                   $firstName,
+                   $lastName,
+                   $birthMonthAndYear,
+                   $gender
+               )
+
+               // Combine with work schedule
+               let firstFive = firstFour.combineLatest($workSchedule)
+
+               // Combine with selected date
+               let allProperties = firstFive.combineLatest($selectedDate)
+
+        allProperties
+            .map { values -> Bool in
+                let (firstFiveValues, _) = values
+                let ((firstName, lastName, birthMonthAndYear, gender), workSchedule) = firstFiveValues
+                return firstName.isEmpty || (firstName == self.initialFirstName &&
+                    lastName == self.initialLastName &&
+                    birthMonthAndYear == self.initialBirthMonthAndYear &&
+                    gender == self.initialGender &&
+                    workSchedule == self.initialWorkSchedule)
+            }
+            .assign(to: &$isSaveDisabled)
+    }
+    
+    
+    private func updateSaveDisabled() {
+        isSaveDisabled =
+            firstName.isEmpty || (firstName == initialFirstName &&
+            lastName == initialLastName &&
+            birthMonthAndYear == initialBirthMonthAndYear &&
+            gender == initialGender &&
+            workSchedule == initialWorkSchedule)
     }
     
     func saveProfile() {
@@ -91,6 +128,7 @@ class PersonalInfoViewModel: ObservableObject {
         do {
             try viewContext.save()
             print("Profile saved!")
+            loadProfile()
         } catch {
             print("Failed to save profile: \(error.localizedDescription)")
         }
