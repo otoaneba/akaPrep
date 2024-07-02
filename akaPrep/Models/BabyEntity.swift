@@ -32,6 +32,13 @@ extension BabyEntity {
                genderRaw = newValue.rawValue
            }
        }
+    
+    override public func awakeFromInsert() {
+        super.awakeFromInsert()
+        if #available(iOS 13.0, *) {
+            self.setPrimitiveValue(NSValueTransformerName.secureUnarchiveFromDataTransformerName, forKey: "goal")
+        }
+    }
 }
 
 extension BabyEntity {

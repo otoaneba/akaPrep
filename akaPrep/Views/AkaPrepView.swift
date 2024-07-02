@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct AkaPrepView: View {
-    @StateObject var viewModel = AkaPrepViewViewModel()
+    @StateObject var viewModel: AkaPrepViewViewModel
     @State private var context = ""
     @State private var taskType = "daily"
+    
+    init(context: NSManagedObjectContext) {
+        _viewModel = StateObject(wrappedValue: AkaPrepViewViewModel(context: context))
+    }
     
     
     var body: some View {
@@ -20,7 +25,7 @@ struct AkaPrepView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 
-                Picker("Task Type", selection: $taskType) {
+                Picker("Task Type", selection: $viewModel.selectedTaskType) {
                     Text("Daily").tag("daily")
                     Text("Weekly").tag("weekly")
                     Text("Monthly").tag("monthly")
@@ -28,36 +33,56 @@ struct AkaPrepView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
                 
-                Button("Generate Tasks") {
-                    viewModel.generateTasks(taskType: taskType, context: context)
+                Button {
+                    // Action
+                    viewModel.generateTasks(taskType: viewModel.selectedTaskType, context: context)
+                } label: {
+                    HStack {
+                        Image(systemName: "plus.app")
+                        Text("Generate your daily tasks")
+                    }
                 }
             }
             .padding()
             Spacer()
+            
             List {
-                ForEach(viewModel.tasks) { task in
+                ForEach(viewModel.tasksForSelectedType) { task in
                     HStack {
                         Text(task.title)
                         Spacer()
                         Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
                             .onTapGesture {
-                                if let index = viewModel.tasks.firstIndex(where: { $0.id == task.id }) {
-                                    viewModel.tasks[index].isCompleted.toggle()
+                                if let index = viewModel.dailyTasks.firstIndex(where: { $0.id == task.id }) {
+                                    viewModel.dailyTasks[index].isCompleted.toggle()
                                 }
                             }
                     }
                 }
             }
-            VStack {
-                
-            }
-            .navigationTitle("Home")
+            .navigationTitle("Tasks")
             .toolbar {
-                Button {
-                    // Action
-                    viewModel.showingAddNewTaskView = true
+                Menu {
+                    NavigationLink(destination: ProfileView()) {
+                        HStack {
+                            Image(systemName: "person.crop.circle")
+                            VStack {
+                                Text("Cynthia")
+                                Text("Edit")
+                            }
+                        }
+                    }
+                    NavigationLink(destination: ProfileView()) {
+                        Label("Personal Info", systemImage: "chevron.right")
+                    }
+                    NavigationLink(destination: ProfileView()) {
+                        Label("Baby Info", systemImage: "chevron.right")
+                    }
+                    NavigationLink(destination: ProfileView()) {
+                        Label("Settings", systemImage: "chevron.right")
+                    }
                 } label: {
-                    Image(systemName: "plus")
+                    Label("", systemImage: "person.crop.circle")
                 }
             }.sheet(isPresented: $viewModel.showingAddNewTaskView) {
                 AddNewTaskView(newTaskPresented: $viewModel.showingAddNewTaskView)
@@ -69,6 +94,9 @@ struct AkaPrepView: View {
         
 }
 
-#Preview {
-    AkaPrepView()
+struct AkaPrepView_Previews: PreviewProvider {
+    static var previews: some View {
+        let context = PersistenceController.preview.container.viewContext
+                return AkaPrepView(context: context)
+    }
 }

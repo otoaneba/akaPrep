@@ -18,20 +18,24 @@ public class TaskEntity: NSManagedObject, Identifiable {
     @NSManaged public var title: String
     @NSManaged public var date: Date?
     @NSManaged public var isCompleted: Bool
-
+    @NSManaged public var taskType: String?
+    @NSManaged public var list: ListEntity? // Inverse relationship
     
-    public override func awakeFromInsert() {
-            super.awakeFromInsert()
-            id = UUID()
-        }
-}
-
-enum TaskStatus: String, Codable {
-    case complete
-    case imcomplete
+    override public func awakeFromInsert() {
+        super.awakeFromInsert()
+        id = UUID()
+    }
 }
 
 // MARK: accessors for subTasks
 extension TaskEntity {
+
+    convenience init(context: NSManagedObjectContext, title: String, taskType: String, isCompleted: Bool = false, id: UUID = UUID()) {
+            self.init(context: context)
+            self.title = title
+            self.isCompleted = isCompleted
+            self.id = id
+            self.taskType = taskType
+        }
 
 }

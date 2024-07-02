@@ -35,6 +35,10 @@
 		5CB608D52C302D21003DB576 /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608D42C302D21003DB576 /* ProfileEntity.swift */; };
 		5CB608D72C303729003DB576 /* BabyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608D62C303729003DB576 /* BabyEntity.swift */; };
 		5CB608D92C303F83003DB576 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608D82C303F83003DB576 /* BottomBarView.swift */; };
+		5CB608DB2C306403003DB576 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608DA2C306403003DB576 /* ProfileView.swift */; };
+		5CB608DD2C32E4A2003DB576 /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608DC2C32E4A2003DB576 /* ProfileCardView.swift */; };
+		5CB608E12C33FF75003DB576 /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608E02C33FF75003DB576 /* PersonalInfoView.swift */; };
+		5CB608E32C3405F2003DB576 /* YearMonthPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608E22C3405F2003DB576 /* YearMonthPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +89,10 @@
 		5CB608D42C302D21003DB576 /* ProfileEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEntity.swift; sourceTree = "<group>"; };
 		5CB608D62C303729003DB576 /* BabyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyEntity.swift; sourceTree = "<group>"; };
 		5CB608D82C303F83003DB576 /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
+		5CB608DA2C306403003DB576 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		5CB608DC2C32E4A2003DB576 /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
+		5CB608E02C33FF75003DB576 /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
+		5CB608E22C3405F2003DB576 /* YearMonthPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,10 +229,14 @@
 				5CB608BD2C2C44D3003DB576 /* AkaButton.swift */,
 				5CB608BF2C2C4770003DB576 /* AddNewTaskView.swift */,
 				5CB608C42C2C4DD1003DB576 /* AkaPrepView.swift */,
-				5CB608C82C2C6676003DB576 /* FocusableTextEditor.swift */,
 				5CB608CA2C2DB3D4003DB576 /* AddNewListView.swift */,
 				5CB608CC2C2DB552003DB576 /* AkaListView.swift */,
 				5CB608D82C303F83003DB576 /* BottomBarView.swift */,
+				5CB608C82C2C6676003DB576 /* FocusableTextEditor.swift */,
+				5CB608DA2C306403003DB576 /* ProfileView.swift */,
+				5CB608DC2C32E4A2003DB576 /* ProfileCardView.swift */,
+				5CB608E02C33FF75003DB576 /* PersonalInfoView.swift */,
+				5CB608E22C3405F2003DB576 /* YearMonthPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -374,17 +386,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CB608DD2C32E4A2003DB576 /* ProfileCardView.swift in Sources */,
 				5C5646162C2B10D200956423 /* akaPrep.xcdatamodeld in Sources */,
 				5CB608C72C2C4DE7003DB576 /* AkaListViewViewModel.swift in Sources */,
 				5C5646132C2B10D200956423 /* Persistence.swift in Sources */,
 				5C5646412C2B1DAE00956423 /* TaskEntity.swift in Sources */,
 				5CB608C92C2C6676003DB576 /* FocusableTextEditor.swift in Sources */,
+				5CB608E32C3405F2003DB576 /* YearMonthPickerView.swift in Sources */,
 				4D50C5822C30664C00648A2A /* OpenAIService.swift in Sources */,
 				5CB608CB2C2DB3D4003DB576 /* AddNewListView.swift in Sources */,
 				5C56460C2C2B10D100956423 /* DashboardView.swift in Sources */,
 				5CB608C52C2C4DD1003DB576 /* AkaPrepView.swift in Sources */,
 				4D50C5842C3066A000648A2A /* PromptTemplate.swift in Sources */,
 				5CB608CD2C2DB552003DB576 /* AkaListView.swift in Sources */,
+				5CB608E12C33FF75003DB576 /* PersonalInfoView.swift in Sources */,
 				5CB608D92C303F83003DB576 /* BottomBarView.swift in Sources */,
 				5CB608C02C2C4770003DB576 /* AddNewTaskView.swift in Sources */,
 				5C56460A2C2B10D100956423 /* akaPrepApp.swift in Sources */,
@@ -393,6 +408,7 @@
 				5CB608D22C2DC2BF003DB576 /* ListEntity.swift in Sources */,
 				4D50C5882C30675400648A2A /* Config.swift in Sources */,
 				5CB608BE2C2C44D3003DB576 /* AkaButton.swift in Sources */,
+				5CB608DB2C306403003DB576 /* ProfileView.swift in Sources */,
 				5CB608D72C303729003DB576 /* BabyEntity.swift in Sources */,
 				5C5646462C2C417400956423 /* NewTaskViewViewModel.swift in Sources */,
 			);

@@ -17,10 +17,11 @@ extension ListEntity {
         return NSFetchRequest<ListEntity>(entityName: "ListEntity")
     }
 
+    @NSManaged public var id: UUID?
     @NSManaged public var name: String
     @NSManaged private var frequencyRaw: String
-    @NSManaged public var tasks: [TaskEntity]?
     @NSManaged public var expirationDate: Date
+    @NSManaged public var tasks: NSSet?
    
     public var frequency: Frequency {
            get {
@@ -30,6 +31,16 @@ extension ListEntity {
                frequencyRaw = newValue.rawValue
            }
        }
+    
+    public var taskArray: [TaskEntity] {
+        let set = tasks as? Set<TaskEntity> ?? []
+        return Array(set)
+    }
+    
+    override public func awakeFromInsert() {
+        super.awakeFromInsert()
+        id = UUID()
+    }
 }
 
 extension ListEntity {
@@ -38,5 +49,18 @@ extension ListEntity {
         case weekly
         case monthly
     }
+    
+    @objc(addTasksObject:)
+    @NSManaged public func addToTasks(_ value: TaskEntity)
+
+    @objc(removeTasksObject:)
+    @NSManaged public func removeFromTasks(_ value: TaskEntity)
+
+    @objc(addTasks:)
+    @NSManaged public func addToTasks(_ values: NSSet)
+
+    @objc(removeTasks:)
+    @NSManaged public func removeFromTasks(_ values: NSSet)
+    
 }
 

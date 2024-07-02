@@ -8,25 +8,23 @@
 import SwiftUI
 
 struct BottomBarView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     var body: some View {
         TabView {
-            AkaPrepView()
+            AkaPrepView(context: viewContext)
                 .tabItem {
                     Image(systemName: "house.fill")
-                    Text("Home")
+                    Text("Tasks")
                 }
             
-            AkaListView()
+            
+            ProfileView()
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Profile")
                 }
                     
-            AkaListView()
-                .tabItem {
-                    Image(systemName: "gearshape.fill")
-                    Text("Settings")
-                }
+           
             }
     }
 }
