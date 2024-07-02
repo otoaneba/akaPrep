@@ -9,11 +9,7 @@ import SwiftUI
 
 struct BottomBarView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @StateObject private var viewModel: AkaPrepViewViewModel
-    
-    init(useSampleData: Bool = false) {
-        _viewModel = StateObject(wrappedValue: AkaPrepViewViewModel(context: PersistenceController.shared.container.viewContext, useSampleData: useSampleData))
-    }
+    @StateObject private var viewModel = AkaPrepViewViewModel(context: PersistenceController.shared.container.viewContext, useSampleData: false)
 
     var body: some View {
         TabView {
@@ -33,8 +29,12 @@ struct BottomBarView: View {
     }
 }
 
-#Preview {
-    BottomBarView(useSampleData: true)
-        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+struct BottomBarView_Previews: PreviewProvider {
+    static var previews: some View {
+        BottomBarView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
 }
+
+
 
