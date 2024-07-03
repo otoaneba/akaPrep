@@ -14,6 +14,9 @@ class GoalsViewModel: ObservableObject {
     @Published var dailyGoal = ""
     @Published var weeklyGoal = ""
     @Published var monthlyGoal = ""
+    @Published var originalDailyGoal = ""
+    @Published var originalWeeklyGoal = ""
+    @Published var originalMonthlyGoal = ""
     
     private let context: NSManagedObjectContext
 
@@ -30,10 +33,13 @@ class GoalsViewModel: ObservableObject {
                 switch goal.frequency {
                 case .daily:
                     dailyGoal = goal.title ?? ""
+                    originalDailyGoal = dailyGoal
                 case .weekly:
                     weeklyGoal = goal.title ?? ""
+                    originalWeeklyGoal = weeklyGoal
                 case .monthly:
                     monthlyGoal = goal.title ?? ""
+                    originalMonthlyGoal = monthlyGoal
                 }
             }
         } catch {
@@ -57,9 +63,23 @@ class GoalsViewModel: ObservableObject {
             }
             goal.title = currentGoalText()
             try context.save()
+            updateOriginalGoal()
             print("\(selectedSegment.capitalized) goal saved!")
         } catch {
             print("Failed to save goal: \(error)")
+        }
+    }
+    
+    private func updateOriginalGoal() {
+        switch selectedSegment {
+        case Frequency.daily.rawValue:
+            originalDailyGoal = dailyGoal
+        case Frequency.weekly.rawValue:
+            originalWeeklyGoal = weeklyGoal
+        case Frequency.monthly.rawValue:
+            originalMonthlyGoal = monthlyGoal
+        default:
+            break
         }
     }
     
@@ -98,6 +118,19 @@ class GoalsViewModel: ObservableObject {
                 get: { self.dailyGoal },
                 set: { self.dailyGoal = $0 }
             )
+        }
+    }
+    
+    func isSaveButtonDisabled() -> Bool {
+        switch selectedSegment {
+        case Frequency.daily.rawValue:
+            return dailyGoal.isEmpty || dailyGoal == originalDailyGoal
+        case Frequency.weekly.rawValue:
+            return weeklyGoal.isEmpty || weeklyGoal == originalWeeklyGoal
+        case Frequency.monthly.rawValue:
+            return monthlyGoal.isEmpty || monthlyGoal == originalMonthlyGoal
+        default:
+            return true
         }
     }
 }

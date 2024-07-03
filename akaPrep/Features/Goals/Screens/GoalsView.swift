@@ -34,21 +34,27 @@ struct GoalsView: View {
                     viewModel.saveGoal()
                 }) {
                     Text("Save")
-                        .foregroundColor(.white)
+                        .font(Font.custom("SF Pro", size: 15))
+                        .foregroundColor(viewModel.isSaveButtonDisabled() ? .gray: .white)
                         .padding(.horizontal, 14)
                         .padding(.vertical, 7)
-                        .background(Color(red: 0.76, green: 0.07, blue: 0.12))
-
+                        .background(viewModel.isSaveButtonDisabled() ? Constants.FillsTertiary : Color(red: 0.76, green: 0.07, blue: 0.12))
                         .cornerRadius(40)
                 }
                 .padding()
+                .disabled(viewModel.isSaveButtonDisabled())
                 
                 Spacer()
+                
             }
             .navigationTitle("Goals")
             .padding()
         }
     }
+}
+
+struct Constants {
+    static let FillsTertiary: Color = Color(red: 0.47, green: 0.47, blue: 0.5).opacity(0.12)
 }
 
 struct GoalsView_Previews: PreviewProvider {
