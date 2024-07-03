@@ -19,3 +19,10 @@ public enum WorkSchedule: String, CaseIterable {
     case freelance = "Freelance"
     case unemployed = "Unemployed"
 }
+
+public enum Frequency: String, CaseIterable {
+    case daily
+    case weekly
+    case monthly
+}
+

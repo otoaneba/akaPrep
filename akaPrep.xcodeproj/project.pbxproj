@@ -12,6 +12,9 @@
 		4D50C5912C342ECC00648A2A /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C58C2C342ECC00648A2A /* OpenAIService.swift */; };
 		4D50C5922C342ECC00648A2A /* PromptTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C58D2C342ECC00648A2A /* PromptTemplate.swift */; };
 		4D50C5962C342F9100648A2A /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D50C5952C342F9100648A2A /* SampleData.json */; };
+		4D50C5A62C358F3A00648A2A /* GoalEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5A52C358F3A00648A2A /* GoalEntity.swift */; };
+		4D50C5A82C35915200648A2A /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5A72C35915200648A2A /* GoalsViewModel.swift */; };
+		4D50C5AA2C3592D700648A2A /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5A92C3592D700648A2A /* GoalsView.swift */; };
 		5C56460A2C2B10D100956423 /* akaPrepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5646092C2B10D100956423 /* akaPrepApp.swift */; };
 		5C56460C2C2B10D100956423 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56460B2C2B10D100956423 /* ContentView.swift */; };
 		5C56460E2C2B10D200956423 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C56460D2C2B10D200956423 /* Assets.xcassets */; };
@@ -65,6 +68,9 @@
 		4D50C58C2C342ECC00648A2A /* OpenAIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
 		4D50C58D2C342ECC00648A2A /* PromptTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptTemplate.swift; sourceTree = "<group>"; };
 		4D50C5952C342F9100648A2A /* SampleData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleData.json; sourceTree = "<group>"; };
+		4D50C5A52C358F3A00648A2A /* GoalEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEntity.swift; sourceTree = "<group>"; };
+		4D50C5A72C35915200648A2A /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModel.swift; sourceTree = "<group>"; };
+		4D50C5A92C3592D700648A2A /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
 		5C5646062C2B10D100956423 /* akaPrep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = akaPrep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5646092C2B10D100956423 /* akaPrepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepApp.swift; sourceTree = "<group>"; };
 		5C56460B2C2B10D100956423 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -331,6 +337,7 @@
 		5CB608F92C35536F003DB576 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4D50C5A52C358F3A00648A2A /* GoalEntity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -338,6 +345,7 @@
 		5CB608FA2C355377003DB576 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				4D50C5A92C3592D700648A2A /* GoalsView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -345,6 +353,7 @@
 		5CB608FB2C35537D003DB576 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				4D50C5A72C35915200648A2A /* GoalsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -587,11 +596,13 @@
 				5CB608DD2C32E4A2003DB576 /* ProfileCardView.swift in Sources */,
 				5C5646162C2B10D200956423 /* akaPrep.xcdatamodeld in Sources */,
 				5CB608E52C342999003DB576 /* Enums.swift in Sources */,
+				4D50C5A62C358F3A00648A2A /* GoalEntity.swift in Sources */,
 				5CB608C72C2C4DE7003DB576 /* AkaPrepViewViewModel.swift in Sources */,
 				5C5646132C2B10D200956423 /* Persistence.swift in Sources */,
 				5C5646412C2B1DAE00956423 /* TaskEntity.swift in Sources */,
 				5CB608E32C3405F2003DB576 /* YearMonthPickerView.swift in Sources */,
 				5C56460C2C2B10D100956423 /* ContentView.swift in Sources */,
+				4D50C5AA2C3592D700648A2A /* GoalsView.swift in Sources */,
 				5CB608C52C2C4DD1003DB576 /* AkaPrepView.swift in Sources */,
 				5CB608E12C33FF75003DB576 /* PersonalInfoView.swift in Sources */,
 				5CB608D92C303F83003DB576 /* BottomBarView.swift in Sources */,
@@ -601,6 +612,7 @@
 				4D50C5912C342ECC00648A2A /* OpenAIService.swift in Sources */,
 				5C56460A2C2B10D100956423 /* akaPrepApp.swift in Sources */,
 				5CB608C32C2C4B0E003DB576 /* Utilities.swift in Sources */,
+				4D50C5A82C35915200648A2A /* GoalsViewModel.swift in Sources */,
 				5CB608EB2C343C92003DB576 /* PersonalInfoViewModel.swift in Sources */,
 				5CB608D52C302D21003DB576 /* ProfileEntity.swift in Sources */,
 				5CB608D22C2DC2BF003DB576 /* ListEntity.swift in Sources */,
