@@ -10,7 +10,7 @@ import SwiftUI
 struct BottomBarView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @StateObject private var viewModel = AkaPrepViewViewModel(context: PersistenceController.shared.container.viewContext, useSampleData: false)
-
+    
     var body: some View {
         TabView {
             AkaPrepView()
@@ -18,6 +18,13 @@ struct BottomBarView: View {
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Tasks")
+                }
+            
+            GoalsView(context: PersistenceController.preview.container.viewContext)
+                .environmentObject(viewModel)
+                .tabItem {
+                    Image(systemName: "target")
+                    Text("Goals")
                 }
             
             ProfileView()
