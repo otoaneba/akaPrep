@@ -20,7 +20,7 @@ struct ProfileView: View {
             
                 let primaryList = [
                    NavigationItem(name: "Personal Info", destination: AnyView(PersonalInfoView(viewModel: PersonalInfoViewModel(context: viewContext)))),
-                   NavigationItem(name: "Baby Info", destination: AnyView(ProfileView())),
+                   NavigationItem(name: "Baby Info", destination: AnyView(BabyInfoView())),
                 ]
                 let secondaryList = [
                    NavigationItem(name: "Settings", destination: AnyView(ProfileView())),

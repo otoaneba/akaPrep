@@ -67,22 +67,18 @@ class AkaPrepViewViewModel: ObservableObject {
                     self.clearTasks(ofType: taskType)
                     switch taskType {
                     case "daily":
-                        //                    self.dailyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0)}
                         let list = self.fetchOrCreateList(for: .daily)
                         list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "daily") }))
                         self.dailyTasks = list.taskArray
                     case "weekly":
-                        //                    self.weeklyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0) }
                         let list = self.fetchOrCreateList(for: .weekly)
                         list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "weekly") }))
                         self.weeklyTasks = list.taskArray
                     case "monthly":
-                        //                    self.monthlyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0) }
                         let list = self.fetchOrCreateList(for: .monthly)
                         list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "monthly") }))
                         self.monthlyTasks = list.taskArray
                     default:
-                        //                    self.dailyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0) }
                         break
                     }
                 }

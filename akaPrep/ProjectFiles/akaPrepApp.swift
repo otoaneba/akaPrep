@@ -13,7 +13,7 @@ struct akaPrepApp: App {
 
     var body: some Scene {
         WindowGroup {
-            DashboardView()
+            ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

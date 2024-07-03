@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct DashboardView: View {
+struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -22,5 +22,5 @@ struct DashboardView: View {
 }
 
 #Preview {
-    DashboardView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }

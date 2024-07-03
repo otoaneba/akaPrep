@@ -49,22 +49,11 @@ struct AddNewTaskView: View {
                     }
                     .frame(height: 200)
                 }
-                             
-                
-                // Button
-                AkaButton(
-                    title: "Save",
-                    background: .pink
-                ) {
-                    if viewModel.canSave {
-                        viewModel.save()
-                        newTaskPresented = false
-                    } else {
-                        viewModel.showAlert = true
-                    }
+                Button {
                     
+                } label: {
+                    Text("Test")
                 }
-                .padding()
             }
             .alert(isPresented: $viewModel.showAlert) {
                 Alert(

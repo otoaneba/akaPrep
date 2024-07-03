@@ -30,7 +30,7 @@ struct PersonalInfoView: View {
                         Text("Last Name")
                         Spacer()
                         TextField("optional", text: $viewModel.lastName)
-                            .foregroundColor(.primary)
+                            .foregroundColor(viewModel.lastName.isEmpty ? Color(UIColor.placeholderText) : .black)
                             .multilineTextAlignment(.trailing)
                     }
                     HStack {
@@ -40,7 +40,7 @@ struct PersonalInfoView: View {
                             viewModel.showDatePicker.toggle()
                        }) {
                            Text(viewModel.birthMonthAndYear.isEmpty ? "optional" : viewModel.birthMonthAndYear)
-                               .foregroundColor(.secondary)
+                               .foregroundColor(viewModel.birthMonthAndYear.isEmpty ?  Color(UIColor.placeholderText) : .black)
                                .multilineTextAlignment(.trailing)
                        }
                     }
@@ -58,13 +58,14 @@ struct PersonalInfoView: View {
                         Text("Female").tag(Gender.female)
                         Text("Male").tag(Gender.male)
                         Text("Other").tag(Gender.other)
-                    }
+                    }.tint(.black)
+                    
                     Picker("Work Schedule", selection: $viewModel.workSchedule) {
                         Text("Swamped").tag(WorkSchedule.fullTime)
                         Text("Busy").tag(WorkSchedule.partTime)
                         Text("Manageable").tag(WorkSchedule.freelance)
                         Text("Chill").tag(WorkSchedule.unemployed)
-                    }
+                    }.tint(.black)
                 }
             }
             .navigationTitle("Personal Info")
