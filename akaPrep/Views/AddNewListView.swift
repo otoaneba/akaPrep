@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import FloatingPromptTextField
 
 struct AddNewListView: View {
     @State private var listName: String = ""
