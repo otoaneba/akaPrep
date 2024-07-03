@@ -7,11 +7,24 @@
 
 import Foundation
 import CoreData
+import Combine
 
 class BabyInfoViewModel: ObservableObject {
     private var viewContext: NSManagedObjectContext
     
     private var baby: BabyEntity
+    
+    @Published var name: String = ""
+    @Published var gender: Gender = .female
+    @Published var dateOfBirth: Date = Date()
+    @Published var showDatePicker: Bool = false
+    
+    private var initialName: String = ""
+    private var initialDateOfBirth: Date = Date()
+    private var initialGender: Gender = .female
+    
+    @Published var isSaveDisabled: Bool = true
+    private var cancellables: Set<AnyCancellable> = []
     
     init(context: NSManagedObjectContext) {
         self.viewContext = context
@@ -22,5 +35,39 @@ class BabyInfoViewModel: ObservableObject {
         } else {
             self.baby = BabyEntity(context: context)
         }
+        loadBabyInfo()
     }
+    
+    func loadBabyInfo() {
+        name = baby.name
+        initialName = name
+        
+        dateOfBirth = baby.dateOfBirth ?? Date()
+        initialDateOfBirth = dateOfBirth
+        
+        gender = baby.gender
+        initialGender = gender
+    }
+    
+    func saveBabyInfo() {
+        baby.name = name
+        baby.dateOfBirth = dateOfBirth
+        baby.gender = gender
+        
+        do {
+            try viewContext.save()
+            print("Baby info saved!")
+            loadBabyInfo() // Reload baby info to reset initial values
+        } catch {
+            print("Failed to save baby info: \(error.localizedDescription)")
+        }
+    }
+    
+    var formattedDateOfBirth: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        return dateFormatter.string(from: dateOfBirth)
+    }
+    
 }

@@ -27,22 +27,22 @@ extension ProfileEntity {
     @NSManaged public var savedLists: [ListEntity]
     
     public var workSchedule: WorkSchedule {
-       get {
+        get {
            return WorkSchedule(rawValue: workScheduleRaw) ?? .unemployed
-       }
-       set {
+        }
+        set {
            workScheduleRaw = newValue.rawValue
-       }
-   }
+        }
+    }
     
     public var gender: Gender {
-       get {
+        get {
            return Gender(rawValue: genderRaw) ?? .female
-       }
-       set {
+        }
+        set {
            genderRaw = newValue.rawValue
-       }
-   }
+        }
+    }
     
 }
 

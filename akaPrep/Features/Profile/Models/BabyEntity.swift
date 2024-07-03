@@ -18,33 +18,25 @@ extension BabyEntity {
     }
 
     @NSManaged public var name: String
-    @NSManaged public var dateOfBirth: Date
+    @NSManaged public var dateOfBirth: Date?
     // @NSManaged public var baby: BabyEntity
     @NSManaged private var genderRaw: String
     @NSManaged public var goal: [String]
     
     
     public var gender: Gender {
-           get {
-               return Gender(rawValue: genderRaw) ?? .female
-           }
-           set {
-               genderRaw = newValue.rawValue
-           }
-       }
+        get {
+           return Gender(rawValue: genderRaw) ?? .female
+        }
+        set {
+           genderRaw = newValue.rawValue
+        }
+    }
     
     override public func awakeFromInsert() {
         super.awakeFromInsert()
         if #available(iOS 13.0, *) {
             self.setPrimitiveValue(NSValueTransformerName.secureUnarchiveFromDataTransformerName, forKey: "goal")
         }
-    }
-}
-
-extension BabyEntity {
-    public enum Gender: String, Codable {
-        case female
-        case male
-        case other
     }
 }
