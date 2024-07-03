@@ -9,22 +9,30 @@ import SwiftUI
 
 struct BottomBarView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @StateObject private var viewModel = AkaPrepViewViewModel(context: PersistenceController.shared.container.viewContext, useSampleData: false)
+    @EnvironmentObject private var akaPrepViewModel: AkaPrepViewViewModel
+    @EnvironmentObject private var personalInfoViewModel: PersonalInfoViewModel
+    @EnvironmentObject private var babyInfoViewModel: BabyInfoViewModel
+    @EnvironmentObject private var savedListsViewModel: SavedListsViewModel
     
     var body: some View {
         TabView {
             AkaPrepView()
-                .environmentObject(viewModel)
+                .environmentObject(akaPrepViewModel)
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Tasks")
                 }
             
             GoalsView(context: PersistenceController.preview.container.viewContext)
-                .environmentObject(viewModel)
                 .tabItem {
                     Image(systemName: "target")
                     Text("Goals")
+                }
+            SavedListsView()
+                .environmentObject(savedListsViewModel)
+                .tabItem {
+                    Image(systemName: "heart")
+                    Text("Saved Lists")
                 }
             
             ProfileView()
@@ -38,8 +46,13 @@ struct BottomBarView: View {
 
 struct BottomBarView_Previews: PreviewProvider {
     static var previews: some View {
+        
         BottomBarView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(AkaPrepViewViewModel(context: PersistenceController.preview.container.viewContext, useSampleData: false, savedListsViewModel: SavedListsViewModel(context: PersistenceController.preview.container.viewContext)))
+            .environmentObject(PersonalInfoViewModel(context: PersistenceController.preview.container.viewContext))
+            .environmentObject(BabyInfoViewModel(context: PersistenceController.preview.container.viewContext))
+            .environmentObject(SavedListsViewModel(context: PersistenceController.preview.container.viewContext))
     }
 }
 

@@ -9,7 +9,6 @@ import SwiftUI
 import CoreData
 
 struct AkaPrepView: View {
-//    @StateObject var viewModel: AkaPrepViewViewModel
     @EnvironmentObject var viewModel: AkaPrepViewViewModel
     @State private var context = ""
     @State private var taskType = "daily"
@@ -20,7 +19,6 @@ struct AkaPrepView: View {
                 TextField("Enter context", text: $context)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-                
                 Picker("Task Type", selection: $viewModel.selectedTaskType) {
                     Text("Daily").tag("daily")
                     Text("Weekly").tag("weekly")
@@ -58,28 +56,23 @@ struct AkaPrepView: View {
             }
             .navigationTitle("Tasks")
             .toolbar {
-                Menu {
-                    NavigationLink(destination: ProfileView()) {
-                        HStack {
-                            Image(systemName: "person.crop.circle")
-                            VStack {
-                                Text("Cynthia")
-                                Text("Edit")
-                            }
-                        }
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button {
+                        // Action to save
+                        viewModel.showingAddNewTaskView = true
+                    } label: {
+                        Image(systemName: "plus")
                     }
-                    NavigationLink(destination: ProfileView()) {
-                        Label("Personal Info", systemImage: "chevron.right")
+//                        .disabled(viewModel.isSaveDisabled)
+                    Button {
+                        // Action to save
+                        viewModel.saveCurrentList()
+                    } label: {
+                        Image(systemName: "heart")
                     }
-                    NavigationLink(destination: ProfileView()) {
-                        Label("Baby Info", systemImage: "chevron.right")
-                    }
-                    NavigationLink(destination: ProfileView()) {
-                        Label("Settings", systemImage: "chevron.right")
-                    }
-                } label: {
-                    Label("", systemImage: "person.crop.circle")
+//                        .disabled(viewModel.isSaveDisabled)
                 }
+                
             }.sheet(isPresented: $viewModel.showingAddNewTaskView) {
                 AddNewTaskView(newTaskPresented: $viewModel.showingAddNewTaskView)
                     .presentationDetents([.medium])
@@ -94,8 +87,15 @@ struct AkaPrepView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let viewModel = AkaPrepViewViewModel.shared
+
+        let savedListsViewModel = SavedListsViewModel(context: context)
+//        let viewModel = AkaPrepViewViewModel(context: context, useSampleData: false, savedListsViewModel: savedListsViewModel) // Use sample data for preview
+
         return AkaPrepView()
+            .environment(\.managedObjectContext, context)
             .environmentObject(viewModel)
+            .environmentObject(savedListsViewModel)
+
     }
 }
 

@@ -9,7 +9,8 @@ import SwiftUI
 import CoreData
 
 struct ProfileView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var personalInfoViewModel: PersonalInfoViewModel
+    @EnvironmentObject var babyInfoViewModel: BabyInfoViewModel
     
     @State public var name = ""
     
@@ -19,8 +20,8 @@ struct ProfileView: View {
             ProfileCardView(profileName: "Cynthia Li", profileDetails: "Edit picture")
             
                 let primaryList = [
-                   NavigationItem(name: "Personal Info", destination: AnyView(PersonalInfoView(viewModel: PersonalInfoViewModel(context: viewContext)))),
-                   NavigationItem(name: "Baby Info", destination: AnyView(BabyInfoView(viewModel: BabyInfoViewModel (context: viewContext)))),
+                   NavigationItem(name: "Personal Info", destination: AnyView(PersonalInfoView().environmentObject(personalInfoViewModel))),
+                   NavigationItem(name: "Baby Info", destination: AnyView(BabyInfoView().environmentObject(babyInfoViewModel))),
                 ]
                 let secondaryList = [
                    NavigationItem(name: "Settings", destination: AnyView(ProfileView())),
@@ -83,7 +84,11 @@ struct NavigationItem: Identifiable {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
+        let personalInfoViewModel = PersonalInfoViewModel(context: context)
+        let babyInfoViewModel = BabyInfoViewModel(context: context)
         return ProfileView()
             .environment(\.managedObjectContext, context)
+            .environmentObject(personalInfoViewModel)
+            .environmentObject(babyInfoViewModel)
     }
 }

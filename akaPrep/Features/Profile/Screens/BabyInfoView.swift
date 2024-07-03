@@ -9,12 +9,8 @@ import SwiftUI
 
 struct BabyInfoView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject private var viewModel: BabyInfoViewModel
-    
-    init(viewModel: BabyInfoViewModel) {
-        self.viewModel = viewModel
-    }
-    
+    @EnvironmentObject var viewModel: BabyInfoViewModel
+
     var body: some View {
         NavigationStack {
             List {
@@ -65,6 +61,7 @@ struct BabyInfoView: View {
                         viewModel.saveBabyInfo()
                         presentationMode.wrappedValue.dismiss()
                     }
+                    .disabled(viewModel.isSaveDisabled)
                 }
             }
         }
@@ -75,7 +72,7 @@ struct BabyInfoView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let viewModel = BabyInfoViewModel(context: context)
-        return BabyInfoView(viewModel: viewModel)
-            .environment(\.managedObjectContext, context)
+        return BabyInfoView()
+            .environmentObject(viewModel)
     }
 }

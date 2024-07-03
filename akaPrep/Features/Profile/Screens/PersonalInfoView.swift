@@ -9,11 +9,8 @@ import SwiftUI
 
 struct PersonalInfoView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject private var viewModel: PersonalInfoViewModel
+    @EnvironmentObject var viewModel: PersonalInfoViewModel
 
-    init(viewModel: PersonalInfoViewModel) {
-        self.viewModel = viewModel
-    }
     var body: some View {
         NavigationStack {
             List {
@@ -90,7 +87,7 @@ struct PersonalInfoView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let viewModel = PersonalInfoViewModel(context: context)
-        return PersonalInfoView(viewModel: viewModel)
-            .environment(\.managedObjectContext, context)
+        return PersonalInfoView()
+            .environmentObject(viewModel)
     }
 }

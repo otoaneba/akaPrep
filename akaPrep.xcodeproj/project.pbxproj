@@ -16,6 +16,9 @@
 		4D50C5A82C35915200648A2A /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5A72C35915200648A2A /* GoalsViewModel.swift */; };
 		4D50C5AA2C3592D700648A2A /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5A92C3592D700648A2A /* GoalsView.swift */; };
 		4D50C5AC2C35AC4E00648A2A /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5AB2C35AC4E00648A2A /* WelcomeView.swift */; };
+		5C363D312C359D2100B2ED0B /* SavedListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D302C359D2100B2ED0B /* SavedListsView.swift */; };
+		5C363D332C359D3800B2ED0B /* SavedListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D322C359D3800B2ED0B /* SavedListsViewModel.swift */; };
+		5C363D352C35A00300B2ED0B /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D342C35A00300B2ED0B /* TaskListView.swift */; };
 		5C56460A2C2B10D100956423 /* akaPrepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5646092C2B10D100956423 /* akaPrepApp.swift */; };
 		5C56460C2C2B10D100956423 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56460B2C2B10D100956423 /* ContentView.swift */; };
 		5C56460E2C2B10D200956423 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C56460D2C2B10D200956423 /* Assets.xcassets */; };
@@ -44,6 +47,7 @@
 		5CB608F22C354F3A003DB576 /* BabyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608F12C354F3A003DB576 /* BabyInfoView.swift */; };
 		5CB608F42C354F66003DB576 /* BabyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608F32C354F66003DB576 /* BabyInfoViewModel.swift */; };
 		5CB609072C35557B003DB576 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608DA2C306403003DB576 /* ProfileView.swift */; };
+		5CBEDD082C3589C000EC60F1 /* CoreDataCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBEDD072C3589C000EC60F1 /* CoreDataCheckView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +77,9 @@
 		4D50C5A72C35915200648A2A /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModel.swift; sourceTree = "<group>"; };
 		4D50C5A92C3592D700648A2A /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
 		4D50C5AB2C35AC4E00648A2A /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		5C363D302C359D2100B2ED0B /* SavedListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsView.swift; sourceTree = "<group>"; };
+		5C363D322C359D3800B2ED0B /* SavedListsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsViewModel.swift; sourceTree = "<group>"; };
+		5C363D342C35A00300B2ED0B /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		5C5646062C2B10D100956423 /* akaPrep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = akaPrep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5646092C2B10D100956423 /* akaPrepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepApp.swift; sourceTree = "<group>"; };
 		5C56460B2C2B10D100956423 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +111,7 @@
 		5CB608EA2C343C92003DB576 /* PersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewModel.swift; sourceTree = "<group>"; };
 		5CB608F12C354F3A003DB576 /* BabyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyInfoView.swift; sourceTree = "<group>"; };
 		5CB608F32C354F66003DB576 /* BabyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyInfoViewModel.swift; sourceTree = "<group>"; };
+		5CBEDD072C3589C000EC60F1 /* CoreDataCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCheckView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +385,7 @@
 		5CB608FE2C35538E003DB576 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				5C363D302C359D2100B2ED0B /* SavedListsView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -384,6 +393,7 @@
 		5CB608FF2C355393003DB576 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5C363D342C35A00300B2ED0B /* TaskListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -391,6 +401,7 @@
 		5CB609002C35539E003DB576 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				5C363D322C359D3800B2ED0B /* SavedListsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -419,6 +430,7 @@
 			children = (
 				5CB608BF2C2C4770003DB576 /* AddNewTaskView.swift */,
 				5CB608C42C2C4DD1003DB576 /* AkaPrepView.swift */,
+				5CBEDD072C3589C000EC60F1 /* CoreDataCheckView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -601,6 +613,7 @@
 				5CB608E52C342999003DB576 /* Enums.swift in Sources */,
 				4D50C5A62C358F3A00648A2A /* GoalEntity.swift in Sources */,
 				5CB608C72C2C4DE7003DB576 /* AkaPrepViewViewModel.swift in Sources */,
+				5C363D332C359D3800B2ED0B /* SavedListsViewModel.swift in Sources */,
 				5C5646132C2B10D200956423 /* Persistence.swift in Sources */,
 				5C5646412C2B1DAE00956423 /* TaskEntity.swift in Sources */,
 				5CB608E32C3405F2003DB576 /* YearMonthPickerView.swift in Sources */,
@@ -611,10 +624,13 @@
 				4D50C5AC2C35AC4E00648A2A /* WelcomeView.swift in Sources */,
 				5CB608D92C303F83003DB576 /* BottomBarView.swift in Sources */,
 				5CB608F22C354F3A003DB576 /* BabyInfoView.swift in Sources */,
+				5C363D312C359D2100B2ED0B /* SavedListsView.swift in Sources */,
 				4D50C5922C342ECC00648A2A /* PromptTemplate.swift in Sources */,
 				5CB608C02C2C4770003DB576 /* AddNewTaskView.swift in Sources */,
+				5CBEDD082C3589C000EC60F1 /* CoreDataCheckView.swift in Sources */,
 				4D50C5912C342ECC00648A2A /* OpenAIService.swift in Sources */,
 				5C56460A2C2B10D100956423 /* akaPrepApp.swift in Sources */,
+				5C363D352C35A00300B2ED0B /* TaskListView.swift in Sources */,
 				5CB608C32C2C4B0E003DB576 /* Utilities.swift in Sources */,
 				4D50C5A82C35915200648A2A /* GoalsViewModel.swift in Sources */,
 				5CB608EB2C343C92003DB576 /* PersonalInfoViewModel.swift in Sources */,

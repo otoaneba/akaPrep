@@ -20,18 +20,18 @@ class AkaPrepViewViewModel: ObservableObject {
     private let context: NSManagedObjectContext
     private let openAIService: OpenAIService
     private static var sampleDataLoaded = false // Static flag to check if sample data is already loaded
+    // private let useSampleData: Bool // for LLM testing
     
-    init(context: NSManagedObjectContext, useSampleData: Bool = false) {
-        self.context = context
-        self.openAIService = OpenAIService()
-        
-        // for LLM testing
-        if useSampleData {
-            loadSampleData()
-        } else {
-            loadTasks()
-        }
-    }
+    //private let savedListsViewModel: SavedListsViewModel
+    
+    //init(context: NSManagedObjectContext, useSampleData: Bool = false, savedListsViewModel: SavedListsViewModel) {
+
+    
+//    self.useSampleData = useSampleData // for LLM testing
+//    self.savedListsViewModel = savedListsViewModel
+    
+//}
+    
     
     func loadSampleDataIfNeeded() {
         guard !AkaPrepViewViewModel.sampleDataLoaded else { return } // Ensure data is loaded only once
@@ -165,5 +165,33 @@ class AkaPrepViewViewModel: ObservableObject {
         list.expirationDate = Date().addingTimeInterval(24 * 60 * 60 * (frequency == .daily ? 1 : (frequency == .weekly ? 7 : 30))) // Example expiration logic
         return list
     }
+    
+    func saveCurrentList() {
+        let tasksToSave: [TaskEntity]
+        switch selectedTaskType {
+        case "daily":
+          tasksToSave = dailyTasks
+        case "weekly":
+          tasksToSave = weeklyTasks
+        case "monthly":
+          tasksToSave = monthlyTasks
+        default:
+          tasksToSave = []
+        }
+
+        let list = fetchOrCreateList(for: ListEntity.Frequency(rawValue: selectedTaskType)!)
+        list.addToTasks(NSSet(array: tasksToSave))
+        
+        // Set the inverse relationship for each task
+        for task in tasksToSave {
+            task.list = list
+        }
+        print("trying to save a list here", list)
+
+        saveContext()
+        
+        // Notify SavedListsViewModel
+          //savedListsViewModel.fetchSavedLists()
+      }
     
 }

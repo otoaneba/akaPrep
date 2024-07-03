@@ -3,7 +3,6 @@
     <entity name="BabyEntity" representedClassName="BabyEntity" syncable="YES">
         <attribute name="dateOfBirth" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="genderRaw" optional="YES" attributeType="String"/>
-        <attribute name="goal" optional="YES" attributeType="Transformable" valueTransformerName=""/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <entity name="GoalEntity" representedClassName="GoalEntity" syncable="YES" codeGenerationType="class">
@@ -20,7 +19,7 @@
         <attribute name="frequencyRaw" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="list" inverseEntity="TaskEntity"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TaskEntity" inverseName="list" inverseEntity="TaskEntity"/>
     </entity>
     <entity name="ProfileEntity" representedClassName="ProfileEntity" syncable="YES">
         <attribute name="dateOfBirth" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

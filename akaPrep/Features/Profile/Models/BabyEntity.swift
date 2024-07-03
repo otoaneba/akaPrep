@@ -19,10 +19,7 @@ extension BabyEntity {
 
     @NSManaged public var name: String
     @NSManaged public var dateOfBirth: Date?
-    // @NSManaged public var baby: BabyEntity
     @NSManaged private var genderRaw: String
-    @NSManaged public var goal: [String]
-    
     
     public var gender: Gender {
         get {
@@ -35,8 +32,8 @@ extension BabyEntity {
     
     override public func awakeFromInsert() {
         super.awakeFromInsert()
-        if #available(iOS 13.0, *) {
-            self.setPrimitiveValue(NSValueTransformerName.secureUnarchiveFromDataTransformerName, forKey: "goal")
-        }
+//        if #available(iOS 13.0, *) {
+//            self.setPrimitiveValue(NSValueTransformerName.secureUnarchiveFromDataTransformerName, forKey: "goal")
+//        }
     }
 }

@@ -36,6 +36,7 @@ class BabyInfoViewModel: ObservableObject {
             self.baby = BabyEntity(context: context)
         }
         loadBabyInfo()
+        setupCombine()
     }
     
     func loadBabyInfo() {
@@ -61,6 +62,20 @@ class BabyInfoViewModel: ObservableObject {
         } catch {
             print("Failed to save baby info: \(error.localizedDescription)")
         }
+    }
+    
+    private func setupCombine() {
+        Publishers.CombineLatest3(
+            $name,
+            $dateOfBirth,
+            $gender
+        )
+        .map { [weak self] name, dateOfBirth, gender in
+            guard let self = self else { return true }
+            return name.isEmpty || (name == self.initialName && dateOfBirth == self.initialDateOfBirth && gender == self.initialGender)
+        }
+        .assign(to: \.isSaveDisabled, on: self)
+        .store(in: &cancellables)
     }
     
     var formattedDateOfBirth: String {

@@ -13,7 +13,7 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        
+        clearAllData(in: viewContext)
         do {
             try viewContext.save()
         } catch {
@@ -50,4 +50,45 @@ struct PersistenceController {
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
+    
+    static func clearAllData(in context: NSManagedObjectContext) {
+        context.performAndWait {
+            do {
+                let entities = context.persistentStoreCoordinator?.managedObjectModel.entities
+                for entity in entities ?? [] {
+                    print("Clearing data for entity: \(entity.name ?? "Unknown")")
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity.name!)
+                    let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+                    try context.execute(deleteRequest)
+                }
+                try context.save()
+            } catch {
+                let nsError = error as NSError
+                print("Error clearing data: \(nsError), \(nsError.userInfo)")
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+    
+    static func clearAllDataAgain(in context: NSManagedObjectContext) {
+            let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskEntity")
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            
+            do {
+                try context.execute(deleteRequest)
+                try context.save()
+            } catch let error as NSError {
+                print("Could not clear TaskEntity data: \(error), \(error.userInfo)")
+            }
+            
+            let fetchRequestList: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "ListEntity")
+            let deleteRequestList = NSBatchDeleteRequest(fetchRequest: fetchRequestList)
+            
+            do {
+                try context.execute(deleteRequestList)
+                try context.save()
+            } catch let error as NSError {
+                print("Could not clear ListEntity data: \(error), \(error.userInfo)")
+            }
+        }
 }
