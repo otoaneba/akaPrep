@@ -25,7 +25,17 @@ class AkaPrepViewViewModel: ObservableObject {
     //private let savedListsViewModel: SavedListsViewModel
     
     //init(context: NSManagedObjectContext, useSampleData: Bool = false, savedListsViewModel: SavedListsViewModel) {
+    init(context: NSManagedObjectContext, useSampleData: Bool = false) {
+        self.context = context
+        self.openAIService = OpenAIService()
 
+        // for LLM testing
+        if useSampleData {
+            loadSampleData()
+        } else {
+            loadTasks()
+        }
+    }
     
 //    self.useSampleData = useSampleData // for LLM testing
 //    self.savedListsViewModel = savedListsViewModel

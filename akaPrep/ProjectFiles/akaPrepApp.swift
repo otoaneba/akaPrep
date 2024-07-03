@@ -19,7 +19,7 @@ struct akaPrepApp: App {
         let context = persistenceController.container.viewContext
         //PersistenceController.clearAllDataAgain(in: context)
         self.savedListsViewModel = SavedListsViewModel(context: context)
-        self.akaPrepViewModel = AkaPrepViewViewModel(context: context, useSampleData: false, savedListsViewModel: savedListsViewModel)
+        self.akaPrepViewModel = AkaPrepViewViewModel(context: context, useSampleData: false)
         self.personalInfoViewModel = PersonalInfoViewModel(context: context)
         self.babyInfoViewModel = BabyInfoViewModel(context: context)
        

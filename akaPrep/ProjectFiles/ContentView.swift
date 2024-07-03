@@ -39,7 +39,7 @@ struct ContentView: View {
 #Preview {
     let context = PersistenceController.preview.container.viewContext
     let savedListsViewModel = SavedListsViewModel(context: context)
-    let akaPrepViewModel = AkaPrepViewViewModel(context: context, useSampleData: true, savedListsViewModel: savedListsViewModel)
+    let akaPrepViewModel = AkaPrepViewViewModel(context: context, useSampleData: true)
     let personalInfoViewModel = PersonalInfoViewModel(context: context)
     let babyInfoViewModel = BabyInfoViewModel(context: context)
     
