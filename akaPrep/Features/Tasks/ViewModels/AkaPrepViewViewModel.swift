@@ -9,21 +9,21 @@ import Foundation
 import CoreData
 
 class AkaPrepViewViewModel: ObservableObject {
+    static let shared = AkaPrepViewViewModel(context: PersistenceController.shared.container.viewContext, useSampleData: true)
+    
     @Published var showingAddNewTaskView = false
     @Published var dailyTasks: [TaskEntity] = []
     @Published var weeklyTasks: [TaskEntity] = []
     @Published var monthlyTasks: [TaskEntity] = []
     @Published var selectedTaskType: String = "daily"
     
-    
     private let context: NSManagedObjectContext
-        private let openAIService: OpenAIService
-        private let useSampleData: Bool // for LLM testing
+    private let openAIService: OpenAIService
+    private static var sampleDataLoaded = false // Static flag to check if sample data is already loaded
     
     init(context: NSManagedObjectContext, useSampleData: Bool = false) {
         self.context = context
         self.openAIService = OpenAIService()
-        self.useSampleData = useSampleData // for LLM testing
         
         // for LLM testing
         if useSampleData {
@@ -33,8 +33,13 @@ class AkaPrepViewViewModel: ObservableObject {
         }
     }
     
-    // for LLM testing
-    func loadSampleData() {
+    func loadSampleDataIfNeeded() {
+        guard !AkaPrepViewViewModel.sampleDataLoaded else { return } // Ensure data is loaded only once
+        AkaPrepViewViewModel.sampleDataLoaded = true
+        loadSampleData()
+    }
+    
+    private func loadSampleData() {
         if let url = Bundle.main.url(forResource: "SampleData", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
@@ -43,6 +48,7 @@ class AkaPrepViewViewModel: ObservableObject {
                     let list = fetchOrCreateList(for: .daily) // Assuming daily for simplicity
                     list.addToTasks(NSSet(array: tasks.map { TaskEntity(context: self.context, title: $0, taskType: "daily") }))
                     self.dailyTasks = list.taskArray
+                    print("Loaded sample data dailyTasks")
                 }
             } catch {
                 print("Failed to load sample data: \(error)")
@@ -51,59 +57,54 @@ class AkaPrepViewViewModel: ObservableObject {
             print("SampleData.json not found")
         }
     }
-        
+    
     
     func generateTasks(taskType: String, context: String) {
-        if useSampleData {
-            // Use sample data
-            loadSampleData()
-        } else {
-            // Fetch from API
-            let prompt = PromptTemplate.generatePrompt(taskType: taskType, context: context)
-            openAIService.fetchTasks(prompt: prompt) { [weak self] generatedTasks in
-                DispatchQueue.main.async {
-                    guard let self = self else { return }
-                    // Clear existing tasks of the same type
-                    self.clearTasks(ofType: taskType)
-                    switch taskType {
-                    case "daily":
-                        let list = self.fetchOrCreateList(for: .daily)
-                        list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "daily") }))
-                        self.dailyTasks = list.taskArray
-                    case "weekly":
-                        let list = self.fetchOrCreateList(for: .weekly)
-                        list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "weekly") }))
-                        self.weeklyTasks = list.taskArray
-                    case "monthly":
-                        let list = self.fetchOrCreateList(for: .monthly)
-                        list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "monthly") }))
-                        self.monthlyTasks = list.taskArray
-                    default:
-                        break
-                    }
+        
+        let prompt = PromptTemplate.generatePrompt(taskType: taskType, context: context)
+        openAIService.fetchTasks(prompt: prompt) { [weak self] generatedTasks in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                // Clear existing tasks of the same type
+                self.clearTasks(ofType: taskType)
+                switch taskType {
+                case "daily":
+                    let list = self.fetchOrCreateList(for: .daily)
+                    list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "daily") }))
+                    self.dailyTasks = list.taskArray
+                case "weekly":
+                    let list = self.fetchOrCreateList(for: .weekly)
+                    list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "weekly") }))
+                    self.weeklyTasks = list.taskArray
+                case "monthly":
+                    let list = self.fetchOrCreateList(for: .monthly)
+                    list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "monthly") }))
+                    self.monthlyTasks = list.taskArray
+                default:
+                    break
                 }
             }
         }
     }
     
     var tasksForSelectedType: [TaskEntity] {
-         switch selectedTaskType {
-         case "daily":
-             return dailyTasks
-         case "weekly":
-             return weeklyTasks
-         case "monthly":
-             return monthlyTasks
-         default:
-             return []
-         }
-     }
+        switch selectedTaskType {
+        case "daily":
+            return dailyTasks
+        case "weekly":
+            return weeklyTasks
+        case "monthly":
+            return monthlyTasks
+        default:
+            return []
+        }
+    }
     
     func toggleTaskCompletion(task: TaskEntity) {
         task.isCompleted.toggle()
         saveContext()
     }
-
+    
     private func saveContext() {
         do {
             try context.save()
@@ -143,7 +144,7 @@ class AkaPrepViewViewModel: ObservableObject {
             print("Failed to fetch tasks: \(error)")
         }
     }
-
+    
     private func fetchOrCreateList(for frequency: ListEntity.Frequency) -> ListEntity {
         let fetchRequest: NSFetchRequest<ListEntity> = ListEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "frequencyRaw == %@", frequency.rawValue)
