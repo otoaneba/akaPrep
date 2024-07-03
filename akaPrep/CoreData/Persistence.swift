@@ -14,27 +14,6 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         
-        // Load sample data for preview
-        if let url = Bundle.main.url(forResource: "SampleData", withExtension: "json") {
-                    do {
-                        let data = try Data(contentsOf: url)
-                        let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                        if let tasks = json?["tasks"] as? [String] {
-                            for taskTitle in tasks {
-                                let newTask = TaskEntity(context: viewContext)
-                                newTask.title = taskTitle
-                                newTask.date = Date()
-                                newTask.taskType = "daily"
-                            }
-                        }
-                    } catch {
-                        print("Failed to load sample data: \(error)")
-                    }
-        } else {
-            print("SampleData.json not found")
-        }
-        
-        
         do {
             try viewContext.save()
         } catch {
