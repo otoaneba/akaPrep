@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Combine
 
 class TasksViewModel: ObservableObject {
     static let shared = TasksViewModel(context: PersistenceController.shared.container.viewContext, useSampleData: true)
@@ -17,14 +18,16 @@ class TasksViewModel: ObservableObject {
     @Published var monthlyTasks: [TaskEntity] = []
     @Published var selectedTaskType: String = "daily"
     
+    let listSavedSubject = PassthroughSubject<Void, Never>() // Publisher to notify list saved
+    
     private let context: NSManagedObjectContext
     private let openAIService: OpenAIService
     private static var sampleDataLoaded = false // Static flag to check if sample data is already loaded
-        
+    
     init(context: NSManagedObjectContext, useSampleData: Bool = false) {
         self.context = context
         self.openAIService = OpenAIService()
-
+        
         // for LLM testing
         if useSampleData {
             loadSampleData()
@@ -46,9 +49,7 @@ class TasksViewModel: ObservableObject {
                 let data = try Data(contentsOf: url)
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                 if let tasks = json?["tasks"] as? [String] {
-                    let list = fetchOrCreateList(for: .daily) // Assuming daily for simplicity
-                    list.addToTasks(NSSet(array: tasks.map { TaskEntity(context: self.context, title: $0, taskType: "daily") }))
-                    self.dailyTasks = list.taskArray
+                    self.dailyTasks = tasks.map { TaskEntity(context: self.context, title: $0, taskType: "daily") }
                     print("Loaded sample data dailyTasks")
                 }
             } catch {
@@ -61,7 +62,6 @@ class TasksViewModel: ObservableObject {
     
     
     func generateTasks(taskType: String, context: String) {
-        
         let prompt = PromptTemplate.generatePrompt(taskType: taskType, context: context)
         openAIService.fetchTasks(prompt: prompt) { [weak self] generatedTasks in
             DispatchQueue.main.async {
@@ -70,17 +70,11 @@ class TasksViewModel: ObservableObject {
                 self.clearTasks(ofType: taskType)
                 switch taskType {
                 case "daily":
-                    let list = self.fetchOrCreateList(for: .daily)
-                    list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "daily") }))
-                    self.dailyTasks = list.taskArray
+                    self.dailyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "daily") }
                 case "weekly":
-                    let list = self.fetchOrCreateList(for: .weekly)
-                    list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "weekly") }))
-                    self.weeklyTasks = list.taskArray
+                    self.weeklyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "weekly") }
                 case "monthly":
-                    let list = self.fetchOrCreateList(for: .monthly)
-                    list.addToTasks(NSSet(array: generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "monthly") }))
-                    self.monthlyTasks = list.taskArray
+                    self.monthlyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "monthly") }
                 default:
                     break
                 }
@@ -104,6 +98,31 @@ class TasksViewModel: ObservableObject {
     func toggleTaskCompletion(task: TaskEntity) {
         task.isCompleted.toggle()
         saveContext()
+    }
+    
+    func saveCurrentList() {
+        let currentTasks: [TaskEntity]
+                
+        switch selectedTaskType {
+        case "daily":
+            currentTasks = dailyTasks
+        case "weekly":
+            currentTasks = weeklyTasks
+        case "monthly":
+            currentTasks = monthlyTasks
+        default:
+            currentTasks = []
+        }
+        
+        let newList = ListEntity(context: context)
+        newList.name = "\(selectedTaskType.capitalized) Tasks"
+        newList.frequency = ListEntity.Frequency(rawValue: selectedTaskType) ?? .daily
+        newList.expirationDate = Date().addingTimeInterval(24 * 60 * 60 * (newList.frequency == .daily ? 1 : (newList.frequency == .weekly ? 7 : 30)))
+        newList.addToTasks(NSSet(array: currentTasks))
+        
+        print("saveCurrentList: \(newList)")
+        saveContext()
+        listSavedSubject.send() // Notify that a list has been saved
     }
     
     private func saveContext() {
@@ -145,51 +164,4 @@ class TasksViewModel: ObservableObject {
             print("Failed to fetch tasks: \(error)")
         }
     }
-    
-    private func fetchOrCreateList(for frequency: ListEntity.Frequency) -> ListEntity {
-        let fetchRequest: NSFetchRequest<ListEntity> = ListEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "frequencyRaw == %@", frequency.rawValue)
-        
-        do {
-            let lists = try context.fetch(fetchRequest)
-            if let list = lists.first {
-                return list
-            }
-        } catch {
-            print("Failed to fetch list: \(error)")
-        }
-        
-        // Create new list if it doesn't exist
-        let list = ListEntity(context: context)
-        list.name = "\(frequency.rawValue.capitalized) Tasks"
-        list.frequency = frequency
-        list.expirationDate = Date().addingTimeInterval(24 * 60 * 60 * (frequency == .daily ? 1 : (frequency == .weekly ? 7 : 30))) // Example expiration logic
-        return list
-    }
-    
-    func saveCurrentList() {
-        let tasksToSave: [TaskEntity]
-        switch selectedTaskType {
-        case "daily":
-          tasksToSave = dailyTasks
-        case "weekly":
-          tasksToSave = weeklyTasks
-        case "monthly":
-          tasksToSave = monthlyTasks
-        default:
-          tasksToSave = []
-        }
-
-        let list = fetchOrCreateList(for: ListEntity.Frequency(rawValue: selectedTaskType)!)
-        list.addToTasks(NSSet(array: tasksToSave))
-        
-        // Set the inverse relationship for each task
-        for task in tasksToSave {
-            task.list = list
-        }
-        print("trying to save a list here", list)
-
-        saveContext()
-      }
-    
 }

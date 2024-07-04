@@ -10,37 +10,51 @@ import CoreData
 
 struct SavedListsView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @StateObject private var viewModel = SavedListsViewModel(context: PersistenceController.shared.container.viewContext)
-
+    @StateObject private var viewModel: SavedListsViewModel
+    
+    init(context: NSManagedObjectContext, tasksViewModel: TasksViewModel) {
+        _viewModel = StateObject(wrappedValue: SavedListsViewModel(context: context, tasksViewModel: tasksViewModel))
+    }
+    
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(viewModel.savedLists, id: \.self) { list in
-                    NavigationLink(destination: TaskListView(list: list)) {
-                        Text(list.name)
+        NavigationView {
+            VStack {
+                List {
+                    Section(header: Text("Daily Lists")) {
+                        ForEach(viewModel.dailyLists, id: \.id) { list in
+                            NavigationLink(destination: TaskListView(list: list)) {
+                                Text(list.name)
+                            }
+                        }
                     }
-                }
-                .onDelete { indexSet in
-                    indexSet.forEach { index in
-                        let list = viewModel.savedLists[index]
-                        viewModel.deleteList(list: list)
+                    
+                    Section(header: Text("Weekly Lists")) {
+                        ForEach(viewModel.weeklyLists, id: \.id) { list in
+                            NavigationLink(destination: TaskListView(list: list)) {
+                                Text(list.name)
+                            }
+                        }
+                    }
+                    
+                    Section(header: Text("Monthly Lists")) {
+                        ForEach(viewModel.monthlyLists, id: \.id) { list in
+                            NavigationLink(destination: TaskListView(list: list)) {
+                                Text(list.name)
+                            }
+                        }
                     }
                 }
             }
             .navigationTitle("Saved Lists")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-            }
         }
     }
 }
 
-struct SavedListsView_Previews: PreviewProvider {
+struct SavedTasksView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
-        return SavedListsView()
-            .environment(\.managedObjectContext, context)
+        let tasksViewModel = TasksViewModel(context: context, useSampleData: false)
+        return SavedListsView(context: context, tasksViewModel: tasksViewModel)
     }
 }
+

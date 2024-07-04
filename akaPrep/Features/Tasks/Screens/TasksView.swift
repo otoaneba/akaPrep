@@ -12,6 +12,7 @@ struct TasksView: View {
     @EnvironmentObject var viewModel: TasksViewModel
     @State private var context = ""
     @State private var taskType = "daily"
+    @Environment(\.managedObjectContext) private var managedObjectContext
     
     var body: some View {
         NavigationStack {
@@ -83,7 +84,7 @@ struct TasksView: View {
         
 }
 
-struct AkaPrepView_Previews: PreviewProvider {
+struct TasksView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let viewModel = TasksViewModel.shared

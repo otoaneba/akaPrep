@@ -27,7 +27,6 @@ struct TaskListView: View {
     }
 }
 
-
 struct TaskListView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext

@@ -14,7 +14,7 @@ struct akaPrepApp: App {
 
     init() {
         let context = persistenceController.container.viewContext
-        //PersistenceController.clearAllDataAgain(in: context)
+//        PersistenceController.clearAllData(in: context) // For debugging and to clear all data in Core Data
         self.akaPrepViewModel = TasksViewModel(context: context, useSampleData: false)
        
     }

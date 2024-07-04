@@ -20,18 +20,18 @@ struct BottomBarView: View {
                     Text("Tasks")
                 }
             
-            GoalsView(context: PersistenceController.preview.container.viewContext)
+            GoalsView(context: viewContext)
                 .tabItem {
                     Image(systemName: "target")
                     Text("Goals")
                 }
-            SavedListsView()
+            SavedListsView(context: viewContext, tasksViewModel: akaPrepViewModel)
                 .tabItem {
                     Image(systemName: "heart")
                     Text("Saved Lists")
                 }
             
-            ProfileView(context: PersistenceController.preview.container.viewContext)
+            ProfileView(context: viewContext)
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Profile")
