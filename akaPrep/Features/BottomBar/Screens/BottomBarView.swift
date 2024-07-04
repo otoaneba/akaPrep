@@ -10,8 +10,8 @@ import SwiftUI
 struct BottomBarView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var akaPrepViewModel: AkaPrepViewViewModel
-    @EnvironmentObject private var savedListsViewModel: SavedListsViewModel
-    
+    @StateObject private var savedListsViewModel = SavedListsViewModel(context: PersistenceController.shared.container.viewContext)
+
     var body: some View {
         TabView {
             AkaPrepView()
@@ -27,7 +27,6 @@ struct BottomBarView: View {
                     Text("Goals")
                 }
             SavedListsView()
-                .environmentObject(savedListsViewModel)
                 .tabItem {
                     Image(systemName: "heart")
                     Text("Saved Lists")
@@ -44,11 +43,9 @@ struct BottomBarView: View {
 
 struct BottomBarView_Previews: PreviewProvider {
     static var previews: some View {
-        
         BottomBarView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            .environmentObject(AkaPrepViewViewModel(context: PersistenceController.preview.container.viewContext, useSampleData: false)) // initiallizer might need extra "SavedListsViewModel" passed in
-            .environmentObject(SavedListsViewModel(context: PersistenceController.preview.container.viewContext))
+            .environmentObject(AkaPrepViewViewModel(context: PersistenceController.preview.container.viewContext, useSampleData: false))
     }
 }
 

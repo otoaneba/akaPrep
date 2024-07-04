@@ -10,7 +10,7 @@ import CoreData
 
 struct SavedListsView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @EnvironmentObject var viewModel: SavedListsViewModel
+    @StateObject private var viewModel = SavedListsViewModel(context: PersistenceController.shared.container.viewContext)
 
     var body: some View {
         NavigationStack {
@@ -40,8 +40,7 @@ struct SavedListsView: View {
 struct SavedListsView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
-        let viewModel = SavedListsViewModel(context: context)
         return SavedListsView()
-            .environmentObject(viewModel)
+            .environment(\.managedObjectContext, context)
     }
 }

@@ -11,12 +11,10 @@ import SwiftUI
 struct akaPrepApp: App {
     let persistenceController = PersistenceController.shared
     let akaPrepViewModel: AkaPrepViewViewModel
-    let savedListsViewModel: SavedListsViewModel
 
     init() {
         let context = persistenceController.container.viewContext
         //PersistenceController.clearAllDataAgain(in: context)
-        self.savedListsViewModel = SavedListsViewModel(context: context)
         self.akaPrepViewModel = AkaPrepViewViewModel(context: context, useSampleData: false)
        
     }
@@ -26,7 +24,6 @@ struct akaPrepApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(akaPrepViewModel)
-                .environmentObject(savedListsViewModel)
         }
     }
 }
