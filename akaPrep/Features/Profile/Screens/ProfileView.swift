@@ -10,12 +10,13 @@ import CoreData
 
 struct ProfileView: View {
     @StateObject private var personalInfoViewModel: PersonalInfoViewModel
-    @EnvironmentObject var babyInfoViewModel: BabyInfoViewModel
+    @StateObject var babyInfoViewModel: BabyInfoViewModel
     
     @State public var name = ""
     
     init(context: NSManagedObjectContext) {
          _personalInfoViewModel = StateObject(wrappedValue: PersonalInfoViewModel(context: context))
+         _babyInfoViewModel = StateObject(wrappedValue: BabyInfoViewModel(context: context))
      }
     
     var body: some View {

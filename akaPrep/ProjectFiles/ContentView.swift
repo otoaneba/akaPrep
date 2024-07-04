@@ -19,12 +19,10 @@ struct ContentView: View {
    
     @EnvironmentObject var savedListsViewModel: SavedListsViewModel
     @EnvironmentObject var akaPrepViewModel: AkaPrepViewViewModel
-    @EnvironmentObject var babyInfoViewModel: BabyInfoViewModel
 
     var body: some View {
         BottomBarView()
             .environmentObject(akaPrepViewModel)
-            .environmentObject(babyInfoViewModel)
             .environmentObject(savedListsViewModel)
     }
 }
@@ -33,11 +31,9 @@ struct ContentView: View {
     let context = PersistenceController.preview.container.viewContext
     let savedListsViewModel = SavedListsViewModel(context: context)
     let akaPrepViewModel = AkaPrepViewViewModel(context: context, useSampleData: true)
-    let babyInfoViewModel = BabyInfoViewModel(context: context)
     
     return ContentView()
         .environment(\.managedObjectContext, context)
         .environmentObject(savedListsViewModel)
         .environmentObject(akaPrepViewModel)
-        .environmentObject(babyInfoViewModel)
 }

@@ -48,6 +48,8 @@ class BabyInfoViewModel: ObservableObject {
         
         gender = baby.gender
         initialGender = gender
+        
+        updateSaveDisabled()
     }
     
     func saveBabyInfo() {
@@ -74,8 +76,14 @@ class BabyInfoViewModel: ObservableObject {
             guard let self = self else { return true }
             return name.isEmpty || (name == self.initialName && dateOfBirth == self.initialDateOfBirth && gender == self.initialGender)
         }
-        .assign(to: \.isSaveDisabled, on: self)
-        .store(in: &cancellables)
+        .assign(to: &$isSaveDisabled)
+    }
+    
+    private func updateSaveDisabled() {
+        isSaveDisabled =
+            name.isEmpty || (name == initialName &&
+            dateOfBirth == initialDateOfBirth &&
+            gender == initialGender)
     }
     
     var formattedDateOfBirth: String {
