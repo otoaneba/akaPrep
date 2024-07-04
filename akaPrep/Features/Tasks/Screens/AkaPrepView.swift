@@ -87,14 +87,11 @@ struct AkaPrepView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let viewModel = AkaPrepViewViewModel.shared
-
-        let savedListsViewModel = SavedListsViewModel(context: context)
-//        let viewModel = AkaPrepViewViewModel(context: context, useSampleData: false, savedListsViewModel: savedListsViewModel) // Use sample data for preview
+//        let viewModel = AkaPrepViewViewModel(context: context, useSampleData: true) // Use sample data for preview
 
         return AkaPrepView()
             .environment(\.managedObjectContext, context)
             .environmentObject(viewModel)
-            .environmentObject(savedListsViewModel)
 
     }
 }

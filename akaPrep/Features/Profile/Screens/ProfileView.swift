@@ -9,10 +9,14 @@ import SwiftUI
 import CoreData
 
 struct ProfileView: View {
-    @EnvironmentObject var personalInfoViewModel: PersonalInfoViewModel
+    @StateObject private var personalInfoViewModel: PersonalInfoViewModel
     @EnvironmentObject var babyInfoViewModel: BabyInfoViewModel
     
     @State public var name = ""
+    
+    init(context: NSManagedObjectContext) {
+         _personalInfoViewModel = StateObject(wrappedValue: PersonalInfoViewModel(context: context))
+     }
     
     var body: some View {
         NavigationStack {
@@ -24,7 +28,8 @@ struct ProfileView: View {
                    NavigationItem(name: "Baby Info", destination: AnyView(BabyInfoView().environmentObject(babyInfoViewModel))),
                 ]
                 let secondaryList = [
-                   NavigationItem(name: "Settings", destination: AnyView(ProfileView())),
+                    // TODO: Add SettingsView
+                    NavigationItem(name: "Setting", destination: AnyView(PersonalInfoView().environmentObject(personalInfoViewModel))),
                 ]
                 List {
                     Section {
@@ -84,11 +89,9 @@ struct NavigationItem: Identifiable {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
-        let personalInfoViewModel = PersonalInfoViewModel(context: context)
         let babyInfoViewModel = BabyInfoViewModel(context: context)
-        return ProfileView()
+        return ProfileView(context: context)
             .environment(\.managedObjectContext, context)
-            .environmentObject(personalInfoViewModel)
             .environmentObject(babyInfoViewModel)
     }
 }

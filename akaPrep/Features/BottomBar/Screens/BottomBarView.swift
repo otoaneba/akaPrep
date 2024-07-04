@@ -10,7 +10,6 @@ import SwiftUI
 struct BottomBarView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var akaPrepViewModel: AkaPrepViewViewModel
-    @EnvironmentObject private var personalInfoViewModel: PersonalInfoViewModel
     @EnvironmentObject private var babyInfoViewModel: BabyInfoViewModel
     @EnvironmentObject private var savedListsViewModel: SavedListsViewModel
     
@@ -35,7 +34,7 @@ struct BottomBarView: View {
                     Text("Saved Lists")
                 }
             
-            ProfileView()
+            ProfileView(context: PersistenceController.preview.container.viewContext)
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Profile")
@@ -50,7 +49,6 @@ struct BottomBarView_Previews: PreviewProvider {
         BottomBarView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(AkaPrepViewViewModel(context: PersistenceController.preview.container.viewContext, useSampleData: false)) // initiallizer might need extra "SavedListsViewModel" passed in
-            .environmentObject(PersonalInfoViewModel(context: PersistenceController.preview.container.viewContext))
             .environmentObject(BabyInfoViewModel(context: PersistenceController.preview.container.viewContext))
             .environmentObject(SavedListsViewModel(context: PersistenceController.preview.container.viewContext))
     }

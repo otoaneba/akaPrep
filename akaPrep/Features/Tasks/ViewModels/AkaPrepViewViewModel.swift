@@ -20,11 +20,7 @@ class AkaPrepViewViewModel: ObservableObject {
     private let context: NSManagedObjectContext
     private let openAIService: OpenAIService
     private static var sampleDataLoaded = false // Static flag to check if sample data is already loaded
-    // private let useSampleData: Bool // for LLM testing
-    
-    //private let savedListsViewModel: SavedListsViewModel
-    
-    //init(context: NSManagedObjectContext, useSampleData: Bool = false, savedListsViewModel: SavedListsViewModel) {
+        
     init(context: NSManagedObjectContext, useSampleData: Bool = false) {
         self.context = context
         self.openAIService = OpenAIService()
@@ -36,11 +32,6 @@ class AkaPrepViewViewModel: ObservableObject {
             loadTasks()
         }
     }
-    
-//    self.useSampleData = useSampleData // for LLM testing
-//    self.savedListsViewModel = savedListsViewModel
-    
-//}
     
     
     func loadSampleDataIfNeeded() {
@@ -199,9 +190,6 @@ class AkaPrepViewViewModel: ObservableObject {
         print("trying to save a list here", list)
 
         saveContext()
-        
-        // Notify SavedListsViewModel
-          //savedListsViewModel.fetchSavedLists()
       }
     
 }
