@@ -10,12 +10,12 @@ import SwiftUI
 @main
 struct akaPrepApp: App {
     let persistenceController = PersistenceController.shared
-    let akaPrepViewModel: AkaPrepViewViewModel
+    let akaPrepViewModel: TasksViewModel
 
     init() {
         let context = persistenceController.container.viewContext
         //PersistenceController.clearAllDataAgain(in: context)
-        self.akaPrepViewModel = AkaPrepViewViewModel(context: context, useSampleData: false)
+        self.akaPrepViewModel = TasksViewModel(context: context, useSampleData: false)
        
     }
 

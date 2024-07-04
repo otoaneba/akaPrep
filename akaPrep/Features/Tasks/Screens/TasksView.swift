@@ -8,8 +8,8 @@
 import SwiftUI
 import CoreData
 
-struct AkaPrepView: View {
-    @EnvironmentObject var viewModel: AkaPrepViewViewModel
+struct TasksView: View {
+    @EnvironmentObject var viewModel: TasksViewModel
     @State private var context = ""
     @State private var taskType = "daily"
     
@@ -86,10 +86,10 @@ struct AkaPrepView: View {
 struct AkaPrepView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
-        let viewModel = AkaPrepViewViewModel.shared
+        let viewModel = TasksViewModel.shared
 //        let viewModel = AkaPrepViewViewModel(context: context, useSampleData: true) // Use sample data for preview
 
-        return AkaPrepView()
+        return TasksView()
             .environment(\.managedObjectContext, context)
             .environmentObject(viewModel)
 

@@ -9,11 +9,11 @@ import SwiftUI
 
 struct BottomBarView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @EnvironmentObject private var akaPrepViewModel: AkaPrepViewViewModel
+    @EnvironmentObject private var akaPrepViewModel: TasksViewModel
 
     var body: some View {
         TabView {
-            AkaPrepView()
+            TasksView()
                 .environmentObject(akaPrepViewModel)
                 .tabItem {
                     Image(systemName: "house.fill")
@@ -44,7 +44,7 @@ struct BottomBarView_Previews: PreviewProvider {
     static var previews: some View {
         BottomBarView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            .environmentObject(AkaPrepViewViewModel(context: PersistenceController.preview.container.viewContext, useSampleData: false))
+            .environmentObject(TasksViewModel(context: PersistenceController.preview.container.viewContext, useSampleData: false))
     }
 }
 

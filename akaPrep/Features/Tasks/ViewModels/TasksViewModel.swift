@@ -8,8 +8,8 @@
 import Foundation
 import CoreData
 
-class AkaPrepViewViewModel: ObservableObject {
-    static let shared = AkaPrepViewViewModel(context: PersistenceController.shared.container.viewContext, useSampleData: true)
+class TasksViewModel: ObservableObject {
+    static let shared = TasksViewModel(context: PersistenceController.shared.container.viewContext, useSampleData: true)
     
     @Published var showingAddNewTaskView = false
     @Published var dailyTasks: [TaskEntity] = []
@@ -35,8 +35,8 @@ class AkaPrepViewViewModel: ObservableObject {
     
     
     func loadSampleDataIfNeeded() {
-        guard !AkaPrepViewViewModel.sampleDataLoaded else { return } // Ensure data is loaded only once
-        AkaPrepViewViewModel.sampleDataLoaded = true
+        guard !TasksViewModel.sampleDataLoaded else { return } // Ensure data is loaded only once
+        TasksViewModel.sampleDataLoaded = true
         loadSampleData()
     }
     
