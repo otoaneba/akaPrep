@@ -10,7 +10,6 @@ import SwiftUI
 struct BottomBarView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var akaPrepViewModel: AkaPrepViewViewModel
-    @StateObject private var savedListsViewModel = SavedListsViewModel(context: PersistenceController.shared.container.viewContext)
 
     var body: some View {
         TabView {
