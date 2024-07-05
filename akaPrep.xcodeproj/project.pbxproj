@@ -16,10 +16,6 @@
 		4D50C5A82C35915200648A2A /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5A72C35915200648A2A /* GoalsViewModel.swift */; };
 		4D50C5AA2C3592D700648A2A /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5A92C3592D700648A2A /* GoalsView.swift */; };
 		4D50C5AC2C35AC4E00648A2A /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5AB2C35AC4E00648A2A /* WelcomeView.swift */; };
-		4D50C5CB2C37C23A00648A2A /* TaskEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5C72C37C23A00648A2A /* TaskEntity+CoreDataClass.swift */; };
-		4D50C5CC2C37C23A00648A2A /* TaskEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5C82C37C23A00648A2A /* TaskEntity+CoreDataProperties.swift */; };
-		4D50C5CD2C37C23A00648A2A /* ListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5C92C37C23A00648A2A /* ListEntity+CoreDataClass.swift */; };
-		4D50C5CE2C37C23A00648A2A /* ListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5CA2C37C23A00648A2A /* ListEntity+CoreDataProperties.swift */; };
 		5C363D312C359D2100B2ED0B /* SavedListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D302C359D2100B2ED0B /* SavedListsView.swift */; };
 		5C363D332C359D3800B2ED0B /* SavedListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D322C359D3800B2ED0B /* SavedListsViewModel.swift */; };
 		5C363D352C35A00300B2ED0B /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D342C35A00300B2ED0B /* TaskListView.swift */; };
@@ -49,6 +45,10 @@
 		5CB608F22C354F3A003DB576 /* BabyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608F12C354F3A003DB576 /* BabyInfoView.swift */; };
 		5CB608F42C354F66003DB576 /* BabyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608F32C354F66003DB576 /* BabyInfoViewModel.swift */; };
 		5CB609072C35557B003DB576 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608DA2C306403003DB576 /* ProfileView.swift */; };
+		5CEB45502C37D7C300938B37 /* TaskEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB454C2C37D7C300938B37 /* TaskEntity+CoreDataClass.swift */; };
+		5CEB45512C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB454D2C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift */; };
+		5CEB45522C37D7C300938B37 /* ListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB454E2C37D7C300938B37 /* ListEntity+CoreDataClass.swift */; };
+		5CEB45532C37D7C300938B37 /* ListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB454F2C37D7C300938B37 /* ListEntity+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,10 +78,6 @@
 		4D50C5A72C35915200648A2A /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModel.swift; sourceTree = "<group>"; };
 		4D50C5A92C3592D700648A2A /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
 		4D50C5AB2C35AC4E00648A2A /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		4D50C5C72C37C23A00648A2A /* TaskEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		4D50C5C82C37C23A00648A2A /* TaskEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		4D50C5C92C37C23A00648A2A /* ListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		4D50C5CA2C37C23A00648A2A /* ListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5C363D302C359D2100B2ED0B /* SavedListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsView.swift; sourceTree = "<group>"; };
 		5C363D322C359D3800B2ED0B /* SavedListsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsViewModel.swift; sourceTree = "<group>"; };
 		5C363D342C35A00300B2ED0B /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
@@ -114,6 +110,10 @@
 		5CB608EA2C343C92003DB576 /* PersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewModel.swift; sourceTree = "<group>"; };
 		5CB608F12C354F3A003DB576 /* BabyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyInfoView.swift; sourceTree = "<group>"; };
 		5CB608F32C354F66003DB576 /* BabyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyInfoViewModel.swift; sourceTree = "<group>"; };
+		5CEB454C2C37D7C300938B37 /* TaskEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5CEB454D2C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5CEB454E2C37D7C300938B37 /* ListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5CEB454F2C37D7C300938B37 /* ListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,10 +421,10 @@
 		5CB609022C3553B3003DB576 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4D50C5C72C37C23A00648A2A /* TaskEntity+CoreDataClass.swift */,
-				4D50C5C82C37C23A00648A2A /* TaskEntity+CoreDataProperties.swift */,
-				4D50C5C92C37C23A00648A2A /* ListEntity+CoreDataClass.swift */,
-				4D50C5CA2C37C23A00648A2A /* ListEntity+CoreDataProperties.swift */,
+				5CEB454C2C37D7C300938B37 /* TaskEntity+CoreDataClass.swift */,
+				5CEB454D2C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift */,
+				5CEB454E2C37D7C300938B37 /* ListEntity+CoreDataClass.swift */,
+				5CEB454F2C37D7C300938B37 /* ListEntity+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -630,13 +630,13 @@
 				4D50C5922C342ECC00648A2A /* PromptTemplate.swift in Sources */,
 				5CB608C02C2C4770003DB576 /* AddNewTaskView.swift in Sources */,
 				4D50C5912C342ECC00648A2A /* OpenAIService.swift in Sources */,
-				4D50C5CB2C37C23A00648A2A /* TaskEntity+CoreDataClass.swift in Sources */,
-				4D50C5CC2C37C23A00648A2A /* TaskEntity+CoreDataProperties.swift in Sources */,
-				4D50C5CD2C37C23A00648A2A /* ListEntity+CoreDataClass.swift in Sources */,
-				4D50C5CE2C37C23A00648A2A /* ListEntity+CoreDataProperties.swift in Sources */,
 				5C56460A2C2B10D100956423 /* akaPrepApp.swift in Sources */,
 				5C363D352C35A00300B2ED0B /* TaskListView.swift in Sources */,
 				5CB608C32C2C4B0E003DB576 /* Utilities.swift in Sources */,
+				5CEB45502C37D7C300938B37 /* TaskEntity+CoreDataClass.swift in Sources */,
+				5CEB45512C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift in Sources */,
+				5CEB45522C37D7C300938B37 /* ListEntity+CoreDataClass.swift in Sources */,
+				5CEB45532C37D7C300938B37 /* ListEntity+CoreDataProperties.swift in Sources */,
 				4D50C5A82C35915200648A2A /* GoalsViewModel.swift in Sources */,
 				5CB608EB2C343C92003DB576 /* PersonalInfoViewModel.swift in Sources */,
 				5CB608D52C302D21003DB576 /* ProfileEntity.swift in Sources */,

@@ -2,7 +2,7 @@
 //  TaskEntity+CoreDataProperties.swift
 //  akaPrep
 //
-//  Created by Mengyuan Cynthia Li on 2024-07-05.
+//  Created by Naoto Abe on 7/5/24.
 //
 //
 
@@ -11,11 +11,11 @@ import CoreData
 
 
 extension TaskEntity {
-    
+
     @nonobjc public class func fetchRequest() -> NSFetchRequest<TaskEntity> {
         return NSFetchRequest<TaskEntity>(entityName: "TaskEntity")
     }
-    
+
     @NSManaged public var date: Date?
     @NSManaged public var id: UUID?
     @NSManaged public var isCompleted: Bool
@@ -24,10 +24,10 @@ extension TaskEntity {
     @NSManaged public var lists: NSSet?
     
     override public func awakeFromInsert() {
-        super.awakeFromInsert()
-        id = UUID()
-    }
-    
+            super.awakeFromInsert()
+            id = UUID()
+        }
+
 }
 
 extension TaskEntity {

@@ -2,7 +2,7 @@
 //  TaskEntity+CoreDataClass.swift
 //  akaPrep
 //
-//  Created by Mengyuan Cynthia Li on 2024-07-05.
+//  Created by Naoto Abe on 7/5/24.
 //
 //
 

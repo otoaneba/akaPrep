@@ -2,7 +2,7 @@
 //  ListEntity+CoreDataProperties.swift
 //  akaPrep
 //
-//  Created by Mengyuan Cynthia Li on 2024-07-05.
+//  Created by Naoto Abe on 7/5/24.
 //
 //
 
@@ -11,11 +11,11 @@ import CoreData
 
 
 extension ListEntity {
-    
+
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ListEntity> {
         return NSFetchRequest<ListEntity>(entityName: "ListEntity")
     }
-    
+
     @NSManaged public var expirationDate: Date?
     @NSManaged public var frequencyRaw: String?
     @NSManaged public var id: UUID?
@@ -23,24 +23,24 @@ extension ListEntity {
     @NSManaged public var tasks: NSOrderedSet?
     
     public var frequency: Frequency {
-        get {
-            return Frequency(rawValue: frequencyRaw ?? "daily") ?? .daily
+            get {
+                return Frequency(rawValue: frequencyRaw ?? "daily") ?? .daily
+            }
+            set {
+                frequencyRaw = newValue.rawValue
+            }
         }
-        set {
-            frequencyRaw = newValue.rawValue
+        
+        public var taskArray: [TaskEntity] {
+            let set = tasks ?? []
+            return Array(set) as! [TaskEntity]
         }
-    }
-    
-    public var taskArray: [TaskEntity] {
-        let set = tasks ?? []
-        return Array(set) as! [TaskEntity]
-    }
-    
-    override public func awakeFromInsert() {
-        super.awakeFromInsert()
-        id = UUID()
-    }
-    
+        
+        override public func awakeFromInsert() {
+            super.awakeFromInsert()
+            id = UUID()
+        }
+
 }
 
 // MARK: Generated accessors for tasks
