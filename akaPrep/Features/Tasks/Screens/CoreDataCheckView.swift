@@ -6,8 +6,7 @@
 //
 
 import SwiftUI
-
-import SwiftUI
+import CoreData
 
 struct CoreDataCheckView: View {
     @FetchRequest(

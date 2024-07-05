@@ -44,7 +44,7 @@ struct TasksView: View {
             List {
                 ForEach(viewModel.tasksForSelectedType) { task in
                     HStack {
-                        Text(task.title)
+                        Text(task.title ?? "No Title") // Unwrap optional title
                         Spacer()
                         Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
                             .onTapGesture {

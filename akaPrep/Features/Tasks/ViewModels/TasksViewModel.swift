@@ -66,8 +66,8 @@ class TasksViewModel: ObservableObject {
         openAIService.fetchTasks(prompt: prompt) { [weak self] generatedTasks in
             DispatchQueue.main.async {
                 guard let self = self else { return }
-                // Clear existing tasks of the same type
-                self.clearTasks(ofType: taskType)
+//                // Clear existing tasks of the same type
+//                self.clearTasks(ofType: taskType)
                 switch taskType {
                 case "daily":
                     self.dailyTasks = generatedTasks.map { TaskEntity(context: self.context, title: $0, taskType: "daily") }
@@ -102,7 +102,7 @@ class TasksViewModel: ObservableObject {
     
     func saveCurrentList() {
         let currentTasks: [TaskEntity]
-                
+        
         switch selectedTaskType {
         case "daily":
             currentTasks = dailyTasks
@@ -115,12 +115,16 @@ class TasksViewModel: ObservableObject {
         }
         
         let newList = ListEntity(context: context)
-        newList.name = "\(selectedTaskType.capitalized) Tasks"
-        newList.frequency = ListEntity.Frequency(rawValue: selectedTaskType) ?? .daily
-        newList.expirationDate = Date().addingTimeInterval(24 * 60 * 60 * (newList.frequency == .daily ? 1 : (newList.frequency == .weekly ? 7 : 30)))
-        newList.addToTasks(NSSet(array: currentTasks))
+        let timestamp = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
+        newList.name = "\(selectedTaskType.capitalized) Tasks - \(timestamp)"
+        newList.frequencyRaw = selectedTaskType
+        newList.expirationDate = Date().addingTimeInterval(24 * 60 * 60 * (selectedTaskType == "daily" ? 1 : (selectedTaskType == "weekly" ? 7 : 30)))
         
-        print("saveCurrentList: \(newList)")
+        for task in currentTasks {
+            newList.addToTasks(task)
+            task.addToLists(newList)
+        }
+        
         saveContext()
         listSavedSubject.send() // Notify that a list has been saved
     }
@@ -133,17 +137,17 @@ class TasksViewModel: ObservableObject {
         }
     }
     
-    private func clearTasks(ofType type: String) {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = TaskEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "taskType == %@", type)
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try context.execute(deleteRequest)
-        } catch {
-            print("Failed to delete existing tasks: \(error)")
-        }
-    }
+//    private func clearTasks(ofType type: String) {
+//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = TaskEntity.fetchRequest()
+//        fetchRequest.predicate = NSPredicate(format: "taskType == %@", type)
+//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+//        
+//        do {
+//            try context.execute(deleteRequest)
+//        } catch {
+//            print("Failed to delete existing tasks: \(error)")
+//        }
+//    }
     
     private func loadTasks() {
         let fetchRequest: NSFetchRequest<ListEntity> = ListEntity.fetchRequest()

@@ -15,14 +15,13 @@ struct TaskListView: View {
         NavigationStack {
             List {
                 ForEach(list.taskArray, id: \.self) { task in
-                    HStack {
-                        Text(task.title)
+                    HStack {                        Text(task.title ?? "No Title") // Unwrap optional title
                         Spacer()
                         Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
                     }
                 }
             }
-            .navigationTitle(list.name)
+            .navigationTitle(list.name ?? "No Name") // Unwrap optional name
         }
     }
 }
@@ -33,7 +32,7 @@ struct TaskListView_Previews: PreviewProvider {
         let sampleList = ListEntity(context: context)
         sampleList.name = "Sample List"
         sampleList.frequency = .daily
-        sampleList.addToTasks(NSSet(array: [
+        sampleList.addToTasks(NSOrderedSet(array: [
             TaskEntity(context: context, title: "Sample Task 1", taskType: "daily"),
             TaskEntity(context: context, title: "Sample Task 2", taskType: "daily")
         ]))

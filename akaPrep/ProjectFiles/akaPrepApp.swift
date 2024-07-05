@@ -21,6 +21,7 @@ struct akaPrepApp: App {
 
     var body: some Scene {
         WindowGroup {
+//            WelcomeView()
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(akaPrepViewModel)

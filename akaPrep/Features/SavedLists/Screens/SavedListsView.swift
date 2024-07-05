@@ -23,7 +23,7 @@ struct SavedListsView: View {
                     Section(header: Text("Daily Lists")) {
                         ForEach(viewModel.dailyLists, id: \.id) { list in
                             NavigationLink(destination: TaskListView(list: list)) {
-                                Text(list.name)
+                                Text(list.name ?? "No Name")
                             }
                         }
                     }
@@ -31,7 +31,7 @@ struct SavedListsView: View {
                     Section(header: Text("Weekly Lists")) {
                         ForEach(viewModel.weeklyLists, id: \.id) { list in
                             NavigationLink(destination: TaskListView(list: list)) {
-                                Text(list.name)
+                                Text(list.name ?? "No Name")
                             }
                         }
                     }
@@ -39,7 +39,7 @@ struct SavedListsView: View {
                     Section(header: Text("Monthly Lists")) {
                         ForEach(viewModel.monthlyLists, id: \.id) { list in
                             NavigationLink(destination: TaskListView(list: list)) {
-                                Text(list.name)
+                                Text(list.name ?? "No Name")
                             }
                         }
                     }
