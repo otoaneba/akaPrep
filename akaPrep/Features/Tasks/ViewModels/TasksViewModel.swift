@@ -17,6 +17,8 @@ class TasksViewModel: ObservableObject {
     @Published var weeklyTasks: [TaskEntity] = []
     @Published var monthlyTasks: [TaskEntity] = []
     @Published var selectedTaskType: String = "daily"
+    @Published var isSaveDisabled: Bool = true
+    @Published var isSaved: Bool = false
     
     let listSavedSubject = PassthroughSubject<Void, Never>() // Publisher to notify list saved
     
@@ -78,6 +80,7 @@ class TasksViewModel: ObservableObject {
                 default:
                     break
                 }
+                self.isSaveDisabled = false
             }
         }
     }
@@ -127,6 +130,11 @@ class TasksViewModel: ObservableObject {
         
         saveContext()
         listSavedSubject.send() // Notify that a list has been saved
+        isSaved = true
+    }
+    
+    func unsaveCurrentList() {
+        
     }
     
     private func saveContext() {
@@ -136,18 +144,6 @@ class TasksViewModel: ObservableObject {
             print("Failed to save context: \(error)")
         }
     }
-    
-//    private func clearTasks(ofType type: String) {
-//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = TaskEntity.fetchRequest()
-//        fetchRequest.predicate = NSPredicate(format: "taskType == %@", type)
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-//        
-//        do {
-//            try context.execute(deleteRequest)
-//        } catch {
-//            print("Failed to delete existing tasks: \(error)")
-//        }
-//    }
     
     private func loadTasks() {
         let fetchRequest: NSFetchRequest<ListEntity> = ListEntity.fetchRequest()

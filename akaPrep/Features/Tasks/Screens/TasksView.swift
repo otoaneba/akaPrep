@@ -69,9 +69,9 @@ struct TasksView: View {
                         // Action to save
                         viewModel.saveCurrentList()
                     } label: {
-                        Image(systemName: "heart")
+                        Image(systemName: viewModel.isSaved ? "heart.fill" : "heart")
                     }
-//                        .disabled(viewModel.isSaveDisabled)
+                    .disabled(viewModel.isSaveDisabled)
                 }
                 
             }.sheet(isPresented: $viewModel.showingAddNewTaskView) {
