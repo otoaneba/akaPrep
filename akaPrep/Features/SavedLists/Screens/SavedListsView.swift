@@ -23,7 +23,14 @@ struct SavedListsView: View {
                     Section(header: Text("Daily Lists")) {
                         ForEach(viewModel.dailyLists, id: \.id) { list in
                             NavigationLink(destination: TaskListView(list: list)) {
-                                Text(list.name ?? "No Name")
+                                Text(list.name ?? "Unnamed List")
+                            }
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                    viewModel.removeList(list)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
                             }
                         }
                     }
@@ -31,7 +38,14 @@ struct SavedListsView: View {
                     Section(header: Text("Weekly Lists")) {
                         ForEach(viewModel.weeklyLists, id: \.id) { list in
                             NavigationLink(destination: TaskListView(list: list)) {
-                                Text(list.name ?? "No Name")
+                                Text(list.name ?? "Unnamed List")
+                            }
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                    viewModel.removeList(list)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
                             }
                         }
                     }
@@ -39,7 +53,14 @@ struct SavedListsView: View {
                     Section(header: Text("Monthly Lists")) {
                         ForEach(viewModel.monthlyLists, id: \.id) { list in
                             NavigationLink(destination: TaskListView(list: list)) {
-                                Text(list.name ?? "No Name")
+                                Text(list.name ?? "Unnamed List")
+                            }
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                    viewModel.removeList(list)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
                             }
                         }
                     }

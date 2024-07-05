@@ -1,5 +1,5 @@
 //
-//  AkaListView.swift
+//  TasksView.swift
 //  akaPrep
 //
 //  Created by Naoto Abe on 6/26/24.
@@ -34,7 +34,7 @@ struct TasksView: View {
                 } label: {
                     HStack {
                         Image(systemName: "plus.app")
-                        Text("Generate your daily tasks")
+                        Text("Generate your tasks")
                     }
                 }
             }
@@ -48,9 +48,7 @@ struct TasksView: View {
                         Spacer()
                         Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
                             .onTapGesture {
-                                if let index = viewModel.dailyTasks.firstIndex(where: { $0.id == task.id }) {
-                                    viewModel.dailyTasks[index].isCompleted.toggle()
-                                }
+                                viewModel.toggleTaskCompletion(task: task)
                             }
                     }
                 }
@@ -64,10 +62,10 @@ struct TasksView: View {
                     } label: {
                         Image(systemName: "plus")
                     }
-//                        .disabled(viewModel.isSaveDisabled)
+                    //                        .disabled(viewModel.isSaveDisabled)
                     Button {
-                        // Action to save
-                        viewModel.saveCurrentList()
+                        // Action to save or unsave
+                        viewModel.isSaved ? viewModel.unsaveCurrentList() : viewModel.saveCurrentList()
                     } label: {
                         Image(systemName: viewModel.isSaved ? "heart.fill" : "heart")
                     }
@@ -78,22 +76,21 @@ struct TasksView: View {
                 AddNewTaskView(newTaskPresented: $viewModel.showingAddNewTaskView)
                     .presentationDetents([.medium])
             }
-            
+        }
+        .onAppear {
+            viewModel.loadActiveLists()
         }
     }
-        
+    
 }
 
 struct TasksView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let viewModel = TasksViewModel.shared
-//        let viewModel = AkaPrepViewViewModel(context: context, useSampleData: true) // Use sample data for preview
-
         return TasksView()
             .environment(\.managedObjectContext, context)
             .environmentObject(viewModel)
-
     }
 }
 

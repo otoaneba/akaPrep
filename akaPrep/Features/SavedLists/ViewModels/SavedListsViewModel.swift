@@ -41,4 +41,18 @@ class SavedListsViewModel: ObservableObject {
             print("Failed to fetch tasks: \(error)")
         }
     }
+    
+    func removeList(_ list: ListEntity) {
+        context.delete(list)
+        saveContext()
+        loadLists()
+    }
+    
+    private func saveContext() {
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save context: \(error)")
+        }
+    }
 }
