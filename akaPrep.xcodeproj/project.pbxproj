@@ -49,7 +49,6 @@
 		5CB608F22C354F3A003DB576 /* BabyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608F12C354F3A003DB576 /* BabyInfoView.swift */; };
 		5CB608F42C354F66003DB576 /* BabyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608F32C354F66003DB576 /* BabyInfoViewModel.swift */; };
 		5CB609072C35557B003DB576 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608DA2C306403003DB576 /* ProfileView.swift */; };
-		5CBEDD082C3589C000EC60F1 /* CoreDataCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBEDD072C3589C000EC60F1 /* CoreDataCheckView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,7 +114,6 @@
 		5CB608EA2C343C92003DB576 /* PersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewModel.swift; sourceTree = "<group>"; };
 		5CB608F12C354F3A003DB576 /* BabyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyInfoView.swift; sourceTree = "<group>"; };
 		5CB608F32C354F66003DB576 /* BabyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyInfoViewModel.swift; sourceTree = "<group>"; };
-		5CBEDD072C3589C000EC60F1 /* CoreDataCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCheckView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -436,7 +434,6 @@
 			children = (
 				5CB608BF2C2C4770003DB576 /* AddNewTaskView.swift */,
 				5CB608C42C2C4DD1003DB576 /* TasksView.swift */,
-				5CBEDD072C3589C000EC60F1 /* CoreDataCheckView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -632,7 +629,6 @@
 				5C363D312C359D2100B2ED0B /* SavedListsView.swift in Sources */,
 				4D50C5922C342ECC00648A2A /* PromptTemplate.swift in Sources */,
 				5CB608C02C2C4770003DB576 /* AddNewTaskView.swift in Sources */,
-				5CBEDD082C3589C000EC60F1 /* CoreDataCheckView.swift in Sources */,
 				4D50C5912C342ECC00648A2A /* OpenAIService.swift in Sources */,
 				4D50C5CB2C37C23A00648A2A /* TaskEntity+CoreDataClass.swift in Sources */,
 				4D50C5CC2C37C23A00648A2A /* TaskEntity+CoreDataProperties.swift in Sources */,
