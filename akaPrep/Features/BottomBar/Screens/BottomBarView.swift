@@ -9,12 +9,12 @@ import SwiftUI
 
 struct BottomBarView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @EnvironmentObject private var akaPrepViewModel: TasksViewModel
+    @EnvironmentObject private var tasksViewModel: TasksViewModel
 
     var body: some View {
         TabView {
             TasksView()
-                .environmentObject(akaPrepViewModel)
+                .environmentObject(tasksViewModel)
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Tasks")
@@ -25,7 +25,7 @@ struct BottomBarView: View {
                     Image(systemName: "target")
                     Text("Goals")
                 }
-            SavedListsView(context: viewContext, tasksViewModel: akaPrepViewModel)
+            SavedListsView(context: viewContext, tasksViewModel: tasksViewModel)
                 .tabItem {
                     Image(systemName: "heart")
                     Text("Saved Lists")

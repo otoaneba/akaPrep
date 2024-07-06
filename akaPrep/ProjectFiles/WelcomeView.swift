@@ -15,11 +15,11 @@ struct WelcomeView: View {
         ZStack {
             if self.isActive {
                 let context = PersistenceController.preview.container.viewContext
-                let akaPrepViewModel = TasksViewModel(context: context, useSampleData: true)
+                let tasksViewModel = TasksViewModel(context: context, useSampleData: true)
                 
                 ContentView()
                     .environment(\.managedObjectContext, context)
-                    .environmentObject(akaPrepViewModel)
+                    .environmentObject(tasksViewModel)
             } else {
                 Image("welcome-icon")
                     .resizable()

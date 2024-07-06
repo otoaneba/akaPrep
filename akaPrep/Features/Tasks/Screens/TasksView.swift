@@ -65,11 +65,11 @@ struct TasksView: View {
                     //                        .disabled(viewModel.isSaveDisabled)
                     Button {
                         // Action to save or unsave
-                        viewModel.isSaved ? viewModel.unsaveCurrentList() : viewModel.saveCurrentList()
+                        viewModel.isLiked ? viewModel.unlikeCurrentList() : viewModel.likeCurrentList()
                     } label: {
-                        Image(systemName: viewModel.isSaved ? "heart.fill" : "heart")
+                        Image(systemName: viewModel.isLiked ? "heart.fill" : "heart")
                     }
-                    .disabled(viewModel.isSaveDisabled)
+                    .disabled(viewModel.isLikeDisabled)
                 }
                 
             }.sheet(isPresented: $viewModel.showingAddNewTaskView) {

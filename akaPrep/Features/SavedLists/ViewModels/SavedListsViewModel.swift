@@ -21,7 +21,7 @@ class SavedListsViewModel: ObservableObject {
         self.context = context
         loadLists()
         //        fetchSavedLists()
-        tasksViewModel.listSavedSubject
+        tasksViewModel.listLikedSubject
             .sink { [weak self] in
                 self?.loadLists()
             }

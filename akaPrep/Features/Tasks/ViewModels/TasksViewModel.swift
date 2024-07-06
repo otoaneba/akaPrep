@@ -17,44 +17,42 @@ class TasksViewModel: ObservableObject {
     @Published var weeklyTasks: [TaskEntity] = []
     @Published var monthlyTasks: [TaskEntity] = []
     @Published var selectedTaskType: String = "daily"
-    @Published var isSaveDisabled: Bool {
+    @Published var isLikeDisabled: Bool {
         didSet {
-            UserDefaults.standard.set(isSaveDisabled, forKey: "isSaveDisabled")
-            print("isSavedDisabled set: \(isSaveDisabled)")
+            UserDefaults.standard.set(isLikeDisabled, forKey: "isLikeDisabled")
+            print("isLikeDisabled set: \(isLikeDisabled)")
             
         }
     }
-    @Published var isSaved: Bool {
+    @Published var isLiked: Bool {
         didSet {
-            UserDefaults.standard.set(isSaved, forKey: "isSaved")
-            print("isSaved set: \(isSaved)")
+            UserDefaults.standard.set(isLiked, forKey: "isLiked")
+            print("isLiked set: \(isLiked)")
         }
     }
     @Published var currentList: ActiveListEntity? = nil
     
-    let listSavedSubject = PassthroughSubject<Void, Never>() // Publisher to notify list saved
-    let listUnsavedSubject = PassthroughSubject<Void, Never>() // Publisher to notify list unsaved
+    let listLikedSubject = PassthroughSubject<Void, Never>()
+    let listUnlikedSubject = PassthroughSubject<Void, Never>()
     
     private let context: NSManagedObjectContext
     private let openAIService: OpenAIService
     private static var sampleDataLoaded = false // Static flag to check if sample data is already loaded
-    private var currentSavedList: SavedListEntity?
+    private var currentLikedList: SavedListEntity?
     
     init(context: NSManagedObjectContext, useSampleData: Bool = false) {
         self.context = context
         self.openAIService = OpenAIService()
         
-        // Load saved states from UserDefaults
-        self.isSaveDisabled = UserDefaults.standard.bool(forKey: "isSaveDisabled")
-        self.isSaved = UserDefaults.standard.bool(forKey: "isSaved")
-        print("isSavedDisabled: \(isSaveDisabled) isSaved: \(isSaved)")
-        //        self.isSaveDisabled = true
-        //        self.isSaved = false
+        self.isLikeDisabled = UserDefaults.standard.bool(forKey: "isLikeDisabled")
+        self.isLiked = UserDefaults.standard.bool(forKey: "isLiked")
+        print("isLikeDisabled: \(isLikeDisabled) isLiked: \(isLiked)")
+        //        self.isLikeDisabled = true
+        //        self.isLiked = false
         
-        // Load currentSavedList from UserDefaults
-        if let savedListUUIDString = UserDefaults.standard.string(forKey: "currentSavedListUUID"),
-           let savedListUUID = UUID(uuidString: savedListUUIDString) {
-            loadSavedList(with: savedListUUID)
+        if let likedListUUIDString = UserDefaults.standard.string(forKey: "currentLikedListUUID"),
+           let likedListUUID = UUID(uuidString: likedListUUIDString) {
+            loadLikedList(with: likedListUUID)
         }
         
         // for LLM testing
@@ -106,8 +104,8 @@ class TasksViewModel: ObservableObject {
                 default:
                     break
                 }
-                self.isSaveDisabled = false
-                self.isSaved = false
+                self.isLikeDisabled = false
+                self.isLiked = false
             }
         }
     }
@@ -185,7 +183,7 @@ class TasksViewModel: ObservableObject {
         saveContext()
     }
     
-    func saveCurrentList() {
+    func likeCurrentList() {
         let currentTasks: [TaskEntity]
         
         switch selectedTaskType {
@@ -218,43 +216,43 @@ class TasksViewModel: ObservableObject {
         }
         
         saveContext()
-        listSavedSubject.send() // Notify that a list has been saved
-        isSaved = true
-        currentSavedList = newList
+        listLikedSubject.send() // Notify that a list has been saved
+        isLiked = true
+        currentLikedList = newList
         
-        // Save the UUID of the currentSavedList to UserDefaults
+        // Save the UUID of the currentLikedList to UserDefaults
         if let uuid = newList.id {
-            UserDefaults.standard.set(uuid.uuidString, forKey: "currentSavedListUUID")
+            UserDefaults.standard.set(uuid.uuidString, forKey: "currentLikedListUUID")
         }
         
         print("saving list")
     }
     
-    func unsaveCurrentList() {
-        guard let listToDelete = currentSavedList else { return }
+    func unlikeCurrentList() {
+        guard let listToDelete = currentLikedList else { return }
         print("unsaving list \(listToDelete)")
         context.delete(listToDelete)
         saveContext()
-        isSaved = false
-        currentSavedList = nil
-        // Remove the UUID of the currentSavedList from UserDefaults
-        UserDefaults.standard.removeObject(forKey: "currentSavedListUUID")
-        listUnsavedSubject.send() // Notify that a list has been unsaved
+        isLiked = false
+        currentLikedList = nil
+        // Remove the UUID of the currentLikedList from UserDefaults
+        UserDefaults.standard.removeObject(forKey: "currentLikedListUUID")
+        listUnlikedSubject.send() // Notify that a list has been unsaved
     }
     
-    private func loadSavedList(with uuid: UUID) {
+    private func loadLikedList(with uuid: UUID) {
         let fetchRequest: NSFetchRequest<SavedListEntity> = SavedListEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %@", uuid as CVarArg)
         
         do {
             let lists = try context.fetch(fetchRequest)
             if let list = lists.first {
-                currentSavedList = list
-                isSaved = true
-                print("Loaded saved list with UUID: \(uuid)")
+                currentLikedList = list
+                isLiked = true
+                print("Loaded currentLikedList with UUID: \(uuid)")
             }
         } catch {
-            print("Failed to load saved list with UUID: \(error)")
+            print("Failed to load currentLikedList with UUID: \(error)")
         }
     }
     

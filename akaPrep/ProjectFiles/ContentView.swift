@@ -10,7 +10,7 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @EnvironmentObject var akaPrepViewModel: TasksViewModel
+    @EnvironmentObject var tasksViewModel: TasksViewModel
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \TaskEntity.date, ascending: true)],
@@ -19,15 +19,15 @@ struct ContentView: View {
 
     var body: some View {
         BottomBarView()
-            .environmentObject(akaPrepViewModel)
+            .environmentObject(tasksViewModel)
     }
 }
 
 #Preview {
     let context = PersistenceController.preview.container.viewContext
-    let akaPrepViewModel = TasksViewModel(context: context, useSampleData: true)
+    let tasksViewModel = TasksViewModel(context: context, useSampleData: true)
     
     return ContentView()
         .environment(\.managedObjectContext, context)
-        .environmentObject(akaPrepViewModel)
+        .environmentObject(tasksViewModel)
 }
