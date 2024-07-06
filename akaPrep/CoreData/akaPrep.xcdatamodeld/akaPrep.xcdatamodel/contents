@@ -15,6 +15,7 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="LikedListEntity" representedClassName="LikedListEntity" parentEntity="ListEntity" syncable="YES"/>
     <entity name="ListEntity" representedClassName="ListEntity" syncable="YES">
         <attribute name="expirationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="frequencyRaw" optional="YES" attributeType="String"/>
@@ -31,7 +32,6 @@
         <relationship name="currentLists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListEntity"/>
         <relationship name="savedLists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListEntity"/>
     </entity>
-    <entity name="SavedListEntity" representedClassName="SavedListEntity" parentEntity="ListEntity" syncable="YES"/>
     <entity name="TaskEntity" representedClassName="TaskEntity" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>

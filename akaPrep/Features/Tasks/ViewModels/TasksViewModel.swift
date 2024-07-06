@@ -38,7 +38,7 @@ class TasksViewModel: ObservableObject {
     private let context: NSManagedObjectContext
     private let openAIService: OpenAIService
     private static var sampleDataLoaded = false // Static flag to check if sample data is already loaded
-    private var currentLikedList: SavedListEntity?
+    private var currentLikedList: LikedListEntity?
     
     init(context: NSManagedObjectContext, useSampleData: Bool = false) {
         self.context = context
@@ -197,7 +197,7 @@ class TasksViewModel: ObservableObject {
             currentTasks = []
         }
         
-        let newList = SavedListEntity(context: context)
+        let newList = LikedListEntity(context: context)
         let timestamp = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
         newList.name = "\(selectedTaskType.capitalized) Tasks - \(timestamp)"
         newList.frequencyRaw = selectedTaskType
@@ -241,7 +241,7 @@ class TasksViewModel: ObservableObject {
     }
     
     private func loadLikedList(with uuid: UUID) {
-        let fetchRequest: NSFetchRequest<SavedListEntity> = SavedListEntity.fetchRequest()
+        let fetchRequest: NSFetchRequest<LikedListEntity> = LikedListEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %@", uuid as CVarArg)
         
         do {

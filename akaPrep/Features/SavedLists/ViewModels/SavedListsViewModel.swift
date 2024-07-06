@@ -10,9 +10,9 @@ import CoreData
 import Combine
 
 class SavedListsViewModel: ObservableObject {
-    @Published var dailySavedLists: [SavedListEntity] = [] // for testing. Remove if not working, or replace dailyLists if working.
-    @Published var weeklySavedLists: [SavedListEntity] = [] // for testing. Remove if not working, or replace weeklyLists if working.
-    @Published var monthlySavedLists: [SavedListEntity] = [] // for testing. Remove if not working, or replace monthlyLists if working.
+    @Published var dailySavedLists: [LikedListEntity] = [] // for testing. Remove if not working, or replace dailyLists if working.
+    @Published var weeklySavedLists: [LikedListEntity] = [] // for testing. Remove if not working, or replace weeklyLists if working.
+    @Published var monthlySavedLists: [LikedListEntity] = [] // for testing. Remove if not working, or replace monthlyLists if working.
     
     private var context: NSManagedObjectContext
     private var cancellables = Set<AnyCancellable>()
@@ -29,7 +29,7 @@ class SavedListsViewModel: ObservableObject {
     }
     
     private func loadLists() {
-        let fetchSavedListRequest: NSFetchRequest<SavedListEntity> = SavedListEntity.fetchRequest()
+        let fetchSavedListRequest: NSFetchRequest<LikedListEntity> = LikedListEntity.fetchRequest()
         
         do {
             let lists = try context.fetch(fetchSavedListRequest)

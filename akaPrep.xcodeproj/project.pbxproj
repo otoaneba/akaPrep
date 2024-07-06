@@ -49,8 +49,8 @@
 		5CEB45512C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB454D2C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift */; };
 		5CEB45522C37D7C300938B37 /* ListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB454E2C37D7C300938B37 /* ListEntity+CoreDataClass.swift */; };
 		5CEB45532C37D7C300938B37 /* ListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB454F2C37D7C300938B37 /* ListEntity+CoreDataProperties.swift */; };
-		5CEB455E2C3938F100938B37 /* SavedListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB455C2C3938F100938B37 /* SavedListEntity+CoreDataClass.swift */; };
-		5CEB455F2C3938F100938B37 /* SavedListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB455D2C3938F100938B37 /* SavedListEntity+CoreDataProperties.swift */; };
+		5CEB455E2C3938F100938B37 /* LikedListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB455C2C3938F100938B37 /* LikedListEntity+CoreDataClass.swift */; };
+		5CEB455F2C3938F100938B37 /* LikedListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB455D2C3938F100938B37 /* LikedListEntity+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,8 +116,8 @@
 		5CEB454D2C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5CEB454E2C37D7C300938B37 /* ListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5CEB454F2C37D7C300938B37 /* ListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		5CEB455C2C3938F100938B37 /* SavedListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		5CEB455D2C3938F100938B37 /* SavedListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5CEB455C2C3938F100938B37 /* LikedListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikedListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5CEB455D2C3938F100938B37 /* LikedListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikedListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,8 +384,8 @@
 		5CB608FD2C355389003DB576 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5CEB455C2C3938F100938B37 /* SavedListEntity+CoreDataClass.swift */,
-				5CEB455D2C3938F100938B37 /* SavedListEntity+CoreDataProperties.swift */,
+				5CEB455C2C3938F100938B37 /* LikedListEntity+CoreDataClass.swift */,
+				5CEB455D2C3938F100938B37 /* LikedListEntity+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -629,8 +629,8 @@
 				4D50C5AA2C3592D700648A2A /* GoalsView.swift in Sources */,
 				5CB608C52C2C4DD1003DB576 /* TasksView.swift in Sources */,
 				5CB608E12C33FF75003DB576 /* PersonalInfoView.swift in Sources */,
-				5CEB455E2C3938F100938B37 /* SavedListEntity+CoreDataClass.swift in Sources */,
-				5CEB455F2C3938F100938B37 /* SavedListEntity+CoreDataProperties.swift in Sources */,
+				5CEB455E2C3938F100938B37 /* LikedListEntity+CoreDataClass.swift in Sources */,
+				5CEB455F2C3938F100938B37 /* LikedListEntity+CoreDataProperties.swift in Sources */,
 				4D50C5AC2C35AC4E00648A2A /* WelcomeView.swift in Sources */,
 				5CB608D92C303F83003DB576 /* BottomBarView.swift in Sources */,
 				5CB608F22C354F3A003DB576 /* BabyInfoView.swift in Sources */,
