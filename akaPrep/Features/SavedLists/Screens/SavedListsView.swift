@@ -21,7 +21,7 @@ struct SavedListsView: View {
             VStack {
                 List {
                     Section(header: Text("Daily Lists")) {
-                        ForEach(viewModel.dailyLists, id: \.id) { list in
+                        ForEach(viewModel.dailySavedLists, id: \.id) { list in
                             NavigationLink(destination: TaskListView(list: list)) {
                                 Text(list.name ?? "Unnamed List")
                             }
@@ -36,7 +36,7 @@ struct SavedListsView: View {
                     }
                     
                     Section(header: Text("Weekly Lists")) {
-                        ForEach(viewModel.weeklyLists, id: \.id) { list in
+                        ForEach(viewModel.weeklySavedLists, id: \.id) { list in
                             NavigationLink(destination: TaskListView(list: list)) {
                                 Text(list.name ?? "Unnamed List")
                             }
@@ -51,7 +51,7 @@ struct SavedListsView: View {
                     }
                     
                     Section(header: Text("Monthly Lists")) {
-                        ForEach(viewModel.monthlyLists, id: \.id) { list in
+                        ForEach(viewModel.monthlySavedLists, id: \.id) { list in
                             NavigationLink(destination: TaskListView(list: list)) {
                                 Text(list.name ?? "Unnamed List")
                             }
