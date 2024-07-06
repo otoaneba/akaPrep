@@ -216,7 +216,7 @@ class TasksViewModel: ObservableObject {
         }
         
         saveContext()
-        listLikedSubject.send() // Notify that a list has been saved
+        listLikedSubject.send()
         isLiked = true
         currentLikedList = newList
         
@@ -237,7 +237,7 @@ class TasksViewModel: ObservableObject {
         currentLikedList = nil
         // Remove the UUID of the currentLikedList from UserDefaults
         UserDefaults.standard.removeObject(forKey: "currentLikedListUUID")
-        listUnlikedSubject.send() // Notify that a list has been unsaved
+        listUnlikedSubject.send()
     }
     
     private func loadLikedList(with uuid: UUID) {

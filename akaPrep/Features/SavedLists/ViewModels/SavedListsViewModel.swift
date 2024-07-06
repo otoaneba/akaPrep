@@ -10,9 +10,9 @@ import CoreData
 import Combine
 
 class SavedListsViewModel: ObservableObject {
-    @Published var dailySavedLists: [LikedListEntity] = [] // for testing. Remove if not working, or replace dailyLists if working.
-    @Published var weeklySavedLists: [LikedListEntity] = [] // for testing. Remove if not working, or replace weeklyLists if working.
-    @Published var monthlySavedLists: [LikedListEntity] = [] // for testing. Remove if not working, or replace monthlyLists if working.
+    @Published var dailySavedLists: [LikedListEntity] = []
+    @Published var weeklySavedLists: [LikedListEntity] = []
+    @Published var monthlySavedLists: [LikedListEntity] = []
     
     private var context: NSManagedObjectContext
     private var cancellables = Set<AnyCancellable>()
@@ -20,8 +20,14 @@ class SavedListsViewModel: ObservableObject {
     init(context: NSManagedObjectContext, tasksViewModel: TasksViewModel) {
         self.context = context
         loadLists()
-        //        fetchSavedLists()
+        
         tasksViewModel.listLikedSubject
+            .sink { [weak self] in
+                self?.loadLists()
+            }
+            .store(in: &cancellables)
+        
+        tasksViewModel.listUnlikedSubject
             .sink { [weak self] in
                 self?.loadLists()
             }
@@ -29,10 +35,10 @@ class SavedListsViewModel: ObservableObject {
     }
     
     private func loadLists() {
-        let fetchSavedListRequest: NSFetchRequest<LikedListEntity> = LikedListEntity.fetchRequest()
+        let fetchLikedListRequest: NSFetchRequest<LikedListEntity> = LikedListEntity.fetchRequest()
         
         do {
-            let lists = try context.fetch(fetchSavedListRequest)
+            let lists = try context.fetch(fetchLikedListRequest)
             self.dailySavedLists = lists.filter { $0.frequency == .daily }
             self.weeklySavedLists = lists.filter { $0.frequency == .weekly }
             self.monthlySavedLists = lists.filter { $0.frequency == .monthly }
