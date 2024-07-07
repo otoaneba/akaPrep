@@ -11,6 +11,7 @@ import CoreData
 struct BottomBarView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var tasksViewModel: TasksViewModel
+    @State private var profileName: String?
     @State private var profileImage: UIImage?
 
     var body: some View {
@@ -21,7 +22,6 @@ struct BottomBarView: View {
                     Image(systemName: "house.fill")
                     Text("Tasks")
                 }
-            
             GoalsView(context: viewContext)
                 .tabItem {
                     Image(systemName: "target")
@@ -32,7 +32,6 @@ struct BottomBarView: View {
                     Image(systemName: "heart")
                     Text("Saved Lists")
                 }
-            
             ProfileView(context: viewContext)
                 .tabItem {
                     if let profileImage = profileImage {
@@ -41,7 +40,11 @@ struct BottomBarView: View {
                     } else {
                         Image(systemName: "person.fill")
                     }
-                    Text("Profile")
+                    if let savedName = profileName {
+                        Text("\(savedName)")
+                    } else {
+                        Text("Profile")
+                    }
                 }
         }
         .onAppear {
@@ -52,8 +55,12 @@ struct BottomBarView: View {
     
     private func loadProfileImage() {
         if let savedImage = ProfileEntity.getProfilePicture(context: PersistenceController.shared.container.viewContext) {
-                    profileImage = savedImage
-                }
+            profileImage = savedImage
+        }
+        if let savedName = ProfileEntity.getProfileName(context: PersistenceController.shared.container.viewContext) {
+            profileName = savedName
+            print("name in context: \(savedName)")
+        }
     }
 }
 
