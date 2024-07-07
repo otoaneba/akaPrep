@@ -168,6 +168,7 @@ class TasksViewModel: ObservableObject {
     }
     
     func toggleTaskCompletion(task: TaskEntity) {
+        print("toggle task \(task.id) to \(task.isCompleted)")
         task.isCompleted.toggle()
         saveContext()
     }

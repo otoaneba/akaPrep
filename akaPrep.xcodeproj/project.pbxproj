@@ -18,6 +18,7 @@
 		4D50C5AC2C35AC4E00648A2A /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5AB2C35AC4E00648A2A /* WelcomeView.swift */; };
 		4D50C5D52C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5D32C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift */; };
 		4D50C5D62C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5D42C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift */; };
+		4D50C5DC2C3AF3EB00648A2A /* TasksRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5DB2C3AF3EB00648A2A /* TasksRowView.swift */; };
 		5C363D312C359D2100B2ED0B /* SavedListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D302C359D2100B2ED0B /* SavedListsView.swift */; };
 		5C363D332C359D3800B2ED0B /* SavedListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D322C359D3800B2ED0B /* SavedListsViewModel.swift */; };
 		5C363D352C35A00300B2ED0B /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D342C35A00300B2ED0B /* TaskListView.swift */; };
@@ -85,6 +86,7 @@
 		4D50C5AB2C35AC4E00648A2A /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4D50C5D32C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4D50C5D42C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4D50C5DB2C3AF3EB00648A2A /* TasksRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksRowView.swift; sourceTree = "<group>"; };
 		5C363D302C359D2100B2ED0B /* SavedListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsView.swift; sourceTree = "<group>"; };
 		5C363D322C359D3800B2ED0B /* SavedListsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsViewModel.swift; sourceTree = "<group>"; };
 		5C363D342C35A00300B2ED0B /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
@@ -465,6 +467,7 @@
 		5CB609052C3553C3003DB576 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4D50C5DB2C3AF3EB00648A2A /* TasksRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 				5C363D352C35A00300B2ED0B /* TaskListView.swift in Sources */,
 				5CB608C32C2C4B0E003DB576 /* Utilities.swift in Sources */,
 				5CEB45502C37D7C300938B37 /* TaskEntity+CoreDataClass.swift in Sources */,
+				4D50C5DC2C3AF3EB00648A2A /* TasksRowView.swift in Sources */,
 				5CEB45512C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift in Sources */,
 				5CEB45522C37D7C300938B37 /* ListEntity+CoreDataClass.swift in Sources */,
 				5CEB45532C37D7C300938B37 /* ListEntity+CoreDataProperties.swift in Sources */,

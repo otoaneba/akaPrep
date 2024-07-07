@@ -43,14 +43,7 @@ struct TasksView: View {
             
             List {
                 ForEach(viewModel.tasksForSelectedType) { task in
-                    HStack {
-                        Text(task.title ?? "No Title") // Unwrap optional title
-                        Spacer()
-                        Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
-                            .onTapGesture {
-                                viewModel.toggleTaskCompletion(task: task)
-                            }
-                    }
+                    TaskRowView(task: task)
                 }
             }
             .navigationTitle("Tasks")
@@ -83,7 +76,6 @@ struct TasksView: View {
             viewModel.loadActiveLists()
         }
     }
-    
 }
 
 struct TasksView_Previews: PreviewProvider {
