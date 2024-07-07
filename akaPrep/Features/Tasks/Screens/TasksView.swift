@@ -62,14 +62,16 @@ struct TasksView: View {
                     } label: {
                         Image(systemName: "plus")
                     }
-                    //                        .disabled(viewModel.isSaveDisabled)
                     Button {
-                        // Action to save or unsave
-                        viewModel.isLiked ? viewModel.unlikeCurrentList() : viewModel.likeCurrentList()
+                        if viewModel.currentLikedLists[viewModel.selectedTaskType] != nil {
+                            viewModel.unlikeCurrentList()
+                        } else {
+                            viewModel.likeCurrentList()
+                        }
                     } label: {
-                        Image(systemName: viewModel.isLiked ? "heart.fill" : "heart")
+                        Image(systemName: viewModel.currentLikedLists[viewModel.selectedTaskType] != nil ? "heart.fill" : "heart")
                     }
-                    .disabled(viewModel.isLikeDisabled)
+//                    .disabled(viewModel.isLikeDisabled)
                 }
                 
             }.sheet(isPresented: $viewModel.showingAddNewTaskView) {

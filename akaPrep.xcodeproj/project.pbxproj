@@ -16,6 +16,8 @@
 		4D50C5A82C35915200648A2A /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5A72C35915200648A2A /* GoalsViewModel.swift */; };
 		4D50C5AA2C3592D700648A2A /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5A92C3592D700648A2A /* GoalsView.swift */; };
 		4D50C5AC2C35AC4E00648A2A /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5AB2C35AC4E00648A2A /* WelcomeView.swift */; };
+		4D50C5D52C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5D32C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift */; };
+		4D50C5D62C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5D42C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift */; };
 		5C363D312C359D2100B2ED0B /* SavedListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D302C359D2100B2ED0B /* SavedListsView.swift */; };
 		5C363D332C359D3800B2ED0B /* SavedListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D322C359D3800B2ED0B /* SavedListsViewModel.swift */; };
 		5C363D352C35A00300B2ED0B /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D342C35A00300B2ED0B /* TaskListView.swift */; };
@@ -80,6 +82,8 @@
 		4D50C5A72C35915200648A2A /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModel.swift; sourceTree = "<group>"; };
 		4D50C5A92C3592D700648A2A /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
 		4D50C5AB2C35AC4E00648A2A /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		4D50C5D32C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4D50C5D42C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5C363D302C359D2100B2ED0B /* SavedListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsView.swift; sourceTree = "<group>"; };
 		5C363D322C359D3800B2ED0B /* SavedListsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsViewModel.swift; sourceTree = "<group>"; };
 		5C363D342C35A00300B2ED0B /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
@@ -427,6 +431,8 @@
 		5CB609022C3553B3003DB576 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4D50C5D32C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift */,
+				4D50C5D42C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift */,
 				5CEB454C2C37D7C300938B37 /* TaskEntity+CoreDataClass.swift */,
 				5CEB454D2C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift */,
 				5CEB454E2C37D7C300938B37 /* ListEntity+CoreDataClass.swift */,
@@ -618,6 +624,8 @@
 				5CB608F42C354F66003DB576 /* BabyInfoViewModel.swift in Sources */,
 				5CB609072C35557B003DB576 /* ProfileView.swift in Sources */,
 				5CB608DD2C32E4A2003DB576 /* ProfileCardView.swift in Sources */,
+				4D50C5D52C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift in Sources */,
+				4D50C5D62C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift in Sources */,
 				5C5646162C2B10D200956423 /* akaPrep.xcdatamodeld in Sources */,
 				5CB608E52C342999003DB576 /* Enums.swift in Sources */,
 				4D50C5A62C358F3A00648A2A /* GoalEntity.swift in Sources */,

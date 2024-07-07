@@ -15,10 +15,12 @@ class SavedListsViewModel: ObservableObject {
     @Published var monthlySavedLists: [LikedListEntity] = []
     
     private var context: NSManagedObjectContext
+    private var tasksViewModel: TasksViewModel
     private var cancellables = Set<AnyCancellable>()
     
     init(context: NSManagedObjectContext, tasksViewModel: TasksViewModel) {
         self.context = context
+        self.tasksViewModel = tasksViewModel
         loadLists()
         
         tasksViewModel.listLikedSubject
@@ -49,6 +51,11 @@ class SavedListsViewModel: ObservableObject {
     }
     
     func removeList(_ list: ListEntity) {
+        if tasksViewModel.currentLikedLists[list.frequencyRaw ?? ""] == list.id {
+            tasksViewModel.currentLikedLists[list.frequencyRaw ?? ""] = nil
+            UserDefaults.standard.removeObject(forKey: "\(list.frequencyRaw ?? "")LikedListUUID")
+            tasksViewModel.listUnlikedSubject.send()
+        }
         context.delete(list)
         saveContext()
         loadLists()

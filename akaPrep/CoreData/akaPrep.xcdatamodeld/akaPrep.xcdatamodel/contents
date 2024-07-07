@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ActiveListEntity" representedClassName="ActiveListEntity" parentEntity="ListEntity" syncable="YES" codeGenerationType="class"/>
+    <entity name="ActiveListEntity" representedClassName="ActiveListEntity" parentEntity="ListEntity" syncable="YES">
+        <attribute name="isLiked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isLikeDisabled" optional="YES" transient="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
     <entity name="BabyEntity" representedClassName="BabyEntity" syncable="YES">
         <attribute name="dateOfBirth" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="genderRaw" optional="YES" attributeType="String"/>

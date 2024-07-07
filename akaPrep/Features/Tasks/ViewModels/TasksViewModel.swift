@@ -17,20 +17,8 @@ class TasksViewModel: ObservableObject {
     @Published var weeklyTasks: [TaskEntity] = []
     @Published var monthlyTasks: [TaskEntity] = []
     @Published var selectedTaskType: String = "daily"
-    @Published var isLikeDisabled: Bool {
-        didSet {
-            UserDefaults.standard.set(isLikeDisabled, forKey: "isLikeDisabled")
-            print("isLikeDisabled set: \(isLikeDisabled)")
-            
-        }
-    }
-    @Published var isLiked: Bool {
-        didSet {
-            UserDefaults.standard.set(isLiked, forKey: "isLiked")
-            print("isLiked set: \(isLiked)")
-        }
-    }
-    @Published var currentList: ActiveListEntity? = nil
+    @Published var currentList: ActiveListEntity? = nil // TODO:
+    @Published var currentLikedLists: [String: UUID] = [:]
     
     let listLikedSubject = PassthroughSubject<Void, Never>()
     let listUnlikedSubject = PassthroughSubject<Void, Never>()
@@ -38,26 +26,31 @@ class TasksViewModel: ObservableObject {
     private let context: NSManagedObjectContext
     private let openAIService: OpenAIService
     private static var sampleDataLoaded = false // Static flag to check if sample data is already loaded
-    private var currentLikedList: LikedListEntity?
     
     init(context: NSManagedObjectContext, useSampleData: Bool = false) {
         self.context = context
         self.openAIService = OpenAIService()
         
-        self.isLikeDisabled = UserDefaults.standard.bool(forKey: "isLikeDisabled")
-        self.isLiked = UserDefaults.standard.bool(forKey: "isLiked")
-        print("isLikeDisabled: \(isLikeDisabled) isLiked: \(isLiked)")
-        //        self.isLikeDisabled = true
-        //        self.isLiked = false
-        
-        if let likedListUUIDString = UserDefaults.standard.string(forKey: "currentLikedListUUID"),
-           let likedListUUID = UUID(uuidString: likedListUUIDString) {
-            loadLikedList(with: likedListUUID)
+        if let dailyLikedListUUIDString = UserDefaults.standard.string(forKey: "dailyLikedListUUID"),
+           let dailyLikedListUUID = UUID(uuidString: dailyLikedListUUIDString) {
+            currentLikedLists["daily"] = dailyLikedListUUID
         }
+        if let weeklyLikedListUUIDString = UserDefaults.standard.string(forKey: "weeklyLikedListUUID"),
+           let weeklyLikedListUUID = UUID(uuidString: weeklyLikedListUUIDString) {
+            currentLikedLists["weekly"] = weeklyLikedListUUID
+        }
+        if let monthlyLikedListUUIDString = UserDefaults.standard.string(forKey: "monthlyLikedListUUID"),
+           let monthlyLikedListUUID = UUID(uuidString: monthlyLikedListUUIDString) {
+            currentLikedLists["monthly"] = monthlyLikedListUUID
+        }
+        
+//        clearLikedLists() // clear the currentLikedLists for testing purposes
         
         // for LLM testing
         if useSampleData {
             loadSampleData()
+        } else {
+            loadActiveLists()
         }
     }
     
@@ -104,8 +97,6 @@ class TasksViewModel: ObservableObject {
                 default:
                     break
                 }
-                self.isLikeDisabled = false
-                self.isLiked = false
             }
         }
     }
@@ -217,43 +208,40 @@ class TasksViewModel: ObservableObject {
         
         saveContext()
         listLikedSubject.send()
-        isLiked = true
-        currentLikedList = newList
-        
-        // Save the UUID of the currentLikedList to UserDefaults
-        if let uuid = newList.id {
-            UserDefaults.standard.set(uuid.uuidString, forKey: "currentLikedListUUID")
-        }
-        
-        print("saving list")
+        currentLikedLists[selectedTaskType] = newList.id
+        UserDefaults.standard.set(newList.id?.uuidString, forKey: "\(selectedTaskType)LikedListUUID")
+        print("Saved Like list")
+        print("currentLikedLists: \(currentLikedLists)")
     }
     
     func unlikeCurrentList() {
-        guard let listToDelete = currentLikedList else { return }
-        print("unsaving list \(listToDelete)")
+        guard let listToDeleteUUID = currentLikedLists[selectedTaskType],
+              let listToDelete = loadLikedList(with: listToDeleteUUID) else { return }
+        
         context.delete(listToDelete)
         saveContext()
-        isLiked = false
-        currentLikedList = nil
-        // Remove the UUID of the currentLikedList from UserDefaults
-        UserDefaults.standard.removeObject(forKey: "currentLikedListUUID")
+        
+        currentLikedLists[selectedTaskType] = nil
+        UserDefaults.standard.removeObject(forKey: "\(selectedTaskType)LikedListUUID")
+        
         listUnlikedSubject.send()
+        print("Unsaved Like list")
+        print("currentLikedLists: \(currentLikedLists)")
     }
     
-    private func loadLikedList(with uuid: UUID) {
+    private func loadLikedList(with uuid: UUID) -> LikedListEntity? {
         let fetchRequest: NSFetchRequest<LikedListEntity> = LikedListEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %@", uuid as CVarArg)
         
         do {
             let lists = try context.fetch(fetchRequest)
             if let list = lists.first {
-                currentLikedList = list
-                isLiked = true
-                print("Loaded currentLikedList with UUID: \(uuid)")
+                return list
             }
         } catch {
-            print("Failed to load currentLikedList with UUID: \(error)")
+            print("Failed to load liked list with UUID: \(error)")
         }
+        return nil
     }
     
     private func saveContext() {
@@ -264,4 +252,10 @@ class TasksViewModel: ObservableObject {
         }
     }
     
+    func clearLikedLists() {
+        UserDefaults.standard.removeObject(forKey: "dailyLikedListUUID")
+        UserDefaults.standard.removeObject(forKey: "weeklyLikedListUUID")
+        UserDefaults.standard.removeObject(forKey: "monthlyLikedListUUID")
+        currentLikedLists.removeAll()
+    }
 }
