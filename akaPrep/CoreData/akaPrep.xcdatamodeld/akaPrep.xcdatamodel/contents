@@ -28,6 +28,7 @@
         <attribute name="firstName" optional="YES" attributeType="String"/>
         <attribute name="genderRaw" optional="YES" attributeType="String"/>
         <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="profilePicture" optional="YES" attributeType="Binary"/>
         <attribute name="workScheduleRaw" optional="YES" attributeType="String"/>
         <relationship name="currentLists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListEntity"/>
         <relationship name="savedLists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListEntity"/>

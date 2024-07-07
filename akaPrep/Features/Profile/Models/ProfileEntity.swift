@@ -5,8 +5,8 @@
 //  Created by Naoto Abe on 6/29/24.
 //
 
-import Foundation
 import CoreData
+import UIKit
 
 @objc(ProfileEntity)
 public class ProfileEntity: NSManagedObject {
@@ -25,6 +25,7 @@ extension ProfileEntity {
     @NSManaged private var workScheduleRaw: String
     @NSManaged public var currentLists: [ListEntity] // at most 3 and some may be expired
     @NSManaged public var savedLists: [ListEntity]
+    @NSManaged public var profilePicture: Data?
     
     public var workSchedule: WorkSchedule {
         get {
@@ -43,6 +44,20 @@ extension ProfileEntity {
            genderRaw = newValue.rawValue
         }
     }
-    
+}
+
+extension ProfileEntity {
+    static func getProfilePicture(context: NSManagedObjectContext) -> UIImage? {
+        let request: NSFetchRequest<ProfileEntity> = ProfileEntity.fetchRequest()
+        do {
+            let result = try context.fetch(request).first
+            if let data = result?.profilePicture {
+                return UIImage(data: data)
+            }
+        } catch {
+            print("Failed to fetch profile picture: \(error)")
+        }
+        return nil
+    }
 }
 
