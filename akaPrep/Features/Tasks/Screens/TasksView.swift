@@ -71,7 +71,7 @@ struct TasksView: View {
                     } label: {
                         Image(systemName: viewModel.currentLikedLists[viewModel.selectedTaskType] != nil ? "heart.fill" : "heart")
                     }
-//                    .disabled(viewModel.isLikeDisabled)
+                    .disabled(viewModel.tasksForSelectedType.isEmpty) // Disable if the task list is empty
                 }
                 
             }.sheet(isPresented: $viewModel.showingAddNewTaskView) {
