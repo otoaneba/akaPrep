@@ -12,7 +12,6 @@ import Combine
 class TasksViewModel: ObservableObject {
     static let shared = TasksViewModel(context: PersistenceController.shared.container.viewContext, useSampleData: true)
     
-    @Published var showingAddNewTaskView = false
     @Published var dailyTasks: [TaskEntity] = []
     @Published var weeklyTasks: [TaskEntity] = []
     @Published var monthlyTasks: [TaskEntity] = []
@@ -43,7 +42,7 @@ class TasksViewModel: ObservableObject {
             currentLikedLists["monthly"] = monthlyLikedListUUID
         }
         
-//        clearLikedLists() // clear the currentLikedLists for testing purposes
+        //        clearLikedLists() // clear the currentLikedLists for testing purposes
         
         // for LLM testing
         if useSampleData {
@@ -168,9 +167,70 @@ class TasksViewModel: ObservableObject {
     }
     
     func toggleTaskCompletion(task: TaskEntity) {
-        print("toggle task \(task.id) to \(task.isCompleted)")
         task.isCompleted.toggle()
         saveContext()
+    }
+    
+    func removeTask(_ task: TaskEntity) {
+        context.delete(task)
+        saveContext()
+        resetCurrentLikedListStatus()
+        loadActiveLists()  // Ensure the list is reloaded after deletion
+    }
+    
+    func saveTask(_ task: TaskEntity) {
+        do {
+            try context.save()
+            resetCurrentLikedListStatus()
+            print("Saved updated task and reset liked list status")
+        } catch {
+            print("Failed to save task: \(error)")
+        }
+    }
+    
+    func addTask(title: String) {
+        let newTask = TaskEntity(context: context)
+        newTask.title = title
+        newTask.taskType = selectedTaskType
+        newTask.isCompleted = false
+        
+        switch selectedTaskType {
+        case "daily":
+            dailyTasks.append(newTask)
+        case "weekly":
+            weeklyTasks.append(newTask)
+        case "monthly":
+            monthlyTasks.append(newTask)
+        default:
+            break
+        }
+        
+        saveContext()
+        resetCurrentLikedListStatus()
+        updateActiveListWithNewTask(newTask) // Update the active list with the new task
+    }
+    
+    private func updateActiveListWithNewTask(_ task: TaskEntity) {
+        let fetchRequest: NSFetchRequest<ActiveListEntity> = ActiveListEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name == %@", "Active \(selectedTaskType.capitalized) Tasks")
+        
+        do {
+            if let activeList = try context.fetch(fetchRequest).first {
+                activeList.addToTasks(task)
+                task.addToLists(activeList)
+                saveContext()
+            } else {
+                saveActiveList(taskType: selectedTaskType, tasks: [task])
+            }
+        } catch {
+            print("Failed to update active list with new task: \(error)")
+        }
+    }
+    
+    func resetCurrentLikedListStatus() {
+        currentLikedLists[selectedTaskType] = nil
+        UserDefaults.standard.removeObject(forKey: "\(selectedTaskType)LikedListUUID")
+        print("Reset liked list status for \(selectedTaskType)")
     }
     
     func likeCurrentList() {

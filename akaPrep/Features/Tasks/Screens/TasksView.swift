@@ -29,7 +29,6 @@ struct TasksView: View {
                 .padding()
                 
                 Button {
-                    // Action
                     viewModel.generateTasks(taskType: viewModel.selectedTaskType, context: context)
                 } label: {
                     HStack {
@@ -45,13 +44,19 @@ struct TasksView: View {
                 ForEach(viewModel.tasksForSelectedType) { task in
                     TaskRowView(task: task)
                 }
+                .onDelete { indexSet in
+                    for index in indexSet {
+                        let task = viewModel.tasksForSelectedType[index]
+                        viewModel.removeTask(task)
+                    }
+                }
             }
             .navigationTitle("Tasks")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
-                        // Action to save
-                        viewModel.showingAddNewTaskView = true
+                        // Add new task with empty title
+                        viewModel.addTask(title: "New empty task")
                     } label: {
                         Image(systemName: "plus")
                     }
@@ -66,10 +71,6 @@ struct TasksView: View {
                     }
                     .disabled(viewModel.tasksForSelectedType.isEmpty) // Disable if the task list is empty
                 }
-                
-            }.sheet(isPresented: $viewModel.showingAddNewTaskView) {
-                AddNewTaskView(newTaskPresented: $viewModel.showingAddNewTaskView)
-                    .presentationDetents([.medium])
             }
         }
         .onAppear {
