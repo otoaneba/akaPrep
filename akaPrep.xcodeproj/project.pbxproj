@@ -54,6 +54,7 @@
 		5CEB455E2C3938F100938B37 /* LikedListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB455C2C3938F100938B37 /* LikedListEntity+CoreDataClass.swift */; };
 		5CEB455F2C3938F100938B37 /* LikedListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB455D2C3938F100938B37 /* LikedListEntity+CoreDataProperties.swift */; };
 		5CEB45632C3AA18500938B37 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB45622C3AA18500938B37 /* ImagePicker.swift */; };
+		5CEB45652C3AF75800938B37 /* TabIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB45642C3AF75800938B37 /* TabIcon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		5CEB455C2C3938F100938B37 /* LikedListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikedListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5CEB455D2C3938F100938B37 /* LikedListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikedListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5CEB45622C3AA18500938B37 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		5CEB45642C3AF75800938B37 /* TabIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabIcon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +327,7 @@
 				5CB608DC2C32E4A2003DB576 /* ProfileCardView.swift */,
 				5CB608E22C3405F2003DB576 /* YearMonthPickerView.swift */,
 				5CEB45622C3AA18500938B37 /* ImagePicker.swift */,
+				5CEB45642C3AF75800938B37 /* TabIcon.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				5C56460C2C2B10D100956423 /* ContentView.swift in Sources */,
 				4D50C5AA2C3592D700648A2A /* GoalsView.swift in Sources */,
 				5CB608C52C2C4DD1003DB576 /* TasksView.swift in Sources */,
+				5CEB45652C3AF75800938B37 /* TabIcon.swift in Sources */,
 				5CB608E12C33FF75003DB576 /* PersonalInfoView.swift in Sources */,
 				5CEB455E2C3938F100938B37 /* LikedListEntity+CoreDataClass.swift in Sources */,
 				5CEB455F2C3938F100938B37 /* LikedListEntity+CoreDataProperties.swift in Sources */,

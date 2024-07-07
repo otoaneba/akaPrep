@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct BottomBarView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var tasksViewModel: TasksViewModel
+    @State private var profileImage: UIImage?
 
     var body: some View {
         TabView {
@@ -33,10 +35,25 @@ struct BottomBarView: View {
             
             ProfileView(context: viewContext)
                 .tabItem {
-                    Image(systemName: "person.fill")
+                    if let profileImage = profileImage {
+                        TabIcon(icon: profileImage, size: CGSize(width: 27, height: 27))
+                        
+                    } else {
+                        Image(systemName: "person.fill")
+                    }
                     Text("Profile")
                 }
         }
+        .onAppear {
+            // Load the existing profile picture
+            loadProfileImage()
+        }
+    }
+    
+    private func loadProfileImage() {
+        if let savedImage = ProfileEntity.getProfilePicture(context: PersistenceController.shared.container.viewContext) {
+                    profileImage = savedImage
+                }
     }
 }
 
@@ -47,6 +64,3 @@ struct BottomBarView_Previews: PreviewProvider {
             .environmentObject(TasksViewModel(context: PersistenceController.preview.container.viewContext, useSampleData: false))
     }
 }
-
-
-
