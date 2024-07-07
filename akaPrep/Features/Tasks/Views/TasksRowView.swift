@@ -10,26 +10,46 @@ import CoreData
 
 struct TaskRowView: View {
     @ObservedObject var task: TaskEntity
+    @State private var isEditing = false
+    @State private var title: String
+    @EnvironmentObject var viewModel: TasksViewModel
+    
+    init(task: TaskEntity) {
+        self.task = task
+        _title = State(initialValue: task.title ?? "")
+    }
     
     var body: some View {
         HStack {
-            Text(task.title ?? "No Title")
+            if isEditing {
+                TextField("Title", text: $title, onCommit: {
+                    task.title = title
+                    viewModel.saveTask(task)
+                    isEditing = false
+                })
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .onTapGesture {
+                    isEditing = true
+                }
+            } else {
+                Text(task.title ?? "No Title")
+                    .onTapGesture {
+                        isEditing = true
+                    }
+            }
             Spacer()
             Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
                 .onTapGesture {
-                    task.isCompleted.toggle()
-                    saveTask(task)
+                    viewModel.toggleTaskCompletion(task: task)
                 }
         }
-    }
-    
-    private func saveTask(_ task: TaskEntity) {
-        do {
-            try task.managedObjectContext?.save()
-        } catch {
-            print("Failed to save task: \(error)")
-        }
-    }
+        .onTapGesture {
+            if isEditing {
+                task.title = title
+                viewModel.saveTask(task)
+                isEditing = false
+            }
+        }    }
 }
 
 #Preview {
@@ -40,4 +60,5 @@ struct TaskRowView: View {
     task.taskType = "daily"
     return TaskRowView(task: task)
         .environment(\.managedObjectContext, context)
+        .environmentObject(TasksViewModel.shared)
 }

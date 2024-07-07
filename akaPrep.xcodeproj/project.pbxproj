@@ -31,8 +31,6 @@
 		5C5646202C2B10D200956423 /* akaPrepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56461F2C2B10D200956423 /* akaPrepTests.swift */; };
 		5C56462A2C2B10D200956423 /* akaPrepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5646292C2B10D200956423 /* akaPrepUITests.swift */; };
 		5C56462C2C2B10D200956423 /* akaPrepUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56462B2C2B10D200956423 /* akaPrepUITestsLaunchTests.swift */; };
-		5C5646462C2C417400956423 /* NewTaskViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5646452C2C417400956423 /* NewTaskViewViewModel.swift */; };
-		5CB608C02C2C4770003DB576 /* AddNewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608BF2C2C4770003DB576 /* AddNewTaskView.swift */; };
 		5CB608C32C2C4B0E003DB576 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608C22C2C4B0E003DB576 /* Utilities.swift */; };
 		5CB608C52C2C4DD1003DB576 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608C42C2C4DD1003DB576 /* TasksView.swift */; };
 		5CB608C72C2C4DE7003DB576 /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608C62C2C4DE7003DB576 /* TasksViewModel.swift */; };
@@ -103,8 +101,6 @@
 		5C5646252C2B10D200956423 /* akaPrepUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = akaPrepUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5646292C2B10D200956423 /* akaPrepUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepUITests.swift; sourceTree = "<group>"; };
 		5C56462B2C2B10D200956423 /* akaPrepUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		5C5646452C2C417400956423 /* NewTaskViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewViewModel.swift; sourceTree = "<group>"; };
-		5CB608BF2C2C4770003DB576 /* AddNewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTaskView.swift; sourceTree = "<group>"; };
 		5CB608C22C2C4B0E003DB576 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		5CB608C42C2C4DD1003DB576 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		5CB608C62C2C4DE7003DB576 /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
@@ -452,7 +448,6 @@
 		5CB609032C3553B8003DB576 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				5CB608BF2C2C4770003DB576 /* AddNewTaskView.swift */,
 				5CB608C42C2C4DD1003DB576 /* TasksView.swift */,
 			);
 			path = Screens;
@@ -462,7 +457,6 @@
 			isa = PBXGroup;
 			children = (
 				5CB608C62C2C4DE7003DB576 /* TasksViewModel.swift */,
-				5C5646452C2C417400956423 /* NewTaskViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -655,7 +649,6 @@
 				5CB608F22C354F3A003DB576 /* BabyInfoView.swift in Sources */,
 				5C363D312C359D2100B2ED0B /* SavedListsView.swift in Sources */,
 				4D50C5922C342ECC00648A2A /* PromptTemplate.swift in Sources */,
-				5CB608C02C2C4770003DB576 /* AddNewTaskView.swift in Sources */,
 				4D50C5912C342ECC00648A2A /* OpenAIService.swift in Sources */,
 				5C56460A2C2B10D100956423 /* akaPrepApp.swift in Sources */,
 				5C363D352C35A00300B2ED0B /* TaskListView.swift in Sources */,
@@ -670,7 +663,6 @@
 				5CB608D52C302D21003DB576 /* ProfileEntity.swift in Sources */,
 				4D50C5882C30675400648A2A /* Config.swift in Sources */,
 				5CB608D72C303729003DB576 /* BabyEntity.swift in Sources */,
-				5C5646462C2C417400956423 /* NewTaskViewViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
