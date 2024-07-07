@@ -49,11 +49,11 @@ struct BottomBarView: View {
         }
         .onAppear {
             // Load the existing profile picture
-            loadProfileImage()
+            loadProfile()
         }
     }
     
-    private func loadProfileImage() {
+    private func loadProfile() {
         if let savedImage = ProfileEntity.getProfilePicture(context: PersistenceController.shared.container.viewContext) {
             profileImage = savedImage
         }
