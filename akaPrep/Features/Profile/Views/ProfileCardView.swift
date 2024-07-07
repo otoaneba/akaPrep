@@ -22,6 +22,9 @@ struct ProfileCardView: View {
                         .resizable()
                         .frame(width: 50, height: 50)
                         .clipShape(Circle())
+                        .onTapGesture {
+                            showingImagePicker = true
+                        }
                 } else {
                     Image(systemName: "person.circle.fill")
                         .resizable()

@@ -52,7 +52,26 @@ extension ProfileEntity {
         do {
             let result = try context.fetch(request).first
             if let data = result?.profilePicture {
+                print("Fetched profile picture data of size: \(data.count) bytes")
                 return UIImage(data: data)
+            } else {
+                print("No profile picture data found")
+            }
+        } catch {
+            print("Failed to fetch profile picture: \(error)")
+        }
+        return nil
+    }
+    
+    static func getProfileName(context: NSManagedObjectContext) -> String? {
+        let request: NSFetchRequest<ProfileEntity> = ProfileEntity.fetchRequest()
+        do {
+            let result = try context.fetch(request).first
+            if let data = result?.firstName {
+                print("Fetched profile picture data of size: \(data.count) bytes")
+                return data
+            } else {
+                print("No profile picture data found")
             }
         } catch {
             print("Failed to fetch profile picture: \(error)")

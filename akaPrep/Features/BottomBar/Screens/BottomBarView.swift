@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct BottomBarView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var tasksViewModel: TasksViewModel
+    @State private var profileName: String?
+    @State private var profileImage: UIImage?
 
     var body: some View {
         TabView {
@@ -19,7 +22,6 @@ struct BottomBarView: View {
                     Image(systemName: "house.fill")
                     Text("Tasks")
                 }
-            
             GoalsView(context: viewContext)
                 .tabItem {
                     Image(systemName: "target")
@@ -30,12 +32,34 @@ struct BottomBarView: View {
                     Image(systemName: "heart")
                     Text("Saved Lists")
                 }
-            
             ProfileView(context: viewContext)
                 .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
+                    if let profileImage = profileImage {
+                        TabIcon(icon: profileImage, size: CGSize(width: 27, height: 27))
+                        
+                    } else {
+                        Image(systemName: "person.fill")
+                    }
+                    if let savedName = profileName {
+                        Text("\(savedName)")
+                    } else {
+                        Text("Profile")
+                    }
                 }
+        }
+        .onAppear {
+            // Load the existing profile picture
+            loadProfile()
+        }
+    }
+    
+    private func loadProfile() {
+        if let savedImage = ProfileEntity.getProfilePicture(context: PersistenceController.shared.container.viewContext) {
+            profileImage = savedImage
+        }
+        if let savedName = ProfileEntity.getProfileName(context: PersistenceController.shared.container.viewContext) {
+            profileName = savedName
+            print("name in context: \(savedName)")
         }
     }
 }
@@ -47,6 +71,3 @@ struct BottomBarView_Previews: PreviewProvider {
             .environmentObject(TasksViewModel(context: PersistenceController.preview.container.viewContext, useSampleData: false))
     }
 }
-
-
-
