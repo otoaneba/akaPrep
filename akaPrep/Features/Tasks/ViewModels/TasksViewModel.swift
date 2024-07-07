@@ -17,7 +17,6 @@ class TasksViewModel: ObservableObject {
     @Published var weeklyTasks: [TaskEntity] = []
     @Published var monthlyTasks: [TaskEntity] = []
     @Published var selectedTaskType: String = "daily"
-    @Published var currentList: ActiveListEntity? = nil // TODO:
     @Published var currentLikedLists: [String: UUID] = [:]
     
     let listLikedSubject = PassthroughSubject<Void, Never>()
@@ -44,7 +43,7 @@ class TasksViewModel: ObservableObject {
             currentLikedLists["monthly"] = monthlyLikedListUUID
         }
         
-//        clearLikedLists() // clear the currentLikedLists for testing purposes
+        //        clearLikedLists() // clear the currentLikedLists for testing purposes
         
         // for LLM testing
         if useSampleData {
@@ -116,7 +115,6 @@ class TasksViewModel: ObservableObject {
         }
         
         saveContext()
-        currentList = activeList
     }
     
     private func removeActiveList(for taskType: String) {
