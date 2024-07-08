@@ -11,6 +11,7 @@ import CoreData
 struct ProfileCardView: View {
     @State private var profileImage: UIImage?
     @State private var showingImagePicker = false
+    var context: NSManagedObjectContext
     var profileName: String
     var profileDetails: String
     
@@ -48,18 +49,12 @@ struct ProfileCardView: View {
                 .padding(.leading, 8)
             }
             .sheet(isPresented: $showingImagePicker) {
-                ImagePicker(selectedImage: $profileImage)
+                ImagePicker(selectedImage: $profileImage, context: context)
             }
             .onAppear {
                 // Load the existing profile picture
                 if let savedImage = ProfileEntity.getProfilePicture(context: PersistenceController.shared.container.viewContext) {
                     profileImage = savedImage
-                }
-            }
-            .onChange(of: profileImage) { newImage, oldImage in
-                if let newImage = newImage {
-                    // Save the new profile picture
-                    saveProfilePicture(newImage)
                 }
             }
             .padding()
@@ -69,21 +64,12 @@ struct ProfileCardView: View {
             .padding(.horizontal, 16) // Add padding to the edges of the screen
         
     }
-    
-    private func saveProfilePicture(_ image: UIImage) {
-        let context = PersistenceController.shared.container.viewContext
-        let request: NSFetchRequest<ProfileEntity> = ProfileEntity.fetchRequest()
-
-        do {
-            let result = try context.fetch(request).first ?? ProfileEntity(context: context)
-            result.profilePicture = image.jpegData(compressionQuality: 0.8)
-            try context.save()
-        } catch {
-            print("Failed to save profile picture: \(error)")
-        }
-    }
 }
 
-#Preview {
-    ProfileCardView(profileName: "Cynthia Li", profileDetails: "Edit picture")
+struct ProfileCardView_Previews: PreviewProvider {
+    static var previews: some View {
+        let context = PersistenceController.preview.container.viewContext
+        return ProfileCardView(context: context, profileName: "Cynthia Li", profileDetails: "Edit picture")
+            .environment(\.managedObjectContext, context)
+    }
 }

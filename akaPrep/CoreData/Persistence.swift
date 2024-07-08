@@ -91,5 +91,16 @@ struct PersistenceController {
             } catch let error as NSError {
                 print("Could not clear ListEntity data: \(error), \(error.userInfo)")
             }
+        
+            // clear data for profile 
+            let fetchRequestProfile: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "ProfileEntity")
+            let deleteRequestProfile = NSBatchDeleteRequest(fetchRequest: fetchRequestProfile)
+            
+            do {
+                try context.execute(deleteRequestProfile)
+                try context.save()
+            } catch let error as NSError {
+                print("Could not clear Profile data: \(error), \(error.userInfo)")
+            }
         }
 }

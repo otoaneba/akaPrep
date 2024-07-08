@@ -19,6 +19,8 @@
 		4D50C5D52C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5D32C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift */; };
 		4D50C5D62C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5D42C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift */; };
 		4D50C5DC2C3AF3EB00648A2A /* TasksRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5DB2C3AF3EB00648A2A /* TasksRowView.swift */; };
+		5C1FF62E2C3BD3E40057F667 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 5C1FF62D2C3BD3E40057F667 /* TOCropViewController */; };
+		5C1FF6302C3BD3E70057F667 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 5C1FF62F2C3BD3E70057F667 /* CropViewController */; };
 		5C363D312C359D2100B2ED0B /* SavedListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D302C359D2100B2ED0B /* SavedListsView.swift */; };
 		5C363D332C359D3800B2ED0B /* SavedListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D322C359D3800B2ED0B /* SavedListsViewModel.swift */; };
 		5C363D352C35A00300B2ED0B /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D342C35A00300B2ED0B /* TaskListView.swift */; };
@@ -131,6 +133,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C1FF62E2C3BD3E40057F667 /* TOCropViewController in Frameworks */,
+				5C1FF6302C3BD3E70057F667 /* CropViewController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +162,13 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		5C1FF62C2C3BD3DB0057F667 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5C5645FD2C2B10D100956423 = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +177,7 @@
 				5C56461E2C2B10D200956423 /* akaPrepTests */,
 				5C5646282C2B10D200956423 /* akaPrepUITests */,
 				5C5646072C2B10D100956423 /* Products */,
+				5C1FF62C2C3BD3DB0057F667 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -504,6 +516,8 @@
 			);
 			name = akaPrep;
 			packageProductDependencies = (
+				5C1FF62D2C3BD3E40057F667 /* TOCropViewController */,
+				5C1FF62F2C3BD3E70057F667 /* CropViewController */,
 			);
 			productName = akaPrep;
 			productReference = 5C5646062C2B10D100956423 /* akaPrep.app */;
@@ -578,6 +592,7 @@
 			);
 			mainGroup = 5C5645FD2C2B10D100956423;
 			packageReferences = (
+				5CEB45662C3BCF4000938B37 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
 			);
 			productRefGroup = 5C5646072C2B10D100956423 /* Products */;
 			projectDirPath = "";
@@ -1003,6 +1018,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5CEB45662C3BCF4000938B37 /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5C1FF62D2C3BD3E40057F667 /* TOCropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CEB45662C3BCF4000938B37 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = TOCropViewController;
+		};
+		5C1FF62F2C3BD3E70057F667 /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CEB45662C3BCF4000938B37 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		5C5646142C2B10D200956423 /* akaPrep.xcdatamodeld */ = {

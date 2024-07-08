@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct ProfileView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @StateObject private var personalInfoViewModel: PersonalInfoViewModel
     @StateObject var babyInfoViewModel: BabyInfoViewModel
     
@@ -22,8 +23,7 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack {
             VStack {
-            ProfileCardView(profileName: "Cynthia Li", profileDetails: "Edit picture")
-            
+                ProfileCardView(context: viewContext, profileName: "Cynthia Li", profileDetails: "Edit picture")
                 let primaryList = [
                    NavigationItem(name: "Personal Info", destination: AnyView(PersonalInfoView().environmentObject(personalInfoViewModel))),
                    NavigationItem(name: "Baby Info", destination: AnyView(BabyInfoView().environmentObject(babyInfoViewModel))),

@@ -50,16 +50,31 @@ struct BottomBarView: View {
         .onAppear {
             // Load the existing profile picture
             loadProfile()
+            loadProfileImage()
+            NotificationCenter.default.addObserver(forName: .profileImageUpdated, object: nil, queue: .main) { _ in
+                self.loadProfileImage()
+            }
+        }
+        .onDisappear {
+            NotificationCenter.default.removeObserver(self, name: .profileImageUpdated, object: nil)
         }
     }
     
     private func loadProfile() {
-        if let savedImage = ProfileEntity.getProfilePicture(context: PersistenceController.shared.container.viewContext) {
-            profileImage = savedImage
-        }
         if let savedName = ProfileEntity.getProfileName(context: PersistenceController.shared.container.viewContext) {
             profileName = savedName
             print("name in context: \(savedName)")
+        }
+    }
+    
+    private func loadProfileImage() {
+        DispatchQueue.global(qos: .background).async {
+            if let savedImage = ProfileEntity.getProfilePicture(context: viewContext) {
+                DispatchQueue.main.async {
+                    self.profileImage = savedImage
+                    print("getting image")
+                }
+            }
         }
     }
 }
