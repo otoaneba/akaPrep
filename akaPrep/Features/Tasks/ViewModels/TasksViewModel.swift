@@ -100,20 +100,20 @@ class TasksViewModel: ObservableObject {
     }
     
     private func saveActiveList(taskType: String, tasks: [TaskEntity]) {
-        // Remove any existing active list for the given task type
         removeActiveList(for: taskType)
-        
         let activeList = ActiveListEntity(context: context)
         activeList.name = "Active \(taskType.capitalized) Tasks"
         activeList.frequencyRaw = taskType
         activeList.expirationDate = Date().addingTimeInterval(24 * 60 * 60 * (taskType == "daily" ? 1 : (taskType == "weekly" ? 7 : 30)))
-        
         for task in tasks {
             activeList.addToTasks(task)
             task.addToLists(activeList)
         }
-        
         saveContext()
+        if let listID = activeList.id {
+            currentLikedLists[taskType] = listID
+            UserDefaults.standard.set(listID.uuidString, forKey: "\(taskType)LikedListUUID")
+        }
     }
     
     private func removeActiveList(for taskType: String) {
@@ -151,7 +151,6 @@ class TasksViewModel: ObservableObject {
             print("Failed to fetch active lists: \(error)")
         }
     }
-    
     
     var tasksForSelectedType: [TaskEntity] {
         switch selectedTaskType {
@@ -231,6 +230,19 @@ class TasksViewModel: ObservableObject {
         currentLikedLists[selectedTaskType] = nil
         UserDefaults.standard.removeObject(forKey: "\(selectedTaskType)LikedListUUID")
         print("Reset liked list status for \(selectedTaskType)")
+    }
+    
+    func activateList(_ list: ListEntity) {
+        let tasks = list.taskArray.map { task in
+            let newTask = TaskEntity(context: context)
+            newTask.title = task.title
+            newTask.isCompleted = task.isCompleted
+            newTask.taskType = task.taskType
+            newTask.date = task.date
+            newTask.id = UUID()
+            return newTask
+        }
+        saveActiveList(taskType: list.frequencyRaw ?? "daily", tasks: tasks)
     }
     
     func likeCurrentList() {

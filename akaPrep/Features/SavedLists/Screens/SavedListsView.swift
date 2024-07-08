@@ -67,6 +67,9 @@ struct SavedListsView: View {
                 }
             }
             .navigationTitle("Saved Lists")
+            .onAppear {
+                viewModel.loadLists()
+            }
         }
     }
 }
