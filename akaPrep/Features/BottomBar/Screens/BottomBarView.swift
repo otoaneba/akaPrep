@@ -42,6 +42,8 @@ struct BottomBarView: View {
                     }
                     if let profileName = profileName {
                         Text(profileName)
+                    } else {
+                        Text("Me")
                     }
                 }
         }
@@ -64,17 +66,13 @@ struct BottomBarView: View {
     
     private func loadProfile() {
         if let savedName = ProfileEntity.getProfileName(context: PersistenceController.shared.container.viewContext) {
-            profileName = savedName.isEmpty ? "Me" : savedName
+            profileName = savedName
         }
     }
     
     private func loadProfileImage() {
-        DispatchQueue.global(qos: .background).async {
-            if let savedImage = ProfileEntity.getProfilePicture(context: viewContext) {
-                DispatchQueue.main.async {
-                    self.profileImage = savedImage
-                }
-            }
+        if let savedImage = ProfileEntity.getProfilePicture(context: PersistenceController.shared.container.viewContext) {
+            profileImage = savedImage
         }
     }
 }

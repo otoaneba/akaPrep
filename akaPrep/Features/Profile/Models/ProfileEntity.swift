@@ -68,10 +68,10 @@ extension ProfileEntity {
         do {
             let result = try context.fetch(request).first
             if let data = result?.firstName {
-                print("Fetched profile picture data of size: \(data.count) bytes")
+                print("Fetched profile name data of size: \(data.count) bytes")
                 return data
             } else {
-                print("No profile picture data found")
+                print("No profile name data found")
             }
         } catch {
             print("Failed to fetch profile picture: \(error)")
