@@ -111,4 +111,5 @@ extension ProfileEntity {
 
 extension Notification.Name {
     static let profileImageUpdated = Notification.Name("profileImageUpdated")
+    static let profileNameUpdated = Notification.Name("profileNameUpdated")
 }

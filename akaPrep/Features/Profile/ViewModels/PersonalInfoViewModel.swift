@@ -128,6 +128,7 @@ class PersonalInfoViewModel: ObservableObject {
         do {
             try viewContext.save()
             print("Profile saved!")
+            NotificationCenter.default.post(name: .profileNameUpdated, object: nil)
             loadProfile()
         } catch {
             print("Failed to save profile: \(error.localizedDescription)")

@@ -23,7 +23,7 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                ProfileCardView(context: viewContext, profileName: "Cynthia Li", profileDetails: "Edit picture")
+                ProfileCardView(context: viewContext, profileDetails: "Edit picture")
                 let primaryList = [
                    NavigationItem(name: "Personal Info", destination: AnyView(PersonalInfoView().environmentObject(personalInfoViewModel))),
                    NavigationItem(name: "Baby Info", destination: AnyView(BabyInfoView().environmentObject(babyInfoViewModel))),
