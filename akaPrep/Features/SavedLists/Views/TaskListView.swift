@@ -12,6 +12,7 @@ struct TaskListView: View {
     @ObservedObject var list: ListEntity
     @State private var isEditingTitle = false
     @State private var newTitle: String
+    @EnvironmentObject var tasksViewModel: TasksViewModel
     
     init(list: ListEntity) {
         self.list = list
@@ -28,6 +29,13 @@ struct TaskListView: View {
             .navigationTitleView(isEditingTitle: $isEditingTitle, newTitle: $newTitle, list: list)
             .navigationBarTitleDisplayMode(.inline)
             .toolbarRole(.editor)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Activate") {
+                        tasksViewModel.activateList(list)
+                    }
+                }
+            }
         }
     }
 }
@@ -75,5 +83,6 @@ struct TaskListView_Previews: PreviewProvider {
         ]))
         return TaskListView(list: sampleList)
             .environment(\.managedObjectContext, context)
+            .environmentObject(TasksViewModel(context: context, useSampleData: true))
     }
 }
