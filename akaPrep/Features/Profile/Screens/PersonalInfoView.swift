@@ -10,6 +10,7 @@ import SwiftUI
 struct PersonalInfoView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: PersonalInfoViewModel
+    @State private var showDatePicker: Bool = false
 
     var body: some View {
         NavigationStack {
@@ -34,18 +35,18 @@ struct PersonalInfoView: View {
                         Text("Birth Month and Year")
                         Spacer()
                         Button(action: {
-                            viewModel.showDatePicker.toggle()
+                            showDatePicker.toggle()
                        }) {
                            Text(viewModel.birthMonthAndYear.isEmpty ? "optional" : viewModel.birthMonthAndYear)
                                .foregroundColor(viewModel.birthMonthAndYear.isEmpty ?  Color(UIColor.placeholderText) : .black)
                                .multilineTextAlignment(.trailing)
                        }
                     }
-                    if viewModel.showDatePicker {
+                    if showDatePicker {
                         YearMonthPickerView(selectedDate: Binding(
                             get: { viewModel.selectedDate ?? Date() },
                             set: { viewModel.selectedDate = $0 }
-                        ))
+                        ), showDatePicker: $showDatePicker)
                         .onDisappear {
                             // Update birthMonthAndYear when the date picker is dismissed
                             viewModel.birthMonthAndYear = viewModel.formattedDate
