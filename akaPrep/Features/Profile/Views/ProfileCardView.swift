@@ -11,8 +11,8 @@ import CoreData
 struct ProfileCardView: View {
     @State private var profileImage: UIImage?
     @State private var showingImagePicker = false
+    @State private var profileName: String?
     var context: NSManagedObjectContext
-    var profileName: String
     var profileDetails: String
     
     var body: some View {
@@ -37,8 +37,10 @@ struct ProfileCardView: View {
                 
                 // Second column: Profile name and details
                 VStack(alignment: .leading) {
-                    Text(profileName)
+                    if let profileName = profileName {
+                        Text(profileName)
                         .font(.headline)
+                    }
                     Text(profileDetails)
                         .font(.subheadline)
                         .foregroundColor(.gray)
@@ -56,6 +58,10 @@ struct ProfileCardView: View {
                 if let savedImage = ProfileEntity.getProfilePicture(context: PersistenceController.shared.container.viewContext) {
                     profileImage = savedImage
                 }
+                if let savedName = ProfileEntity.getProfileName(context: PersistenceController.shared.container.viewContext) {
+                    print("savedName: \(savedName)")
+                    profileName = savedName.isEmpty ? "Me" : savedName
+                }
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading) // Full width minus padding
@@ -69,7 +75,7 @@ struct ProfileCardView: View {
 struct ProfileCardView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
-        return ProfileCardView(context: context, profileName: "Cynthia Li", profileDetails: "Edit picture")
+        return ProfileCardView(context: context, profileDetails: "Edit picture")
             .environment(\.managedObjectContext, context)
     }
 }

@@ -40,10 +40,8 @@ struct BottomBarView: View {
                     } else {
                         Image(systemName: "person.fill")
                     }
-                    if let savedName = profileName {
-                        Text("\(savedName)")
-                    } else {
-                        Text("Profile")
+                    if let profileName = profileName {
+                        Text(profileName)
                     }
                 }
         }
@@ -54,16 +52,19 @@ struct BottomBarView: View {
             NotificationCenter.default.addObserver(forName: .profileImageUpdated, object: nil, queue: .main) { _ in
                 self.loadProfileImage()
             }
+            NotificationCenter.default.addObserver(forName: .profileNameUpdated, object: nil, queue: .main) { _ in
+                self.loadProfile()
+            }
         }
         .onDisappear {
             NotificationCenter.default.removeObserver(self, name: .profileImageUpdated, object: nil)
+            NotificationCenter.default.removeObserver(self, name: .profileNameUpdated, object: nil)
         }
     }
     
     private func loadProfile() {
         if let savedName = ProfileEntity.getProfileName(context: PersistenceController.shared.container.viewContext) {
-            profileName = savedName
-            print("name in context: \(savedName)")
+            profileName = savedName.isEmpty ? "Me" : savedName
         }
     }
     
@@ -72,7 +73,6 @@ struct BottomBarView: View {
             if let savedImage = ProfileEntity.getProfilePicture(context: viewContext) {
                 DispatchQueue.main.async {
                     self.profileImage = savedImage
-                    print("getting image")
                 }
             }
         }
