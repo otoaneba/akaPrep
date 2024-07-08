@@ -78,5 +78,37 @@ extension ProfileEntity {
         }
         return nil
     }
+    
+    func saveProfilePicture(image: UIImage, context: NSManagedObjectContext) {
+            let fetchRequest: NSFetchRequest<ProfileEntity> = ProfileEntity.fetchRequest()
+            
+            do {
+                let results = try context.fetch(fetchRequest)
+                let profileEntity: ProfileEntity
+                
+                if let existingProfile = results.first {
+                    // Update existing profile
+                    profileEntity = existingProfile
+                } else {
+                    // Create a new profile entity
+                    profileEntity = ProfileEntity(context: context)
+                }
+                
+                // Convert UIImage to Data
+                if let imageData = image.jpegData(compressionQuality: 1.0) {
+                    profileEntity.profilePicture = imageData
+                }
+                
+                // Save context
+                try context.save()
+                // Post notification after saving the image
+                NotificationCenter.default.post(name: .profileImageUpdated, object: nil)
+            } catch {
+                print("Failed to save profile picture: \(error)")
+            }
+        }
 }
 
+extension Notification.Name {
+    static let profileImageUpdated = Notification.Name("profileImageUpdated")
+}

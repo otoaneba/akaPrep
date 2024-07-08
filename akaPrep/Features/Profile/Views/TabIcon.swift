@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TabIcon: View {
     var icon: UIImage
-    var size: CGSize = CGSize(width: 30, height: 30)
+    var size: CGSize = CGSize(width: 27, height: 27)
 
     // Based on https://stackoverflow.com/questions/58094384/swiftui-tabview-tabitem-with-custom-image-does-not-show
     var roundedIcon: UIImage {
