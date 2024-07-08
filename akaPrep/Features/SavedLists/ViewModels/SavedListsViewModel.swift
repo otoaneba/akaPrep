@@ -36,7 +36,7 @@ class SavedListsViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    private func loadLists() {
+    func loadLists() {
         let fetchLikedListRequest: NSFetchRequest<LikedListEntity> = LikedListEntity.fetchRequest()
         
         do {
