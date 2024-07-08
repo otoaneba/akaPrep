@@ -42,7 +42,7 @@ class TasksViewModel: ObservableObject {
             currentLikedLists["monthly"] = monthlyLikedListUUID
         }
         
-        //        clearLikedLists() // clear the currentLikedLists for testing purposes
+                        clearLikedLists() // clear the currentLikedLists for testing purposes
         
         // for LLM testing
         if useSampleData {
@@ -110,10 +110,6 @@ class TasksViewModel: ObservableObject {
             task.addToLists(activeList)
         }
         saveContext()
-        if let listID = activeList.id {
-            currentLikedLists[taskType] = listID
-            UserDefaults.standard.set(listID.uuidString, forKey: "\(taskType)LikedListUUID")
-        }
     }
     
     private func removeActiveList(for taskType: String) {
@@ -242,7 +238,24 @@ class TasksViewModel: ObservableObject {
             newTask.id = UUID()
             return newTask
         }
-        saveActiveList(taskType: list.frequencyRaw ?? "daily", tasks: tasks)
+        saveActivatedList(taskType: list.frequencyRaw ?? "daily", tasks: tasks)
+    }
+    
+    private func saveActivatedList(taskType: String, tasks: [TaskEntity]) {
+        removeActiveList(for: taskType)
+        let activeList = ActiveListEntity(context: context)
+        activeList.name = "Active \(taskType.capitalized) Tasks"
+        activeList.frequencyRaw = taskType
+        activeList.expirationDate = Date().addingTimeInterval(24 * 60 * 60 * (taskType == "daily" ? 1 : (taskType == "weekly" ? 7 : 30)))
+        for task in tasks {
+            activeList.addToTasks(task)
+            task.addToLists(activeList)
+        }
+        saveContext()
+        if let listID = activeList.id {
+            currentLikedLists[taskType] = listID
+            UserDefaults.standard.set(listID.uuidString, forKey: "\(taskType)LikedListUUID")
+        }
     }
     
     func likeCurrentList() {
