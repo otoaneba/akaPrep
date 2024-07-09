@@ -16,7 +16,6 @@ class PersonalInfoViewModel: ObservableObject {
     @Published var gender: Gender = .female
     @Published var workSchedule: WorkSchedule = .fullTime
     @Published var selectedDate: Date?
-    @Published var showDatePicker: Bool = false
     
     @Published var isSaveDisabled: Bool = true
     private var cancellables: Set<AnyCancellable> = []

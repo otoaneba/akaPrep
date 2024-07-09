@@ -9,6 +9,7 @@ import SwiftUI
 
 struct YearMonthPickerView: View {
     @Binding var selectedDate: Date
+    @Binding var showDatePicker: Bool
     
     let months: [String] = Calendar.current.shortMonthSymbols
     let columns = [
@@ -57,8 +58,7 @@ struct YearMonthPickerView: View {
                         dateComponent.month =  months.firstIndex(of: item)! + 1
                         dateComponent.year = selectedDate.year()
                         selectedDate = Calendar.current.date(from: dateComponent) ?? selectedDate
-                        print(selectedDate)
-    
+                        showDatePicker = false
                     }
                }
             }
@@ -82,6 +82,6 @@ extension Date {
 
 struct YearMonthPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        YearMonthPickerView(selectedDate: .constant(Date()))
+        YearMonthPickerView(selectedDate: .constant(Date()), showDatePicker: .constant(true))
     }
 }
