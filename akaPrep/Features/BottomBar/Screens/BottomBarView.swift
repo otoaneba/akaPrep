@@ -13,25 +13,29 @@ struct BottomBarView: View {
     @EnvironmentObject private var tasksViewModel: TasksViewModel
     @State private var profileName: String?
     @State private var profileImage: UIImage?
+    @State private var selectedTab: Int = 0
 
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             TasksView()
                 .environmentObject(tasksViewModel)
                 .tabItem {
-                    Image("taskIcon")
+                    Image(selectedTab == 0 ? "taskIcon" : "tasksIconGray")
                     Text("Tasks")
                 }
+                .tag(0)
             GoalsView(context: viewContext)
                 .tabItem {
                     Image(systemName: "target")
                     Text("Goals")
                 }
+                .tag(1)
             SavedListsView(context: viewContext, tasksViewModel: tasksViewModel)
                 .tabItem {
                     Image(systemName: "heart")
                     Text("Saved Lists")
                 }
+                .tag(2)
             ProfileView(context: viewContext)
                 .tabItem {
                     if let profileImage = profileImage {
@@ -46,6 +50,7 @@ struct BottomBarView: View {
                         Text("Me")
                     }
                 }
+                .tag(3)
         }
         .accentColor(.customRed)
         .onAppear {
