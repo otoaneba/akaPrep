@@ -56,14 +56,14 @@ struct PersonalInfoView: View {
                         Text("Female").tag(Gender.female)
                         Text("Male").tag(Gender.male)
                         Text("Other").tag(Gender.other)
-                    }.tint(.black)
+                    }.tint(.primary)
                     
                     Picker("Work Schedule", selection: $viewModel.workSchedule) {
                         Text("Swamped").tag(WorkSchedule.fullTime)
                         Text("Busy").tag(WorkSchedule.partTime)
                         Text("Manageable").tag(WorkSchedule.freelance)
                         Text("Chill").tag(WorkSchedule.unemployed)
-                    }.tint(.black)
+                    }.tint(.primary)
                 }
             }
             .navigationTitle("Personal Info")

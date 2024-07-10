@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import UIKit
 
 struct ProfileView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -24,13 +25,15 @@ struct ProfileView: View {
         NavigationStack {
             VStack {
                 ProfileCardView(context: viewContext, profileDetails: "Edit picture")
+                    .shadow(radius: 4)
+                    
                 let primaryList = [
                    NavigationItem(name: "Personal Info", destination: AnyView(PersonalInfoView().environmentObject(personalInfoViewModel))),
                    NavigationItem(name: "Baby Info", destination: AnyView(BabyInfoView().environmentObject(babyInfoViewModel))),
                 ]
                 let secondaryList = [
                     // TODO: Add SettingsView
-                    NavigationItem(name: "Setting", destination: AnyView(PersonalInfoView().environmentObject(personalInfoViewModel))),
+                    NavigationItem(name: "Setting", destination: AnyView(SettingsView().environmentObject(personalInfoViewModel))),
                 ]
                 List {
                     Section {
@@ -69,14 +72,6 @@ struct ProfileView: View {
 
             Spacer()
             .navigationTitle("Profile")
-            .toolbar {
-                Button {
-                    // Action
-                } label: {
-                    Image(systemName: "plus")
-                }
-            }
-            
         }
     }
 }

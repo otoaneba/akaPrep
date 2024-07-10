@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct akaPrepApp: App {
+    @StateObject private var settingsViewModel = SettingsViewModel()
     let persistenceController = PersistenceController.shared
     let tasksViewModel: TasksViewModel
 
@@ -25,6 +26,8 @@ struct akaPrepApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(tasksViewModel)
+                .environmentObject(settingsViewModel) // Ensure SettingsViewModel is available to all views
+                .preferredColorScheme(settingsViewModel.colorScheme)
         }
     }
 }

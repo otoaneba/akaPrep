@@ -40,10 +40,11 @@ struct ProfileCardView: View {
                     if let profileName = profileName {
                         Text(profileName)
                         .font(.headline)
+                        .foregroundColor(.primary)
                     }
                     Text(profileDetails)
                         .font(.subheadline)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.secondary)
                         .onTapGesture {
                             showingImagePicker = true
                         }
@@ -65,12 +66,16 @@ struct ProfileCardView: View {
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading) // Full width minus padding
-            .background(Color(UIColor.white))
+            .background(Color("CardBackground")) // Custom adaptive background color
             .cornerRadius(10)
             .padding(.horizontal, 16) // Add padding to the edges of the screen
         
     }
 }
+
+//extension Color {
+//    static let cardBackground = Color("CardBackground")
+//}
 
 struct ProfileCardView_Previews: PreviewProvider {
     static var previews: some View {

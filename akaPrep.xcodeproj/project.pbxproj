@@ -33,6 +33,8 @@
 		5C5646202C2B10D200956423 /* akaPrepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56461F2C2B10D200956423 /* akaPrepTests.swift */; };
 		5C56462A2C2B10D200956423 /* akaPrepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5646292C2B10D200956423 /* akaPrepUITests.swift */; };
 		5C56462C2C2B10D200956423 /* akaPrepUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56462B2C2B10D200956423 /* akaPrepUITestsLaunchTests.swift */; };
+		5C6F3A452C3ED2EF00A6D693 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6F3A442C3ED2EF00A6D693 /* SettingsViewModel.swift */; };
+		5C6F3A472C3ED30500A6D693 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6F3A462C3ED30500A6D693 /* SettingsView.swift */; };
 		5CB608C32C2C4B0E003DB576 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608C22C2C4B0E003DB576 /* Utilities.swift */; };
 		5CB608C52C2C4DD1003DB576 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608C42C2C4DD1003DB576 /* TasksView.swift */; };
 		5CB608C72C2C4DE7003DB576 /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608C62C2C4DE7003DB576 /* TasksViewModel.swift */; };
@@ -103,6 +105,8 @@
 		5C5646252C2B10D200956423 /* akaPrepUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = akaPrepUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5646292C2B10D200956423 /* akaPrepUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepUITests.swift; sourceTree = "<group>"; };
 		5C56462B2C2B10D200956423 /* akaPrepUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5C6F3A442C3ED2EF00A6D693 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		5C6F3A462C3ED30500A6D693 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5CB608C22C2C4B0E003DB576 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		5CB608C42C2C4DD1003DB576 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		5CB608C62C2C4DE7003DB576 /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
@@ -357,6 +361,7 @@
 				5CB608DA2C306403003DB576 /* ProfileView.swift */,
 				5CB608E02C33FF75003DB576 /* PersonalInfoView.swift */,
 				5CB608F12C354F3A003DB576 /* BabyInfoView.swift */,
+				5C6F3A462C3ED30500A6D693 /* SettingsView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -366,6 +371,7 @@
 			children = (
 				5CB608EA2C343C92003DB576 /* PersonalInfoViewModel.swift */,
 				5CB608F32C354F66003DB576 /* BabyInfoViewModel.swift */,
+				5C6F3A442C3ED2EF00A6D693 /* SettingsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -644,6 +650,7 @@
 				5CB608DD2C32E4A2003DB576 /* ProfileCardView.swift in Sources */,
 				4D50C5D52C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift in Sources */,
 				4D50C5D62C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift in Sources */,
+				5C6F3A472C3ED30500A6D693 /* SettingsView.swift in Sources */,
 				5C5646162C2B10D200956423 /* akaPrep.xcdatamodeld in Sources */,
 				5CB608E52C342999003DB576 /* Enums.swift in Sources */,
 				4D50C5A62C358F3A00648A2A /* GoalEntity.swift in Sources */,
@@ -654,6 +661,7 @@
 				5CB608E32C3405F2003DB576 /* YearMonthPickerView.swift in Sources */,
 				5C56460C2C2B10D100956423 /* ContentView.swift in Sources */,
 				4D50C5AA2C3592D700648A2A /* GoalsView.swift in Sources */,
+				5C6F3A452C3ED2EF00A6D693 /* SettingsViewModel.swift in Sources */,
 				5CB608C52C2C4DD1003DB576 /* TasksView.swift in Sources */,
 				5CEB45652C3AF75800938B37 /* TabIcon.swift in Sources */,
 				5CB608E12C33FF75003DB576 /* PersonalInfoView.swift in Sources */,
@@ -865,7 +873,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.naoto.akaPrep;
+				PRODUCT_BUNDLE_IDENTIFIER = com.naoto.akaPreps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -894,7 +902,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.naoto.akaPrep;
+				PRODUCT_BUNDLE_IDENTIFIER = com.naoto.akaPreps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

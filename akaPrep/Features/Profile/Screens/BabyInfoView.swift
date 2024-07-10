@@ -29,7 +29,7 @@ struct BabyInfoView: View {
                             viewModel.showDatePicker.toggle()
                         }) {
                             Text(viewModel.formattedDateOfBirth)
-                                .foregroundColor(.black)
+                                .foregroundColor(.primary)
                         }
                     }
                     if viewModel.showDatePicker {
@@ -51,7 +51,7 @@ struct BabyInfoView: View {
                         Text("Female").tag(Gender.female)
                         Text("Male").tag(Gender.male)
                         Text("Other").tag(Gender.other)
-                    }.tint(.black)
+                    }.tint(.primary)
                 }
             }
             .navigationTitle("Baby Info")

@@ -11,6 +11,7 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var tasksViewModel: TasksViewModel
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \TaskEntity.date, ascending: true)],
