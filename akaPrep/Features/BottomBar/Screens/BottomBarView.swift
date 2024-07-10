@@ -47,6 +47,7 @@ struct BottomBarView: View {
                     }
                 }
         }
+        .accentColor(.customRed)
         .onAppear {
             // Load the existing profile picture
             loadProfile()
@@ -66,7 +67,7 @@ struct BottomBarView: View {
     
     private func loadProfile() {
         if let savedName = ProfileEntity.getProfileName(context: PersistenceController.shared.container.viewContext) {
-            profileName = savedName
+            profileName = savedName.isEmpty ? "Me" : savedName
         }
     }
     

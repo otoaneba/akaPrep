@@ -26,3 +26,10 @@ public enum Frequency: String, CaseIterable {
     case monthly
 }
 
+enum ColorSchemeOption: String, CaseIterable, Identifiable {
+    case system
+    case light
+    case dark
+    
+    var id: String { self.rawValue }
+}
