@@ -16,6 +16,7 @@ struct TasksView: View {
     
     var body: some View {
         NavigationStack {
+            
             VStack {
                 TextField("Enter context", text: $context)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -43,6 +44,7 @@ struct TasksView: View {
             List {
                 ForEach(viewModel.tasksForSelectedType) { task in
                     TaskRowView(task: task)
+                        
                 }
                 .onDelete { indexSet in
                     for index in indexSet {
@@ -76,6 +78,19 @@ struct TasksView: View {
         .onAppear {
             viewModel.loadActiveLists()
         }
+        .overlay(
+            VStack {
+                Spacer()
+                if viewModel.showToast {
+                    ToastView(message: "Saved successfully!") {
+                        viewModel.dismissToast()
+                    }
+                }
+            }
+            .transition(.move(edge: .bottom))
+            .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
+            .animation(.spring(), value: viewModel.showToast)
+        )
     }
 }
 

@@ -43,6 +43,8 @@ struct TaskRowView: View {
                     viewModel.toggleTaskCompletion(task: task)
                 }
         }
+        .animation(.easeInOut)
+        .transition(.move(edge: .bottom))
         .onTapGesture {
             if isEditing {
                 task.title = title

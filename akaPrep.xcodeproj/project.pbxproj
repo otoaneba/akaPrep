@@ -21,6 +21,7 @@
 		4D50C5DC2C3AF3EB00648A2A /* TasksRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5DB2C3AF3EB00648A2A /* TasksRowView.swift */; };
 		5C1FF62E2C3BD3E40057F667 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 5C1FF62D2C3BD3E40057F667 /* TOCropViewController */; };
 		5C1FF6302C3BD3E70057F667 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 5C1FF62F2C3BD3E70057F667 /* CropViewController */; };
+		5C2C304B2C3EF8F20093A39A /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C304A2C3EF8F20093A39A /* ToastView.swift */; };
 		5C363D312C359D2100B2ED0B /* SavedListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D302C359D2100B2ED0B /* SavedListsView.swift */; };
 		5C363D332C359D3800B2ED0B /* SavedListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D322C359D3800B2ED0B /* SavedListsViewModel.swift */; };
 		5C363D352C35A00300B2ED0B /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C363D342C35A00300B2ED0B /* TaskListView.swift */; };
@@ -90,6 +91,7 @@
 		4D50C5D32C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4D50C5D42C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4D50C5DB2C3AF3EB00648A2A /* TasksRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksRowView.swift; sourceTree = "<group>"; };
+		5C2C304A2C3EF8F20093A39A /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		5C363D302C359D2100B2ED0B /* SavedListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsView.swift; sourceTree = "<group>"; };
 		5C363D322C359D3800B2ED0B /* SavedListsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsViewModel.swift; sourceTree = "<group>"; };
 		5C363D342C35A00300B2ED0B /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
@@ -171,6 +173,22 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5C2C30482C3EF8D90093A39A /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				5C2C30492C3EF8E50093A39A /* Views */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		5C2C30492C3EF8E50093A39A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5C2C304A2C3EF8F20093A39A /* ToastView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		5C5645FD2C2B10D100956423 = {
@@ -281,6 +299,7 @@
 		5CB608EC2C34462A003DB576 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				5C2C30482C3EF8D90093A39A /* Notifications */,
 				5C951C192C355A1D00D65222 /* BottomBar */,
 				5CB608F02C34468A003DB576 /* SavedLists */,
 				5CB608EF2C344685003DB576 /* Goals */,
@@ -667,6 +686,7 @@
 				5CB608E12C33FF75003DB576 /* PersonalInfoView.swift in Sources */,
 				5CEB455E2C3938F100938B37 /* LikedListEntity+CoreDataClass.swift in Sources */,
 				5CEB455F2C3938F100938B37 /* LikedListEntity+CoreDataProperties.swift in Sources */,
+				5C2C304B2C3EF8F20093A39A /* ToastView.swift in Sources */,
 				4D50C5AC2C35AC4E00648A2A /* WelcomeView.swift in Sources */,
 				5CB608D92C303F83003DB576 /* BottomBarView.swift in Sources */,
 				5CB608F22C354F3A003DB576 /* BabyInfoView.swift in Sources */,
