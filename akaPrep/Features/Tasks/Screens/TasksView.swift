@@ -18,7 +18,7 @@ struct TasksView: View {
     @State private var context = ""
     @State private var editingTaskId: UUID? = nil
     @State private var isHoveringOverTrash = false
-
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -29,7 +29,7 @@ struct TasksView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
-
+                
                 if viewModel.tasksForSelectedType.isEmpty {
                     VStack {
                         Text("You do not have any \(viewModel.selectedTaskType) tasks")
@@ -46,7 +46,7 @@ struct TasksView: View {
                 }
             }
             .padding()
-
+            
             List {
                 ForEach(viewModel.tasksForSelectedType) { task in
                     TaskRowView(task: task, editingTaskId: $editingTaskId)
@@ -78,6 +78,7 @@ struct TasksView: View {
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
+                        newTaskTitle = ""
                         isAddingNewTask = true
                     }
                 }
@@ -92,7 +93,7 @@ struct TasksView: View {
                         isShowingContextSheet = true
                     } label: {
                         Text("Generate")
-
+                        
                     }
                     Button {
                         if viewModel.currentLikedLists[viewModel.selectedTaskType] != nil {
@@ -126,7 +127,7 @@ struct TasksView: View {
                         }
                         .padding()
                     }
-
+                    
                 }
                 .padding()
             }
@@ -141,9 +142,9 @@ struct TasksView: View {
                     ToastView(message: viewModel.toastState.rawValue)
                 }
             }
-            .transition(.move(edge: .bottom))
-            .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
-            .animation(.spring(), value: viewModel.showToast)
+                .transition(.move(edge: .bottom))
+                .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
+                .animation(.spring(), value: viewModel.showToast)
         )
     }
 }
