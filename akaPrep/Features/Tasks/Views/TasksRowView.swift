@@ -13,28 +13,33 @@ struct TaskRowView: View {
     @State private var isEditing = false
     @State private var title: String
     @EnvironmentObject var viewModel: TasksViewModel
+    @Binding var editingTaskId: UUID?
     
-    init(task: TaskEntity) {
+    init(task: TaskEntity, editingTaskId: Binding<UUID?>) {
         self.task = task
+        self._editingTaskId = editingTaskId
         _title = State(initialValue: task.title ?? "")
     }
     
     var body: some View {
         HStack {
-            if isEditing {
+            if isEditing || editingTaskId == task.id {
                 TextField("Title", text: $title, onCommit: {
                     task.title = title
                     viewModel.saveTask(task)
                     isEditing = false
+                    editingTaskId = nil
                 })
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .onTapGesture {
                     isEditing = true
+                    editingTaskId = task.id
                 }
             } else {
                 Text(task.title ?? "No Title")
                     .onTapGesture {
                         isEditing = true
+                        editingTaskId = task.id
                     }
             }
             Spacer()
@@ -50,8 +55,15 @@ struct TaskRowView: View {
                 task.title = title
                 viewModel.saveTask(task)
                 isEditing = false
+                editingTaskId = nil
             }
-        }    }
+        }
+        .onChange(of: editingTaskId) {
+            if editingTaskId != task.id {
+                isEditing = false
+            }
+        }
+    }
 }
 
 #Preview {
@@ -60,7 +72,7 @@ struct TaskRowView: View {
     task.title = "Sample Task"
     task.isCompleted = false
     task.taskType = "daily"
-    return TaskRowView(task: task)
+    return TaskRowView(task: task, editingTaskId: .constant(nil))
         .environment(\.managedObjectContext, context)
         .environmentObject(TasksViewModel.shared)
 }

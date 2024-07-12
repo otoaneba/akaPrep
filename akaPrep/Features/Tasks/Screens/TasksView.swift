@@ -10,17 +10,18 @@ import CoreData
 
 struct TasksView: View {
     @EnvironmentObject var viewModel: TasksViewModel
-    @State private var context = ""
     @State private var taskType = "daily"
     @Environment(\.managedObjectContext) private var managedObjectContext
-    
+    @State private var isAddingNewTask = false
+    @State private var newTaskTitle = ""
+    @State private var isShowingContextSheet = false
+    @State private var context = ""
+    @State private var editingTaskId: UUID? = nil
+    @State private var isHoveringOverTrash = false
+
     var body: some View {
         NavigationStack {
-            
             VStack {
-                TextField("Enter context", text: $context)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
                 Picker("Task Type", selection: $viewModel.selectedTaskType) {
                     Text("Daily").tag("daily")
                     Text("Weekly").tag("weekly")
@@ -28,39 +29,70 @@ struct TasksView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
-                
-                Button {
-                    viewModel.generateTasks(taskType: viewModel.selectedTaskType, context: context)
-                } label: {
-                    HStack {
-                        Image(systemName: "plus.app")
-                        Text("Generate your tasks")
+
+                if viewModel.tasksForSelectedType.isEmpty {
+                    VStack {
+                        Text("You do not have any \(viewModel.selectedTaskType) tasks")
+                            .foregroundColor(.gray)
+                        Button {
+                            isShowingContextSheet = true
+                        } label: {
+                            HStack {
+                                Image(systemName: "plus.app")
+                                Text("Generate your tasks")
+                            }
+                        }
                     }
                 }
             }
             .padding()
-            Spacer()
-            
+
             List {
                 ForEach(viewModel.tasksForSelectedType) { task in
-                    TaskRowView(task: task)
-                        
+                    TaskRowView(task: task, editingTaskId: $editingTaskId)
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                viewModel.removeTask(task)
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
                 }
-                .onDelete { indexSet in
-                    for index in indexSet {
-                        let task = viewModel.tasksForSelectedType[index]
-                        viewModel.removeTask(task)
+                .onMove { indices, newOffset in
+                    viewModel.moveTask(from: indices, to: newOffset)
+                }
+                if isAddingNewTask {
+                    TextField("New Task", text: $newTaskTitle, onCommit: {
+                        if !newTaskTitle.isEmpty {
+                            viewModel.addTask(title: newTaskTitle)
+                            newTaskTitle = ""
+                            isAddingNewTask = false
+                        }
+                    })
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                } else {
+                    HStack {
+                        Text("Add one new task here")
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        isAddingNewTask = true
                     }
                 }
+            }
+            .onTapGesture {
+                editingTaskId = nil
             }
             .navigationTitle("Tasks")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
-                        // Add new task with empty title
-                        viewModel.addTask(title: "New empty task")
+                        isShowingContextSheet = true
                     } label: {
-                        Image(systemName: "plus")
+                        Text("Generate")
+
                     }
                     Button {
                         if viewModel.currentLikedLists[viewModel.selectedTaskType] != nil {
@@ -73,6 +105,30 @@ struct TasksView: View {
                     }
                     .disabled(viewModel.tasksForSelectedType.isEmpty) // Disable if the task list is empty
                 }
+            }
+            .sheet(isPresented: $isShowingContextSheet) {
+                VStack {
+                    Text("Enter context to generate your \(viewModel.selectedTaskType) tasks")
+                        .font(.headline)
+                    TextField("Context", text: $context)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                    HStack {
+                        Button("Cancel") {
+                            isShowingContextSheet = false
+                        }
+                        .padding()
+                        Spacer()
+                        Button("Generate") {
+                            viewModel.generateTasks(taskType: viewModel.selectedTaskType, context: context)
+                            isShowingContextSheet = false
+                            context = ""
+                        }
+                        .padding()
+                    }
+
+                }
+                .padding()
             }
         }
         .onAppear {
@@ -101,4 +157,3 @@ struct TasksView_Previews: PreviewProvider {
             .environmentObject(viewModel)
     }
 }
-
