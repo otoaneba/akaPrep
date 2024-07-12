@@ -48,7 +48,7 @@ class TasksViewModel: ObservableObject {
             currentLikedLists["monthly"] = monthlyLikedListUUID
         }
         
-                        clearLikedLists() // clear the currentLikedLists for testing purposes
+        clearLikedLists() // clear the currentLikedLists for testing purposes
         
         // for LLM testing
         if useSampleData {
@@ -172,11 +172,65 @@ class TasksViewModel: ObservableObject {
         saveContext()
     }
     
+    func moveTask(from source: IndexSet, to destination: Int) {
+        print("moving")
+        var tasks = tasksForSelectedType
+        tasks.move(fromOffsets: source, toOffset: destination)
+        
+        // Update the task order in the published arrays
+        switch selectedTaskType {
+        case "daily":
+            dailyTasks = tasks
+        case "weekly":
+            weeklyTasks = tasks
+        case "monthly":
+            monthlyTasks = tasks
+        default:
+            break
+        }
+        
+        saveContext()
+    }
+    
+    func removeTasks(atOffsets offsets: IndexSet) {
+        offsets.forEach { index in
+            let task = tasksForSelectedType[index]
+            print("Deleting task: \(task.title ?? "")") // Debug print statement
+            removeTask(task)
+        }
+    }
+
     func removeTask(_ task: TaskEntity) {
+        print("Remove task called for task: \(task.title ?? "")") // Debug print statement
         context.delete(task)
         saveContext()
         resetCurrentLikedListStatus()
+        
+        switch task.taskType {
+        case "daily":
+            if let index = dailyTasks.firstIndex(of: task) {
+                dailyTasks.remove(at: index)
+            }
+        case "weekly":
+            if let index = weeklyTasks.firstIndex(of: task) {
+                weeklyTasks.remove(at: index)
+            }
+        case "monthly":
+            if let index = monthlyTasks.firstIndex(of: task) {
+                monthlyTasks.remove(at: index)
+            }
+        default:
+            break
+        }
+        
         loadActiveLists()  // Ensure the list is reloaded after deletion
+    }
+    
+    func deleteTask(withId id: UUID) {
+        let task = tasksForSelectedType.first { $0.id == id }
+        if let task = task {
+            removeTask(task)
+        }
     }
     
     func saveTask(_ task: TaskEntity) {
