@@ -49,7 +49,7 @@ struct TasksView: View {
             List {
                 ForEach(viewModel.tasksForSelectedType) { task in
                     TaskRowView(task: task, editingTaskId: $editingTaskId)
-                        .swipeActions(edge: .trailing) {
+                        .swipeActions {
                             Button(role: .destructive) {
                                 viewModel.removeTask(task)
                             } label: {
@@ -85,7 +85,6 @@ struct TasksView: View {
                     }
                 }
             }
-            
             .navigationTitle("Tasks")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {

@@ -46,6 +46,7 @@ struct TaskRowView: View {
             Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
                 .onTapGesture {
                     viewModel.toggleTaskCompletion(task: task)
+                    editingTaskId = nil
                 }
         }
         .onTapGesture {
