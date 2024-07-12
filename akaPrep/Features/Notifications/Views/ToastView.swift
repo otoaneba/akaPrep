@@ -10,7 +10,6 @@ import SwiftUI
 struct ToastView: View {
     @Environment(\.colorScheme) var colorScheme
     let message: String
-    var onClose: () -> Void
     
     var body: some View {
         HStack {
@@ -19,13 +18,7 @@ struct ToastView: View {
             Text(message)
                 .font(.body)
             Spacer()
-            Button(action: {
-                onClose()
-            }) {
-                Image(systemName: "xmark.circle.fill")
-                    .foregroundColor(.white)
-                    .padding()
-            }
+
         }
         .foregroundColor(.white)
         .frame(maxWidth: .infinity, alignment: .leading) // Full width minus padding
@@ -39,5 +32,5 @@ struct ToastView: View {
 }
 
 #Preview {
-    ToastView(message: "You’ll have a working toast message view that can be easily integrated into your SwiftUI projects.!", onClose: {})
+    ToastView(message: "You’ll have a working toast message view that can be easily integrated into your SwiftUI projects.!")
 }

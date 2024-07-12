@@ -19,6 +19,9 @@ class TasksViewModel: ObservableObject {
     @Published var selectedTaskType: String = "daily"
     @Published var currentLikedLists: [String: UUID] = [:]
     @Published var showToast: Bool = false
+    @Published var toastState: ToastState = .none
+    @Published var listLiked: Bool = false
+    @Published var listActivated: Bool = false
     
     let listLikedSubject = PassthroughSubject<Void, Never>()
     let listUnlikedSubject = PassthroughSubject<Void, Never>()
@@ -242,7 +245,8 @@ class TasksViewModel: ObservableObject {
             return newTask
         }
         saveActivatedList(taskType: list.frequencyRaw ?? "daily", tasks: tasks)
-        showToast(message: "List successfully activated!", duration: 2)
+        toastState = .listActivated
+        showToastCard()
     }
     
     private func saveActivatedList(taskType: String, tasks: [TaskEntity]) {
@@ -298,7 +302,8 @@ class TasksViewModel: ObservableObject {
         listLikedSubject.send()
         currentLikedLists[selectedTaskType] = newList.id
         UserDefaults.standard.set(newList.id?.uuidString, forKey: "\(selectedTaskType)LikedListUUID")
-        showToast(message: "List successfully saved!", duration: 2)
+        toastState = .listLiked
+        showToastCard()
         print("Saved Like list")
         print("currentLikedLists: \(currentLikedLists)")
     }
@@ -314,7 +319,8 @@ class TasksViewModel: ObservableObject {
         UserDefaults.standard.removeObject(forKey: "\(selectedTaskType)LikedListUUID")
         
         listUnlikedSubject.send()
-        showToast(message: "List successfully unsaved!", duration: 2)
+        toastState = .listUnliked
+        showToastCard()
         print("Unsaved Like list")
         print("currentLikedLists: \(currentLikedLists)")
     }
@@ -349,7 +355,7 @@ class TasksViewModel: ObservableObject {
         currentLikedLists.removeAll()
     }
     
-    func showToast(message: String, duration: TimeInterval) {
+    func showToastCard() {
         // Cancel any existing toast
         workItem?.cancel()
         
@@ -359,15 +365,17 @@ class TasksViewModel: ObservableObject {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         
         // Create a new work item to hide the toast after the duration
-        let task = DispatchWorkItem {
-            self.dismissToast()
+        let task = DispatchWorkItem { [weak self] in
+            self?.dismissToast()
         }
         workItem = task
-        DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: task)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: task)
     }
     
     // Method to hide toast
     func dismissToast() {
-        showToast.toggle()
+        DispatchQueue.main.async {
+            self.showToast = false
+        }
     }
 }

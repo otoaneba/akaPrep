@@ -82,9 +82,7 @@ struct TasksView: View {
             VStack {
                 Spacer()
                 if viewModel.showToast {
-                    ToastView(message: "Saved successfully!") {
-                        viewModel.dismissToast()
-                    }
+                    ToastView(message: viewModel.toastState.rawValue)
                 }
             }
             .transition(.move(edge: .bottom))
