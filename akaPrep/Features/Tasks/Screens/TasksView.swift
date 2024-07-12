@@ -17,8 +17,7 @@ struct TasksView: View {
     @State private var isShowingContextSheet = false
     @State private var context = ""
     @State private var editingTaskId: UUID? = nil
-    @State private var isHoveringOverTrash = false
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -50,7 +49,7 @@ struct TasksView: View {
             List {
                 ForEach(viewModel.tasksForSelectedType) { task in
                     TaskRowView(task: task, editingTaskId: $editingTaskId)
-                        .swipeActions {
+                        .swipeActions(edge: .trailing) {
                             Button(role: .destructive) {
                                 viewModel.removeTask(task)
                             } label: {
@@ -60,6 +59,9 @@ struct TasksView: View {
                 }
                 .onMove { indices, newOffset in
                     viewModel.moveTask(from: indices, to: newOffset)
+                }
+                .onTapGesture {
+                    editingTaskId = nil
                 }
                 if isAddingNewTask {
                     TextField("New Task", text: $newTaskTitle, onCommit: {
@@ -83,9 +85,7 @@ struct TasksView: View {
                     }
                 }
             }
-            .onTapGesture {
-                editingTaskId = nil
-            }
+            
             .navigationTitle("Tasks")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
