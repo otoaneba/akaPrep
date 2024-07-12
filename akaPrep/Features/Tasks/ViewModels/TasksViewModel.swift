@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 import Combine
+import UIKit
 
 class TasksViewModel: ObservableObject {
     static let shared = TasksViewModel(context: PersistenceController.shared.container.viewContext, useSampleData: true)
@@ -17,6 +18,10 @@ class TasksViewModel: ObservableObject {
     @Published var monthlyTasks: [TaskEntity] = []
     @Published var selectedTaskType: String = "daily"
     @Published var currentLikedLists: [String: UUID] = [:]
+    @Published var showToast: Bool = false
+    @Published var toastState: ToastState = .none
+    @Published var listLiked: Bool = false
+    @Published var listActivated: Bool = false
     
     let listLikedSubject = PassthroughSubject<Void, Never>()
     let listUnlikedSubject = PassthroughSubject<Void, Never>()
@@ -24,6 +29,7 @@ class TasksViewModel: ObservableObject {
     private let context: NSManagedObjectContext
     private let openAIService: OpenAIService
     private static var sampleDataLoaded = false // Static flag to check if sample data is already loaded
+    private var workItem: DispatchWorkItem?
     
     init(context: NSManagedObjectContext, useSampleData: Bool = false) {
         self.context = context
@@ -239,6 +245,8 @@ class TasksViewModel: ObservableObject {
             return newTask
         }
         saveActivatedList(taskType: list.frequencyRaw ?? "daily", tasks: tasks)
+        toastState = .listActivated
+        showToastCard()
     }
     
     private func saveActivatedList(taskType: String, tasks: [TaskEntity]) {
@@ -294,6 +302,8 @@ class TasksViewModel: ObservableObject {
         listLikedSubject.send()
         currentLikedLists[selectedTaskType] = newList.id
         UserDefaults.standard.set(newList.id?.uuidString, forKey: "\(selectedTaskType)LikedListUUID")
+        toastState = .listLiked
+        showToastCard()
         print("Saved Like list")
         print("currentLikedLists: \(currentLikedLists)")
     }
@@ -309,6 +319,8 @@ class TasksViewModel: ObservableObject {
         UserDefaults.standard.removeObject(forKey: "\(selectedTaskType)LikedListUUID")
         
         listUnlikedSubject.send()
+        toastState = .listUnliked
+        showToastCard()
         print("Unsaved Like list")
         print("currentLikedLists: \(currentLikedLists)")
     }
@@ -341,5 +353,29 @@ class TasksViewModel: ObservableObject {
         UserDefaults.standard.removeObject(forKey: "weeklyLikedListUUID")
         UserDefaults.standard.removeObject(forKey: "monthlyLikedListUUID")
         currentLikedLists.removeAll()
+    }
+    
+    func showToastCard() {
+        // Cancel any existing toast
+        workItem?.cancel()
+        
+        showToast.toggle()
+
+        // Provide haptic feedback
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
+        // Create a new work item to hide the toast after the duration
+        let task = DispatchWorkItem { [weak self] in
+            self?.dismissToast()
+        }
+        workItem = task
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: task)
+    }
+    
+    // Method to hide toast
+    func dismissToast() {
+        DispatchQueue.main.async {
+            self.showToast = false
+        }
     }
 }

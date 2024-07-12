@@ -33,3 +33,12 @@ enum ColorSchemeOption: String, CaseIterable, Identifiable {
     
     var id: String { self.rawValue }
 }
+
+public enum ToastState: String, CaseIterable {
+    case listLiked = "List saved successfully!"
+    case listUnliked = "List unsaved successfully!"
+    case listActivated = "List activated successfully!"
+    case listDeactivated = "List deactivated successfully!"
+    case listGoalSaved = "Goal saved successfully!"
+    case none = ""
+}
