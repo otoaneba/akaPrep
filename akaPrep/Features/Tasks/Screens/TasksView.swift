@@ -141,9 +141,8 @@ struct TasksView: View {
                     ToastView(message: viewModel.toastState.rawValue)
                 }
             }
-                .transition(.move(edge: .bottom))
-                .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
-                .animation(.spring(), value: viewModel.showToast)
+            .transition(.move(edge: .bottom))
+            .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
         )
     }
 }
