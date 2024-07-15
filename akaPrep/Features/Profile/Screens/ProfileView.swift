@@ -59,12 +59,13 @@ struct ProfileView: View {
                                 .padding(.horizontal, 32)
                         }
                         .cornerRadius(10)
-                        Button {
-                            // Action
-                        } label: {
-                            Text("Sign Out")
-                        }
-                        .padding(.horizontal, 8)
+                        // TODO: Implement Sign in and Sign out
+//                        Button {
+//                            // Action
+//                        } label: {
+//                            Text("Sign Out")
+//                        }
+//                        .padding(.horizontal, 8)
                     }
                 }
             }
