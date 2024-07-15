@@ -28,6 +28,9 @@ struct akaPrepApp: App {
                 .environmentObject(tasksViewModel)
                 .environmentObject(settingsViewModel) // Ensure SettingsViewModel is available to all views
                 .preferredColorScheme(settingsViewModel.colorScheme)
+                .onAppear {
+                    preloadKeyboard()
+                }
         }
     }
 }
