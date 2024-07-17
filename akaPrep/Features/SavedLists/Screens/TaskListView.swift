@@ -19,6 +19,10 @@ struct TaskListView: View {
         _newTitle = State(initialValue: list.name ?? "")
     }
     
+    private var isCurrentActiveList: Bool {
+        tasksViewModel.isListActive(list)
+    }
+    
     var body: some View {
         NavigationStack {
             List {
@@ -34,6 +38,7 @@ struct TaskListView: View {
                     Button("Activate") {
                         tasksViewModel.activateList(list)
                     }
+                    .disabled(isCurrentActiveList)
                 }
             }
         }

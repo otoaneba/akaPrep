@@ -48,7 +48,7 @@ class TasksViewModel: ObservableObject {
             currentLikedLists["monthly"] = monthlyLikedListUUID
         }
         
-        clearLikedLists() // clear the currentLikedLists for testing purposes
+        //        clearLikedLists() // clear the currentLikedLists for testing purposes
         
         // for LLM testing
         if useSampleData {
@@ -199,7 +199,7 @@ class TasksViewModel: ObservableObject {
             removeTask(task)
         }
     }
-
+    
     func removeTask(_ task: TaskEntity) {
         print("Remove task called for task: \(task.title ?? "")") // Debug print statement
         context.delete(task)
@@ -299,6 +299,10 @@ class TasksViewModel: ObservableObject {
             return newTask
         }
         saveActivatedList(taskType: list.frequencyRaw ?? "daily", tasks: tasks)
+        if let listID = list.id {
+            currentLikedLists[list.frequencyRaw ?? "daily"] = listID
+        }
+        
         toastState = .listActivated
         showToastCard()
     }
@@ -414,7 +418,7 @@ class TasksViewModel: ObservableObject {
         workItem?.cancel()
         
         showToast.toggle()
-
+        
         // Provide haptic feedback
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         
@@ -431,5 +435,10 @@ class TasksViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.showToast = false
         }
+    }
+    
+    func isListActive(_ list: ListEntity) -> Bool {
+        let activeListID = currentLikedLists[selectedTaskType]
+        return list.id == activeListID
     }
 }
