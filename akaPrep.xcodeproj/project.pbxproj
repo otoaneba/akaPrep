@@ -438,6 +438,7 @@
 		5CB608FE2C35538E003DB576 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				5C363D342C35A00300B2ED0B /* TaskListView.swift */,
 				5C363D302C359D2100B2ED0B /* SavedListsView.swift */,
 			);
 			path = Screens;
@@ -446,7 +447,6 @@
 		5CB608FF2C355393003DB576 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5C363D342C35A00300B2ED0B /* TaskListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
