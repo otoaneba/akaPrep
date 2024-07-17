@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 import Combine
 import UIKit
+import SwiftUI
 
 class TasksViewModel: ObservableObject {
     static let shared = TasksViewModel(context: PersistenceController.shared.container.viewContext, useSampleData: true)
@@ -417,7 +418,9 @@ class TasksViewModel: ObservableObject {
         // Cancel any existing toast
         workItem?.cancel()
         
-        showToast.toggle()
+        withAnimation(.easeIn) {
+            showToast.toggle()
+        }
         
         // Provide haptic feedback
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
