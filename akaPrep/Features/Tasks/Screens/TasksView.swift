@@ -150,7 +150,7 @@ struct TasksView: View {
                     ToastView(message: viewModel.toastState.rawValue)
                 }
             }
-            .transition(.move(edge: .bottom))
+            .transition(.move(edge: .bottom).combined(with: .opacity))
             .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
         )
     }

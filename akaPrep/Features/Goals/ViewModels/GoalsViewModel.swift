@@ -17,8 +17,11 @@ class GoalsViewModel: ObservableObject {
     @Published var originalDailyGoal = ""
     @Published var originalWeeklyGoal = ""
     @Published var originalMonthlyGoal = ""
+    @Published var showToast: Bool = false
+    @Published var toastState: ToastState = .none
     
     private let context: NSManagedObjectContext
+    private var workItem: DispatchWorkItem?
 
     init(context: NSManagedObjectContext) {
         self.context = context
@@ -64,6 +67,8 @@ class GoalsViewModel: ObservableObject {
             goal.title = currentGoalText()
             try context.save()
             updateOriginalGoal()
+            toastState = .listGoalSaved
+            showToastCard()
             print("\(selectedSegment.capitalized) goal saved!")
         } catch {
             print("Failed to save goal: \(error)")
@@ -131,6 +136,31 @@ class GoalsViewModel: ObservableObject {
             return monthlyGoal.isEmpty || monthlyGoal == originalMonthlyGoal
         default:
             return true
+        }
+    }
+    
+    func showToastCard() {
+        // Cancel any existing toast
+        workItem?.cancel()
+        withAnimation(.easeIn) {
+            showToast.toggle()
+        }
+        
+        // Provide haptic feedback
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
+        // Create a new work item to hide the toast after the duration
+        let workTask = DispatchWorkItem { [weak self] in
+            self?.dismissToast()
+        }
+        workItem = workTask
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: workTask)
+    }
+    
+    // Method to hide toast
+    func dismissToast() {
+        DispatchQueue.main.async {
+            self.showToast = false
         }
     }
 }
