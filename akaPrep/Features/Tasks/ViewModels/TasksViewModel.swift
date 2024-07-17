@@ -67,11 +67,7 @@ class TasksViewModel: ObservableObject {
             currentLikedLists["monthly"] = monthlyLikedListUUID
         }
         
-<<<<<<< Updated upstream
         //        clearLikedLists() // clear the currentLikedLists for testing purposes
-=======
-//        clearLikedLists() // clear the currentLikedLists for testing purposes
->>>>>>> Stashed changes
         
         // for LLM testing
         if useSampleData {
@@ -449,11 +445,11 @@ class TasksViewModel: ObservableObject {
         }
     }
     
-<<<<<<< Updated upstream
     func isListActive(_ list: ListEntity) -> Bool {
         let activeListID = currentLikedLists[selectedTaskType]
         return list.id == activeListID
-=======
+    }
+    
     func uncheckAllTasks() {
         let currentTasks: [TaskEntity]
         
@@ -472,7 +468,7 @@ class TasksViewModel: ObservableObject {
             task.isCompleted = false
         }
     }
-
+    
     // TODO: For automating recurring logic
     func checkAllListsForExpiration() {
         if let dailyActiveList = dailyActiveList {
@@ -493,9 +489,8 @@ class TasksViewModel: ObservableObject {
             self?.checkAllListsForExpiration()
         }
     }
-
+    
     deinit {
         timer?.invalidate()
->>>>>>> Stashed changes
     }
 }
