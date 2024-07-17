@@ -31,6 +31,24 @@ class TasksViewModel: ObservableObject {
     private static var sampleDataLoaded = false // Static flag to check if sample data is already loaded
     private var workItem: DispatchWorkItem?
     
+    var tasksForSelectedType: [TaskEntity] {
+        switch selectedTaskType {
+        case "daily":
+            return dailyTasks
+        case "weekly":
+            return weeklyTasks
+        case "monthly":
+            return monthlyTasks
+        default:
+            return []
+        }
+    }
+    
+    // TODO: For automating recurring tasks
+    private var timer: Timer?
+    @Published var dailyActiveList: ActiveListEntity?
+    @Published var dailyActiveListExpired: Bool = false
+    
     init(context: NSManagedObjectContext, useSampleData: Bool = false) {
         self.context = context
         self.openAIService = OpenAIService()
@@ -48,7 +66,11 @@ class TasksViewModel: ObservableObject {
             currentLikedLists["monthly"] = monthlyLikedListUUID
         }
         
+<<<<<<< Updated upstream
         //        clearLikedLists() // clear the currentLikedLists for testing purposes
+=======
+//        clearLikedLists() // clear the currentLikedLists for testing purposes
+>>>>>>> Stashed changes
         
         // for LLM testing
         if useSampleData {
@@ -151,19 +173,6 @@ class TasksViewModel: ObservableObject {
             }
         } catch {
             print("Failed to fetch active lists: \(error)")
-        }
-    }
-    
-    var tasksForSelectedType: [TaskEntity] {
-        switch selectedTaskType {
-        case "daily":
-            return dailyTasks
-        case "weekly":
-            return weeklyTasks
-        case "monthly":
-            return monthlyTasks
-        default:
-            return []
         }
     }
     
@@ -437,8 +446,53 @@ class TasksViewModel: ObservableObject {
         }
     }
     
+<<<<<<< Updated upstream
     func isListActive(_ list: ListEntity) -> Bool {
         let activeListID = currentLikedLists[selectedTaskType]
         return list.id == activeListID
+=======
+    func uncheckAllTasks() {
+        let currentTasks: [TaskEntity]
+        
+        switch selectedTaskType {
+        case "daily":
+            currentTasks = dailyTasks
+        case "weekly":
+            currentTasks = weeklyTasks
+        case "monthly":
+            currentTasks = monthlyTasks
+        default:
+            return
+        }
+        
+        for task in currentTasks {
+            task.isCompleted = false
+        }
+    }
+
+    // TODO: For automating recurring logic
+    func checkAllListsForExpiration() {
+        if let dailyActiveList = dailyActiveList {
+            if dailyActiveList.isExpired {
+                handleExpiredDailyList()
+            }
+        }
+    }
+    
+    private func handleExpiredDailyList() {
+        // Handle the expired daily active list (e.g., notify the user, update UI, etc.)
+        print("The daily active list has expired.")
+        self.dailyActiveListExpired.toggle()
+    }
+    
+    private func startExpirationCheckTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { [weak self] _ in
+            self?.checkAllListsForExpiration()
+        }
+    }
+
+    deinit {
+        timer?.invalidate()
+>>>>>>> Stashed changes
     }
 }

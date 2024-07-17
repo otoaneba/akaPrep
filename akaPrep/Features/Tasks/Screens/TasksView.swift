@@ -88,12 +88,21 @@ struct TasksView: View {
             .navigationTitle("Tasks")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button {
-                        isShowingContextSheet = true
+                    Menu {
+                        Button {
+                            viewModel.uncheckAllTasks()
+                        } label: {
+                            Text("Uncheck All Tasks")
+                        }
+                        Button {
+                            isShowingContextSheet = true
+                        } label: {
+                            Text("Generate")
+                        }
                     } label: {
-                        Text("Generate")
-                        
+                        Image(systemName: "ellipsis")
                     }
+                    
                     Button {
                         if viewModel.currentLikedLists[viewModel.selectedTaskType] != nil {
                             viewModel.unlikeCurrentList()

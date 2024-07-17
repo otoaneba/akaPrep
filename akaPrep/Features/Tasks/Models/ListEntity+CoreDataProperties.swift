@@ -23,24 +23,23 @@ extension ListEntity {
     @NSManaged public var tasks: NSOrderedSet?
     
     public var frequency: Frequency {
-            get {
-                return Frequency(rawValue: frequencyRaw ?? "daily") ?? .daily
-            }
-            set {
-                frequencyRaw = newValue.rawValue
-            }
+        get {
+            return Frequency(rawValue: frequencyRaw ?? "daily") ?? .daily
         }
+        set {
+            frequencyRaw = newValue.rawValue
+        }
+    }
         
-        public var taskArray: [TaskEntity] {
-            let set = tasks ?? []
-            return Array(set) as! [TaskEntity]
-        }
+    public var taskArray: [TaskEntity] {
+        let set = tasks ?? []
+        return Array(set) as! [TaskEntity]
+    }
         
-        override public func awakeFromInsert() {
-            super.awakeFromInsert()
-            id = UUID()
-        }
-
+    override public func awakeFromInsert() {
+        super.awakeFromInsert()
+        id = UUID()
+    }
 }
 
 // MARK: Generated accessors for tasks
