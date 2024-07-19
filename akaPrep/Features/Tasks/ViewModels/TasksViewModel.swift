@@ -134,6 +134,8 @@ class TasksViewModel: ObservableObject {
             activeList.addToTasks(task)
             task.addToLists(activeList)
         }
+        // Provide haptic feedback
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         saveContext()
     }
     
@@ -175,6 +177,8 @@ class TasksViewModel: ObservableObject {
     
     func toggleTaskCompletion(task: TaskEntity) {
         task.isCompleted.toggle()
+        // Provide haptic feedback
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         saveContext()
     }
     
@@ -243,6 +247,8 @@ class TasksViewModel: ObservableObject {
         do {
             try context.save()
             resetCurrentLikedListStatus()
+            // Provide haptic feedback
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
             print("Saved updated task and reset liked list status")
         } catch {
             print("Failed to save task: \(error)")
@@ -302,6 +308,8 @@ class TasksViewModel: ObservableObject {
             newTask.taskType = task.taskType
             newTask.date = task.date
             newTask.id = UUID()
+            // Provide haptic feedback
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
             return newTask
         }
         saveActivatedList(taskType: list.frequencyRaw ?? "daily", tasks: tasks)

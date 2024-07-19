@@ -23,39 +23,19 @@ struct TaskRowView: View {
     
     var body: some View {
         HStack {
-            if isEditing || editingTaskId == task.id {
-                TextField("Title", text: $title, onCommit: {
-                    task.title = title
-                    viewModel.saveTask(task)
-                    isEditing = false
-                    editingTaskId = nil
-                })
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .onTapGesture {
-                    isEditing = true
-                    editingTaskId = task.id
-                }
-            } else {
-                Text(task.title ?? "No Title")
-                    .onTapGesture {
-                        isEditing = true
-                        editingTaskId = task.id
-                    }
-            }
+            TextField("Title", text: $title, onCommit: {
+                task.title = title
+                viewModel.saveTask(task)
+                isEditing = false
+                editingTaskId = nil
+            })
+            .textFieldStyle(PlainTextFieldStyle())
             Spacer()
             Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
                 .onTapGesture {
                     viewModel.toggleTaskCompletion(task: task)
                     editingTaskId = nil
                 }
-        }
-        .onTapGesture {
-            if isEditing {
-                task.title = title
-                viewModel.saveTask(task)
-                isEditing = false
-                editingTaskId = nil
-            }
         }
         .onChange(of: editingTaskId) {
             if editingTaskId != task.id {
