@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5C5646052C2B10D100956423"
-               BuildableName = "akaPrep.app"
-               BlueprintName = "akaPrep"
-               ReferencedContainer = "container:akaPrep.xcodeproj">
+               BuildableName = "akaTask.app"
+               BlueprintName = "akaTask"
+               ReferencedContainer = "container:akaTask.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -36,9 +36,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5C56461A2C2B10D200956423"
-               BuildableName = "akaPrepTests.xctest"
-               BlueprintName = "akaPrepTests"
-               ReferencedContainer = "container:akaPrep.xcodeproj">
+               BuildableName = "akaTaskTests.xctest"
+               BlueprintName = "akaTaskTests"
+               ReferencedContainer = "container:akaTask.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5C5646242C2B10D200956423"
-               BuildableName = "akaPrepUITests.xctest"
-               BlueprintName = "akaPrepUITests"
-               ReferencedContainer = "container:akaPrep.xcodeproj">
+               BuildableName = "akaTaskUITests.xctest"
+               BlueprintName = "akaTaskUITests"
+               ReferencedContainer = "container:akaTask.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -69,9 +69,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5C5646052C2B10D100956423"
-            BuildableName = "akaPrep.app"
-            BlueprintName = "akaPrep"
-            ReferencedContainer = "container:akaPrep.xcodeproj">
+            BuildableName = "akaTask.app"
+            BlueprintName = "akaTask"
+            ReferencedContainer = "container:akaTask.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -93,9 +93,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5C5646052C2B10D100956423"
-            BuildableName = "akaPrep.app"
-            BlueprintName = "akaPrep"
-            ReferencedContainer = "container:akaPrep.xcodeproj">
+            BuildableName = "akaTask.app"
+            BlueprintName = "akaTask"
+            ReferencedContainer = "container:akaTask.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

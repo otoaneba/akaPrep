@@ -95,16 +95,16 @@
 		5C363D302C359D2100B2ED0B /* SavedListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsView.swift; sourceTree = "<group>"; };
 		5C363D322C359D3800B2ED0B /* SavedListsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsViewModel.swift; sourceTree = "<group>"; };
 		5C363D342C35A00300B2ED0B /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
-		5C5646062C2B10D100956423 /* akaPrep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = akaPrep.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C5646062C2B10D100956423 /* akaTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = akaTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5646092C2B10D100956423 /* akaPrepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepApp.swift; sourceTree = "<group>"; };
 		5C56460B2C2B10D100956423 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5C56460D2C2B10D200956423 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C5646102C2B10D200956423 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5C5646122C2B10D200956423 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		5C5646152C2B10D200956423 /* akaPrep.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = akaPrep.xcdatamodel; sourceTree = "<group>"; };
-		5C56461B2C2B10D200956423 /* akaPrepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = akaPrepTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C56461B2C2B10D200956423 /* akaTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = akaTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C56461F2C2B10D200956423 /* akaPrepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepTests.swift; sourceTree = "<group>"; };
-		5C5646252C2B10D200956423 /* akaPrepUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = akaPrepUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C5646252C2B10D200956423 /* akaTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = akaTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5646292C2B10D200956423 /* akaPrepUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepUITests.swift; sourceTree = "<group>"; };
 		5C56462B2C2B10D200956423 /* akaPrepUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5C6F3A442C3ED2EF00A6D693 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -206,9 +206,9 @@
 		5C5646072C2B10D100956423 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5C5646062C2B10D100956423 /* akaPrep.app */,
-				5C56461B2C2B10D200956423 /* akaPrepTests.xctest */,
-				5C5646252C2B10D200956423 /* akaPrepUITests.xctest */,
+				5C5646062C2B10D100956423 /* akaTask.app */,
+				5C56461B2C2B10D200956423 /* akaTaskTests.xctest */,
+				5C5646252C2B10D200956423 /* akaTaskUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -527,9 +527,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5C5646052C2B10D100956423 /* akaPrep */ = {
+		5C5646052C2B10D100956423 /* akaTask */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5C56462F2C2B10D200956423 /* Build configuration list for PBXNativeTarget "akaPrep" */;
+			buildConfigurationList = 5C56462F2C2B10D200956423 /* Build configuration list for PBXNativeTarget "akaTask" */;
 			buildPhases = (
 				5C5646022C2B10D100956423 /* Sources */,
 				5C5646032C2B10D100956423 /* Frameworks */,
@@ -539,18 +539,18 @@
 			);
 			dependencies = (
 			);
-			name = akaPrep;
+			name = akaTask;
 			packageProductDependencies = (
 				5C1FF62D2C3BD3E40057F667 /* TOCropViewController */,
 				5C1FF62F2C3BD3E70057F667 /* CropViewController */,
 			);
 			productName = akaPrep;
-			productReference = 5C5646062C2B10D100956423 /* akaPrep.app */;
+			productReference = 5C5646062C2B10D100956423 /* akaTask.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5C56461A2C2B10D200956423 /* akaPrepTests */ = {
+		5C56461A2C2B10D200956423 /* akaTaskTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5C5646322C2B10D200956423 /* Build configuration list for PBXNativeTarget "akaPrepTests" */;
+			buildConfigurationList = 5C5646322C2B10D200956423 /* Build configuration list for PBXNativeTarget "akaTaskTests" */;
 			buildPhases = (
 				5C5646172C2B10D200956423 /* Sources */,
 				5C5646182C2B10D200956423 /* Frameworks */,
@@ -561,14 +561,14 @@
 			dependencies = (
 				5C56461D2C2B10D200956423 /* PBXTargetDependency */,
 			);
-			name = akaPrepTests;
+			name = akaTaskTests;
 			productName = akaPrepTests;
-			productReference = 5C56461B2C2B10D200956423 /* akaPrepTests.xctest */;
+			productReference = 5C56461B2C2B10D200956423 /* akaTaskTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5C5646242C2B10D200956423 /* akaPrepUITests */ = {
+		5C5646242C2B10D200956423 /* akaTaskUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5C5646352C2B10D200956423 /* Build configuration list for PBXNativeTarget "akaPrepUITests" */;
+			buildConfigurationList = 5C5646352C2B10D200956423 /* Build configuration list for PBXNativeTarget "akaTaskUITests" */;
 			buildPhases = (
 				5C5646212C2B10D200956423 /* Sources */,
 				5C5646222C2B10D200956423 /* Frameworks */,
@@ -579,9 +579,9 @@
 			dependencies = (
 				5C5646272C2B10D200956423 /* PBXTargetDependency */,
 			);
-			name = akaPrepUITests;
+			name = akaTaskUITests;
 			productName = akaPrepUITests;
-			productReference = 5C5646252C2B10D200956423 /* akaPrepUITests.xctest */;
+			productReference = 5C5646252C2B10D200956423 /* akaTaskUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -607,7 +607,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5C5646012C2B10D100956423 /* Build configuration list for PBXProject "akaPrep" */;
+			buildConfigurationList = 5C5646012C2B10D100956423 /* Build configuration list for PBXProject "akaTask" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -623,9 +623,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5C5646052C2B10D100956423 /* akaPrep */,
-				5C56461A2C2B10D200956423 /* akaPrepTests */,
-				5C5646242C2B10D200956423 /* akaPrepUITests */,
+				5C5646052C2B10D100956423 /* akaTask */,
+				5C56461A2C2B10D200956423 /* akaTaskTests */,
+				5C5646242C2B10D200956423 /* akaTaskUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -731,12 +731,12 @@
 /* Begin PBXTargetDependency section */
 		5C56461D2C2B10D200956423 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5C5646052C2B10D100956423 /* akaPrep */;
+			target = 5C5646052C2B10D100956423 /* akaTask */;
 			targetProxy = 5C56461C2C2B10D200956423 /* PBXContainerItemProxy */;
 		};
 		5C5646272C2B10D200956423 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5C5646052C2B10D100956423 /* akaPrep */;
+			target = 5C5646052C2B10D100956423 /* akaTask */;
 			targetProxy = 5C5646262C2B10D200956423 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -948,7 +948,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/akaPrep.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/akaPrep";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/akaTask.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/akaTask";
 			};
 			name = Debug;
 		};
@@ -968,7 +968,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/akaPrep.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/akaPrep";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/akaTask.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/akaTask";
 			};
 			name = Release;
 		};
@@ -1011,7 +1011,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5C5646012C2B10D100956423 /* Build configuration list for PBXProject "akaPrep" */ = {
+		5C5646012C2B10D100956423 /* Build configuration list for PBXProject "akaTask" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5C56462D2C2B10D200956423 /* Debug */,
@@ -1020,7 +1020,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5C56462F2C2B10D200956423 /* Build configuration list for PBXNativeTarget "akaPrep" */ = {
+		5C56462F2C2B10D200956423 /* Build configuration list for PBXNativeTarget "akaTask" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5C5646302C2B10D200956423 /* Debug */,
@@ -1029,7 +1029,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5C5646322C2B10D200956423 /* Build configuration list for PBXNativeTarget "akaPrepTests" */ = {
+		5C5646322C2B10D200956423 /* Build configuration list for PBXNativeTarget "akaTaskTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5C5646332C2B10D200956423 /* Debug */,
@@ -1038,7 +1038,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5C5646352C2B10D200956423 /* Build configuration list for PBXNativeTarget "akaPrepUITests" */ = {
+		5C5646352C2B10D200956423 /* Build configuration list for PBXNativeTarget "akaTaskUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5C5646362C2B10D200956423 /* Debug */,
