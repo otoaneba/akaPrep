@@ -1,8 +1,8 @@
 //
 //  ListEntity+CoreDataClass.swift
-//  akaPrep
+//  akaTask
 //
-//  Created by Naoto Abe on 7/5/24.
+//  Created by Naoto Abe on 7/23/24.
 //
 //
 

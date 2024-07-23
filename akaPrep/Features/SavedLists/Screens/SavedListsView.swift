@@ -17,13 +17,14 @@ struct SavedListsView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 List {
                     Section(header: Text("Daily Lists")) {
                         ForEach(viewModel.dailySavedLists, id: \.id) { list in
                             NavigationLink(destination: TaskListView(list: list)) {
-                                Text(list.name ?? "Unnamed List")
+                                let dateString = DateUtils.formattedDate(list.createdDate ?? Date.now)
+                                Text(dateString)
                             }
                             .swipeActions {
                                 Button(role: .destructive) {
@@ -38,7 +39,8 @@ struct SavedListsView: View {
                     Section(header: Text("Weekly Lists")) {
                         ForEach(viewModel.weeklySavedLists, id: \.id) { list in
                             NavigationLink(destination: TaskListView(list: list)) {
-                                Text(list.name ?? "Unnamed List")
+                                let dateString = DateUtils.formattedDate(list.createdDate ?? Date.now)
+                                Text(dateString)
                             }
                             .swipeActions {
                                 Button(role: .destructive) {
@@ -53,7 +55,8 @@ struct SavedListsView: View {
                     Section(header: Text("Monthly Lists")) {
                         ForEach(viewModel.monthlySavedLists, id: \.id) { list in
                             NavigationLink(destination: TaskListView(list: list)) {
-                                Text(list.name ?? "Unnamed List")
+                                let dateString = DateUtils.formattedDate(list.createdDate ?? Date.now)
+                                Text(dateString)
                             }
                             .swipeActions {
                                 Button(role: .destructive) {

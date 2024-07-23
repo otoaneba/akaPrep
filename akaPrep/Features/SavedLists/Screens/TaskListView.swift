@@ -14,58 +14,56 @@ struct TaskListView: View {
     @State private var newTitle: String
     @EnvironmentObject var tasksViewModel: TasksViewModel
     
+    private var timeStamp: String = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
+    
     init(list: ListEntity) {
         self.list = list
         _newTitle = State(initialValue: list.name ?? "")
     }
-    
-    private var isCurrentActiveList: Bool {
-        tasksViewModel.isListActive(list)
-    }
-    
+
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(list.taskArray, id: \.self) { task in
-                    Text(task.title ?? "No Title")
-                }
-            }
-            .navigationTitleView(isEditingTitle: $isEditingTitle, newTitle: $newTitle, list: list)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarRole(.editor)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Activate") {
-                        tasksViewModel.activateList(list)
-                    }
-                    .disabled(isCurrentActiveList)
-                }
+        let dateString = DateUtils.formattedDate(list.createdDate ?? Date.now)
+        let lastActivated = DateUtils.formattedDate(list.lastActivated ?? Date.now)
+        Text(dateString)
+            .font(.system(size: 32))
+            .fontWeight(.bold)  // Make the text bold
+            .padding(.horizontal, 16)
+            .padding(.vertical, 0)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        Text("Last activated: \(lastActivated)")
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 16)
+            .foregroundColor(.secondary)
+            
+        List {
+            ForEach(list.taskArray, id: \.self) { task in
+                Text(task.title ?? "No Title")
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Activate") {
+                    list.lastActivated = Date.now
+                    tasksViewModel.activateList(list)
+                }
+                .disabled(tasksViewModel.isListActive(list))
+            }
+        }
+        .overlay(
+            VStack {
+                Spacer()
+                if tasksViewModel.showToast {
+                    ToastView(message: tasksViewModel.toastState.rawValue)
+                }
+            }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
+        )
     }
 }
 
 extension View {
-    func navigationTitleView(isEditingTitle: Binding<Bool>, newTitle: Binding<String>, list: ListEntity) -> some View {
-        self.toolbar {
-            ToolbarItem(placement: .principal) {
-                if isEditingTitle.wrappedValue {
-                    TextField("List Name", text: newTitle, onCommit: {
-                        list.name = newTitle.wrappedValue
-                        saveContext(for: list)
-                        isEditingTitle.wrappedValue = false
-                    })
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                } else {
-                    Text(list.name ?? "No Name")
-                        .onTapGesture {
-                            isEditingTitle.wrappedValue = true
-                        }
-                }
-            }
-        }
-    }
-    
+
     private func saveContext(for list: ListEntity) {
         do {
             try list.managedObjectContext?.save()
