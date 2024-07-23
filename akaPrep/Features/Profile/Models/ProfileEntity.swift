@@ -16,7 +16,7 @@ extension ProfileEntity {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ProfileEntity> {
         return NSFetchRequest<ProfileEntity>(entityName: "ProfileEntity")
     }
-
+    
     @NSManaged public var firstName: String
     @NSManaged public var lastName: String?
     @NSManaged public var dateOfBirth: Date?
@@ -29,19 +29,19 @@ extension ProfileEntity {
     
     public var workSchedule: WorkSchedule {
         get {
-           return WorkSchedule(rawValue: workScheduleRaw) ?? .unemployed
+            return WorkSchedule(rawValue: workScheduleRaw) ?? .unemployed
         }
         set {
-           workScheduleRaw = newValue.rawValue
+            workScheduleRaw = newValue.rawValue
         }
     }
     
     public var gender: Gender {
         get {
-           return Gender(rawValue: genderRaw) ?? .female
+            return Gender(rawValue: genderRaw) ?? .female
         }
         set {
-           genderRaw = newValue.rawValue
+            genderRaw = newValue.rawValue
         }
     }
 }

@@ -68,7 +68,7 @@ class TasksViewModel: ObservableObject {
             currentLikedLists["monthly"] = monthlyLikedListUUID
         }
         
-//        clearLikedLists() // clear the currentLikedLists for testing purposes
+        //        clearLikedLists() // clear the currentLikedLists for testing purposes
         
         // for LLM testing
         if useSampleData {
@@ -112,7 +112,7 @@ class TasksViewModel: ObservableObject {
         }
         return "N/A"
     }
-
+    
     func getBabyAge() -> String {
         let fetchRequest: NSFetchRequest<BabyEntity> = BabyEntity.fetchRequest()
         do {
