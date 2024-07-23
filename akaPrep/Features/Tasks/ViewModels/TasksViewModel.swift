@@ -101,14 +101,50 @@ class TasksViewModel: ObservableObject {
         }
     }
     
+    func getWorkSchedule() -> String {
+        let fetchRequest: NSFetchRequest<ProfileEntity> = ProfileEntity.fetchRequest()
+        do {
+            if let profile = try context.fetch(fetchRequest).first {
+                return profile.workSchedule.rawValue
+            }
+        } catch {
+            print("Failed to fetch work schedule: \(error)")
+        }
+        return "N/A"
+    }
+
+    func getBabyAge() -> String {
+        let fetchRequest: NSFetchRequest<BabyEntity> = BabyEntity.fetchRequest()
+        do {
+            if let baby = try context.fetch(fetchRequest).first, let birthDate = baby.dateOfBirth {
+                let now = Date()
+                let calendar = Calendar.current
+                let components = calendar.dateComponents([.day, .weekOfYear, .month, .year], from: birthDate, to: now)
+                if let day = components.day, day < 7 {
+                    return "\(day) days"
+                } else if let week = components.weekOfYear, week < 4 {
+                    return "\(week) weeks"
+                } else if let month = components.month, month < 12 {
+                    return "\(month) months"
+                } else if let year = components.year {
+                    return "\(year) years"
+                }
+            }
+        } catch {
+            print("Failed to fetch baby's age: \(error)")
+        }
+        return "N/A"
+    }
     
     func generateTasks(taskType: String, context: String, goal: String) {
+        let workSchedule = getWorkSchedule()
+        let babyAge = getBabyAge()
         // Provide haptic feedback
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         // Show spinner
         isGeneratingTasks.toggle()
         // Start generating tasks
-        let prompt = PromptTemplate.generatePrompt(taskType: taskType, context: context, goal: goal)
+        let prompt = PromptTemplate.generatePrompt(taskType: taskType, context: context, goal: goal, workSchedule: workSchedule, babyAge: babyAge)
         openAIService.fetchTasks(prompt: prompt) { [weak self] generatedTasks in
             DispatchQueue.main.async {
                 guard let self = self else { return }

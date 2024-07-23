@@ -25,7 +25,7 @@ struct OpenAIService {
         let body: [String: Any] = [
             "model": "gpt-4o",
             "messages": [
-                ["role": "system", "content": "You are a helpful and professional midwife that only respond in JSON format."],
+                ["role": "system", "content": "You are a helpful and professional midwife and pediatrician that only respond in JSON format."],
                 ["role": "user", "content": prompt]
             ],
             "temperature": 1,

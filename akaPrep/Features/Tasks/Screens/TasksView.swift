@@ -124,6 +124,8 @@ struct TasksView: View {
                 }
             }
             .sheet(isPresented: $isShowingContextSheet) {
+                let workSchedule = viewModel.getWorkSchedule()
+                let babyAge = viewModel.getBabyAge()
                 VStack {
                     Text("Enter context to generate your \(viewModel.selectedTaskType) tasks")
                         .font(.headline)
@@ -131,6 +133,10 @@ struct TasksView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
                     Text("Current Goal: \(goalsViewModel.getCurrentGoal(for: viewModel.selectedTaskType))")
+                        .padding()
+                    Text("Work Schedule: \(workSchedule)")
+                        .padding()
+                    Text("Baby's Age: \(babyAge)")
                         .padding()
                     HStack {
                         Button("Cancel") {
