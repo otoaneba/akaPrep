@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import akaPrep
+@testable import akaTask
 
 final class akaPrepTests: XCTestCase {
 
