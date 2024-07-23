@@ -16,7 +16,7 @@ extension ProfileEntity {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ProfileEntity> {
         return NSFetchRequest<ProfileEntity>(entityName: "ProfileEntity")
     }
-
+    
     @NSManaged public var firstName: String
     @NSManaged public var lastName: String?
     @NSManaged public var dateOfBirth: Date?
@@ -29,19 +29,19 @@ extension ProfileEntity {
     
     public var workSchedule: WorkSchedule {
         get {
-           return WorkSchedule(rawValue: workScheduleRaw) ?? .unemployed
+            return WorkSchedule(rawValue: workScheduleRaw) ?? .unemployed
         }
         set {
-           workScheduleRaw = newValue.rawValue
+            workScheduleRaw = newValue.rawValue
         }
     }
     
     public var gender: Gender {
         get {
-           return Gender(rawValue: genderRaw) ?? .female
+            return Gender(rawValue: genderRaw) ?? .female
         }
         set {
-           genderRaw = newValue.rawValue
+            genderRaw = newValue.rawValue
         }
     }
 }
@@ -80,33 +80,43 @@ extension ProfileEntity {
     }
     
     func saveProfilePicture(image: UIImage, context: NSManagedObjectContext) {
-            let fetchRequest: NSFetchRequest<ProfileEntity> = ProfileEntity.fetchRequest()
+        let fetchRequest: NSFetchRequest<ProfileEntity> = ProfileEntity.fetchRequest()
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            let profileEntity: ProfileEntity
             
-            do {
-                let results = try context.fetch(fetchRequest)
-                let profileEntity: ProfileEntity
-                
-                if let existingProfile = results.first {
-                    // Update existing profile
-                    profileEntity = existingProfile
-                } else {
-                    // Create a new profile entity
-                    profileEntity = ProfileEntity(context: context)
-                }
-                
-                // Convert UIImage to Data
-                if let imageData = image.jpegData(compressionQuality: 1.0) {
-                    profileEntity.profilePicture = imageData
-                }
-                
-                // Save context
-                try context.save()
-                // Post notification after saving the image
-                NotificationCenter.default.post(name: .profileImageUpdated, object: nil)
-            } catch {
-                print("Failed to save profile picture: \(error)")
+            if let existingProfile = results.first {
+                // Update existing profile
+                profileEntity = existingProfile
+            } else {
+                // Create a new profile entity
+                profileEntity = ProfileEntity(context: context)
             }
+            
+            // Convert UIImage to Data
+            if let imageData = image.jpegData(compressionQuality: 1.0) {
+                profileEntity.profilePicture = imageData
+            }
+            
+            // Save context
+            try context.save()
+            // Post notification after saving the image
+            NotificationCenter.default.post(name: .profileImageUpdated, object: nil)
+        } catch {
+            print("Failed to save profile picture: \(error)")
         }
+    }
+    
+    static func getProfile(context: NSManagedObjectContext) -> ProfileEntity? {
+        let request: NSFetchRequest<ProfileEntity> = ProfileEntity.fetchRequest()
+        do {
+            return try context.fetch(request).first
+        } catch {
+            print("Failed to fetch profile: \(error)")
+            return nil
+        }
+    }
 }
 
 extension Notification.Name {
