@@ -1,3 +1,10 @@
+//
+//  TasksView.swift
+//  akaPrep
+//
+//  Created by Naoto Abe on 6/26/24.
+//
+
 import SwiftUI
 import CoreData
 
@@ -149,7 +156,7 @@ struct TasksView: View {
                 .padding()
             }
             .navigationDestination(isPresented: $showGoalsView) {
-                GoalsView(context: managedObjectContext)
+                GoalsView()
                     .environmentObject(goalsViewModel)
             }
         }

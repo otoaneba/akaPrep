@@ -9,11 +9,7 @@ import SwiftUI
 import CoreData
 
 struct GoalsView: View {
-    @StateObject private var viewModel: GoalsViewModel
-    
-    init(context: NSManagedObjectContext) {
-        _viewModel = StateObject(wrappedValue: GoalsViewModel(context: context))
-    }
+    @EnvironmentObject var viewModel: GoalsViewModel
     
     var body: some View {
         NavigationView {
@@ -55,11 +51,10 @@ struct GoalsView: View {
                 Spacer()
                 if viewModel.showToast {
                     ToastView(message: viewModel.toastState.rawValue)
-                
                 }
             }
-            .transition(.move(edge: .bottom).combined(with: .opacity))
-            .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
         )
     }
 }
@@ -70,6 +65,9 @@ struct Constants {
 
 struct GoalsView_Previews: PreviewProvider {
     static var previews: some View {
-        GoalsView(context: PersistenceController.preview.container.viewContext)
+        let context = PersistenceController.preview.container.viewContext
+        let goalsViewModel = GoalsViewModel(context: context)
+        return GoalsView()
+            .environmentObject(goalsViewModel)
     }
 }

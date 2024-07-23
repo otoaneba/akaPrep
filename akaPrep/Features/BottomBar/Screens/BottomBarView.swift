@@ -26,7 +26,7 @@ struct BottomBarView: View {
                     Text("Tasks")
                 }
                 .tag(0)
-            GoalsView(context: viewContext)
+            GoalsView()
                 .environmentObject(goalsViewModel)
                 .tabItem {
                     Image(systemName: "target")

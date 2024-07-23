@@ -68,7 +68,7 @@ class TasksViewModel: ObservableObject {
             currentLikedLists["monthly"] = monthlyLikedListUUID
         }
         
-        //        clearLikedLists() // clear the currentLikedLists for testing purposes
+//        clearLikedLists() // clear the currentLikedLists for testing purposes
         
         // for LLM testing
         if useSampleData {
@@ -126,6 +126,8 @@ class TasksViewModel: ObservableObject {
                 default:
                     break
                 }
+                // Reset current liked list status
+                self.resetCurrentLikedListStatus()
                 self.isGeneratingTasks.toggle()
             }
         }
