@@ -23,6 +23,7 @@ class TasksViewModel: ObservableObject {
     @Published var toastState: ToastState = .none
     @Published var listLiked: Bool = false
     @Published var listActivated: Bool = false
+    @Published var isGeneratingTasks: Bool = false
     
     let listLikedSubject = PassthroughSubject<Void, Never>()
     let listUnlikedSubject = PassthroughSubject<Void, Never>()
@@ -102,6 +103,11 @@ class TasksViewModel: ObservableObject {
     
     
     func generateTasks(taskType: String, context: String) {
+        // Provide haptic feedback
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        // Show spinner
+        isGeneratingTasks.toggle()
+        // Start generating tasks
         let prompt = PromptTemplate.generatePrompt(taskType: taskType, context: context)
         openAIService.fetchTasks(prompt: prompt) { [weak self] generatedTasks in
             DispatchQueue.main.async {
@@ -120,6 +126,7 @@ class TasksViewModel: ObservableObject {
                 default:
                     break
                 }
+                self.isGeneratingTasks.toggle()
             }
         }
     }

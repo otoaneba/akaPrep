@@ -35,6 +35,8 @@
 		5C56462C2C2B10D200956423 /* akaPrepUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C56462B2C2B10D200956423 /* akaPrepUITestsLaunchTests.swift */; };
 		5C6F3A452C3ED2EF00A6D693 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6F3A442C3ED2EF00A6D693 /* SettingsViewModel.swift */; };
 		5C6F3A472C3ED30500A6D693 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6F3A462C3ED30500A6D693 /* SettingsView.swift */; };
+		5C88C8102C4FA46D009DF963 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C88C80F2C4FA46D009DF963 /* SpinnerView.swift */; };
+		5C88C8142C4FAADB009DF963 /* SpinnerViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C88C8132C4FAADB009DF963 /* SpinnerViewRepresentable.swift */; };
 		5CB608C32C2C4B0E003DB576 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608C22C2C4B0E003DB576 /* Utilities.swift */; };
 		5CB608C52C2C4DD1003DB576 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608C42C2C4DD1003DB576 /* TasksView.swift */; };
 		5CB608C72C2C4DE7003DB576 /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608C62C2C4DE7003DB576 /* TasksViewModel.swift */; };
@@ -107,6 +109,8 @@
 		5C56462B2C2B10D200956423 /* akaPrepUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = akaPrepUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5C6F3A442C3ED2EF00A6D693 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		5C6F3A462C3ED30500A6D693 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5C88C80F2C4FA46D009DF963 /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
+		5C88C8132C4FAADB009DF963 /* SpinnerViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewRepresentable.swift; sourceTree = "<group>"; };
 		5CB608C22C2C4B0E003DB576 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		5CB608C42C2C4DD1003DB576 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		5CB608C62C2C4DE7003DB576 /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 		5C2C30482C3EF8D90093A39A /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				5C88C8122C4FAAC6009DF963 /* UIRepresentable */,
 				5C2C30492C3EF8E50093A39A /* Views */,
 			);
 			path = Notifications;
@@ -184,6 +189,7 @@
 		5C2C30492C3EF8E50093A39A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5C88C80F2C4FA46D009DF963 /* SpinnerView.swift */,
 				5C2C304A2C3EF8F20093A39A /* ToastView.swift */,
 			);
 			path = Views;
@@ -259,6 +265,14 @@
 				5C5646142C2B10D200956423 /* akaPrep.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		5C88C8122C4FAAC6009DF963 /* UIRepresentable */ = {
+			isa = PBXGroup;
+			children = (
+				5C88C8132C4FAADB009DF963 /* SpinnerViewRepresentable.swift */,
+			);
+			path = UIRepresentable;
 			sourceTree = "<group>";
 		};
 		5C951C192C355A1D00D65222 /* BottomBar */ = {
@@ -671,6 +685,7 @@
 				5CB608E52C342999003DB576 /* Enums.swift in Sources */,
 				4D50C5A62C358F3A00648A2A /* GoalEntity.swift in Sources */,
 				5CB608C72C2C4DE7003DB576 /* TasksViewModel.swift in Sources */,
+				5C88C8142C4FAADB009DF963 /* SpinnerViewRepresentable.swift in Sources */,
 				5CEB45632C3AA18500938B37 /* ImagePicker.swift in Sources */,
 				5C363D332C359D3800B2ED0B /* SavedListsViewModel.swift in Sources */,
 				5C5646132C2B10D200956423 /* Persistence.swift in Sources */,
@@ -695,6 +710,7 @@
 				5CEB45502C37D7C300938B37 /* TaskEntity+CoreDataClass.swift in Sources */,
 				4D50C5DC2C3AF3EB00648A2A /* TasksRowView.swift in Sources */,
 				5CEB45512C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift in Sources */,
+				5C88C8102C4FA46D009DF963 /* SpinnerView.swift in Sources */,
 				5CEB45522C37D7C300938B37 /* ListEntity+CoreDataClass.swift in Sources */,
 				5CEB45532C37D7C300938B37 /* ListEntity+CoreDataProperties.swift in Sources */,
 				4D50C5A82C35915200648A2A /* GoalsViewModel.swift in Sources */,

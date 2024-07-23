@@ -45,46 +45,52 @@ struct TasksView: View {
                 }
             }
             .padding()
-            
-            List {
-                ForEach(viewModel.tasksForSelectedType) { task in
-                    TaskRowView(task: task, editingTaskId: $editingTaskId)
-                        .swipeActions {
-                            Button(role: .destructive) {
-                                viewModel.removeTask(task)
-                            } label: {
-                                Label("Delete", systemImage: "trash")
+            VStack {
+                if viewModel.isGeneratingTasks {
+                    SpinnerViewRepresentable()
+                } else {
+                    List {
+                        ForEach(viewModel.tasksForSelectedType) { task in
+                            TaskRowView(task: task, editingTaskId: $editingTaskId)
+                                .swipeActions {
+                                    Button(role: .destructive) {
+                                        viewModel.removeTask(task)
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                }
+                        }
+                        .onMove { indices, newOffset in
+                            viewModel.moveTask(from: indices, to: newOffset)
+                        }
+                        .onTapGesture {
+                            editingTaskId = nil
+                        }
+                        if isAddingNewTask {
+                            TextField("New Task", text: $newTaskTitle, onCommit: {
+                                if !newTaskTitle.isEmpty {
+                                    viewModel.addTask(title: newTaskTitle)
+                                    newTaskTitle = ""
+                                    isAddingNewTask = false
+                                }
+                            })
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        } else {
+                            HStack {
+                                Text("Add one new task here")
+                                    .foregroundColor(.gray)
+                                Spacer()
+                            }
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                newTaskTitle = ""
+                                isAddingNewTask = true
                             }
                         }
-                }
-                .onMove { indices, newOffset in
-                    viewModel.moveTask(from: indices, to: newOffset)
-                }
-                .onTapGesture {
-                    editingTaskId = nil
-                }
-                if isAddingNewTask {
-                    TextField("New Task", text: $newTaskTitle, onCommit: {
-                        if !newTaskTitle.isEmpty {
-                            viewModel.addTask(title: newTaskTitle)
-                            newTaskTitle = ""
-                            isAddingNewTask = false
-                        }
-                    })
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                } else {
-                    HStack {
-                        Text("Add one new task here")
-                            .foregroundColor(.gray)
-                        Spacer()
-                    }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        newTaskTitle = ""
-                        isAddingNewTask = true
                     }
                 }
             }
+  
             .navigationTitle("Tasks")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
