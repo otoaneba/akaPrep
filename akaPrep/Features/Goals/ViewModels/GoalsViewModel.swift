@@ -101,6 +101,19 @@ class GoalsViewModel: ObservableObject {
         }
     }
     
+    func getCurrentGoal(for taskType: String) -> String {
+        switch taskType {
+        case Frequency.daily.rawValue:
+            return dailyGoal
+        case Frequency.weekly.rawValue:
+            return weeklyGoal
+        case Frequency.monthly.rawValue:
+            return monthlyGoal
+        default:
+            return ""
+        }
+    }
+    
     func bindingForSelectedSegment() -> Binding<String> {
         switch selectedSegment {
         case Frequency.daily.rawValue:

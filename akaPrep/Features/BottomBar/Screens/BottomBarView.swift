@@ -11,20 +11,23 @@ import CoreData
 struct BottomBarView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var tasksViewModel: TasksViewModel
+    @EnvironmentObject private var goalsViewModel: GoalsViewModel
     @State private var profileName: String?
     @State private var profileImage: UIImage?
     @State private var selectedTab: Int = 0
-
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             TasksView()
                 .environmentObject(tasksViewModel)
+                .environmentObject(goalsViewModel)
                 .tabItem {
                     Image(selectedTab == 0 ? "taskIcon" : "tasksIconGray")
                     Text("Tasks")
                 }
                 .tag(0)
             GoalsView(context: viewContext)
+                .environmentObject(goalsViewModel)
                 .tabItem {
                     Image(systemName: "target")
                     Text("Goals")
@@ -40,7 +43,6 @@ struct BottomBarView: View {
                 .tabItem {
                     if let profileImage = profileImage {
                         TabIcon(icon: profileImage, size: CGSize(width: 27, height: 27))
-                        
                     } else {
                         Image(systemName: "person.fill")
                     }
@@ -85,8 +87,12 @@ struct BottomBarView: View {
 
 struct BottomBarView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomBarView()
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            .environmentObject(TasksViewModel(context: PersistenceController.preview.container.viewContext, useSampleData: false))
+        let context = PersistenceController.preview.container.viewContext
+        let tasksViewModel = TasksViewModel(context: context, useSampleData: false)
+        let goalsViewModel = GoalsViewModel(context: context)
+        return BottomBarView()
+            .environment(\.managedObjectContext, context)
+            .environmentObject(tasksViewModel)
+            .environmentObject(goalsViewModel)
     }
 }

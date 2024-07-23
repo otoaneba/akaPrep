@@ -1,15 +1,9 @@
-//
-//  TasksView.swift
-//  akaPrep
-//
-//  Created by Naoto Abe on 6/26/24.
-//
-
 import SwiftUI
 import CoreData
 
 struct TasksView: View {
     @EnvironmentObject var viewModel: TasksViewModel
+    @EnvironmentObject var goalsViewModel: GoalsViewModel
     @State private var taskType = "daily"
     @Environment(\.managedObjectContext) private var managedObjectContext
     @State private var isAddingNewTask = false
@@ -17,7 +11,8 @@ struct TasksView: View {
     @State private var isShowingContextSheet = false
     @State private var context = ""
     @State private var editingTaskId: UUID? = nil
-
+    @State private var showGoalsView = false
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -45,6 +40,7 @@ struct TasksView: View {
                 }
             }
             .padding()
+            
             VStack {
                 if viewModel.isGeneratingTasks {
                     SpinnerViewRepresentable()
@@ -90,7 +86,6 @@ struct TasksView: View {
                     }
                 }
             }
-  
             .navigationTitle("Tasks")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -128,22 +123,34 @@ struct TasksView: View {
                     TextField("Context", text: $context)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
+                    Text("Current Goal: \(goalsViewModel.getCurrentGoal(for: viewModel.selectedTaskType))")
+                        .padding()
                     HStack {
                         Button("Cancel") {
                             isShowingContextSheet = false
                         }
                         .padding()
                         Spacer()
+                        Button("Modify Goal") {
+                            isShowingContextSheet = false
+                            showGoalsView = true
+                        }
+                        .padding()
+                        Spacer()
                         Button("Generate") {
-                            viewModel.generateTasks(taskType: viewModel.selectedTaskType, context: context)
+                            let goal = goalsViewModel.getCurrentGoal(for: viewModel.selectedTaskType) // Fetch the goal
+                            viewModel.generateTasks(taskType: viewModel.selectedTaskType, context: context, goal: goal)
                             isShowingContextSheet = false
                             context = ""
                         }
                         .padding()
                     }
-                    
                 }
                 .padding()
+            }
+            .navigationDestination(isPresented: $showGoalsView) {
+                GoalsView(context: managedObjectContext)
+                    .environmentObject(goalsViewModel)
             }
         }
         .onAppear {
@@ -156,8 +163,8 @@ struct TasksView: View {
                     ToastView(message: viewModel.toastState.rawValue)
                 }
             }
-            .transition(.move(edge: .bottom).combined(with: .opacity))
-            .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
         )
     }
 }
@@ -165,9 +172,11 @@ struct TasksView: View {
 struct TasksView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
-        let viewModel = TasksViewModel.shared
+        let viewModel = TasksViewModel(context: context, useSampleData: false)
+        let goalsViewModel = GoalsViewModel(context: context)
         return TasksView()
             .environment(\.managedObjectContext, context)
             .environmentObject(viewModel)
+            .environmentObject(goalsViewModel)
     }
 }

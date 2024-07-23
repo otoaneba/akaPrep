@@ -37,6 +37,7 @@ struct OpenAIService {
         
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+            print("Request body: \(body)")
         } catch {
             print("Failed to serialize JSON body: \(error)")
             return

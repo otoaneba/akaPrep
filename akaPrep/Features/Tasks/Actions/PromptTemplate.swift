@@ -8,9 +8,13 @@
 import Foundation
 
 struct PromptTemplate {
-    static func generatePrompt(taskType: String, context: String) -> String {
+    static func generatePrompt(taskType: String, context: String, goal: String) -> String {
         return """
-        As a new parent, I need a list of \(taskType) tasks for my newborn. Here is some context: \(context). Please provide a list of clear and actionable tasks in a complete JSON format as follows: {"tasks": ["Task 1", "Task 2", "Task 3", ...]}. Each task should be less than 8 words.
+        As a new parent, I need a list of \(taskType) tasks for my newborn. Here are some goals to generate the tasks: \(goal). Here are some additional context: \(context). Please provide a list of clear and actionable tasks in a complete JSON format as follows: {"tasks": ["Task 1", "Task 2", "Task 3", ...]}.
+        Note:
+        1. Each task should be less than 8 words.
+        2. Please make sure the tasks are relevant to the goal.
+        3. Please make sure the tasks take the context into consideration.
         """
     }
 }

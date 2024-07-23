@@ -102,13 +102,13 @@ class TasksViewModel: ObservableObject {
     }
     
     
-    func generateTasks(taskType: String, context: String) {
+    func generateTasks(taskType: String, context: String, goal: String) {
         // Provide haptic feedback
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         // Show spinner
         isGeneratingTasks.toggle()
         // Start generating tasks
-        let prompt = PromptTemplate.generatePrompt(taskType: taskType, context: context)
+        let prompt = PromptTemplate.generatePrompt(taskType: taskType, context: context, goal: goal)
         openAIService.fetchTasks(prompt: prompt) { [weak self] generatedTasks in
             DispatchQueue.main.async {
                 guard let self = self else { return }
