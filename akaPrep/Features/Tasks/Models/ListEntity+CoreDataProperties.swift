@@ -1,8 +1,8 @@
 //
 //  ListEntity+CoreDataProperties.swift
-//  akaPrep
+//  akaTask
 //
-//  Created by Naoto Abe on 7/5/24.
+//  Created by Naoto Abe on 7/23/24.
 //
 //
 
@@ -20,6 +20,8 @@ extension ListEntity {
     @NSManaged public var frequencyRaw: String?
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
+    @NSManaged public var createdDate: Date?
+    @NSManaged public var lastActivated: Date?
     @NSManaged public var tasks: NSOrderedSet?
     
     public var frequency: Frequency {
@@ -40,6 +42,7 @@ extension ListEntity {
         super.awakeFromInsert()
         id = UUID()
     }
+
 }
 
 // MARK: Generated accessors for tasks

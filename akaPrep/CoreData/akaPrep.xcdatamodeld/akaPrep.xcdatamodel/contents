@@ -20,9 +20,11 @@
     </entity>
     <entity name="LikedListEntity" representedClassName="LikedListEntity" parentEntity="ListEntity" syncable="YES"/>
     <entity name="ListEntity" representedClassName="ListEntity" syncable="YES">
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="expirationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="frequencyRaw" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastActivated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TaskEntity" inverseName="lists" inverseEntity="TaskEntity"/>
     </entity>

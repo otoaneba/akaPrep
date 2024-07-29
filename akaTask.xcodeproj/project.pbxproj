@@ -18,6 +18,10 @@
 		4D50C5D52C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5D32C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift */; };
 		4D50C5D62C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5D42C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift */; };
 		4D50C5DC2C3AF3EB00648A2A /* TasksRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5DB2C3AF3EB00648A2A /* TasksRowView.swift */; };
+		5C18A29D2C4FC6800028AE8D /* MultiLineTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18A29C2C4FC6800028AE8D /* MultiLineTitleView.swift */; };
+		5C18A29F2C4FCC8D0028AE8D /* EditableTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18A29E2C4FCC8D0028AE8D /* EditableTitleView.swift */; };
+		5C18A2A62C4FF6930028AE8D /* ListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18A2A42C4FF6930028AE8D /* ListEntity+CoreDataClass.swift */; };
+		5C18A2A72C4FF6930028AE8D /* ListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18A2A52C4FF6930028AE8D /* ListEntity+CoreDataProperties.swift */; };
 		5C1FF62E2C3BD3E40057F667 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 5C1FF62D2C3BD3E40057F667 /* TOCropViewController */; };
 		5C1FF6302C3BD3E70057F667 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 5C1FF62F2C3BD3E70057F667 /* CropViewController */; };
 		5C2C304B2C3EF8F20093A39A /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C304A2C3EF8F20093A39A /* ToastView.swift */; };
@@ -54,8 +58,6 @@
 		5CB609072C35557B003DB576 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB608DA2C306403003DB576 /* ProfileView.swift */; };
 		5CEB45502C37D7C300938B37 /* TaskEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB454C2C37D7C300938B37 /* TaskEntity+CoreDataClass.swift */; };
 		5CEB45512C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB454D2C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift */; };
-		5CEB45522C37D7C300938B37 /* ListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB454E2C37D7C300938B37 /* ListEntity+CoreDataClass.swift */; };
-		5CEB45532C37D7C300938B37 /* ListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB454F2C37D7C300938B37 /* ListEntity+CoreDataProperties.swift */; };
 		5CEB455E2C3938F100938B37 /* LikedListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB455C2C3938F100938B37 /* LikedListEntity+CoreDataClass.swift */; };
 		5CEB455F2C3938F100938B37 /* LikedListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB455D2C3938F100938B37 /* LikedListEntity+CoreDataProperties.swift */; };
 		5CEB45632C3AA18500938B37 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB45622C3AA18500938B37 /* ImagePicker.swift */; };
@@ -91,6 +93,10 @@
 		4D50C5D32C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4D50C5D42C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4D50C5DB2C3AF3EB00648A2A /* TasksRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksRowView.swift; sourceTree = "<group>"; };
+		5C18A29C2C4FC6800028AE8D /* MultiLineTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultiLineTitleView.swift; path = akaPrep/Features/Notifications/UIRepresentable/MultiLineTitleView.swift; sourceTree = SOURCE_ROOT; };
+		5C18A29E2C4FCC8D0028AE8D /* EditableTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditableTitleView.swift; path = akaPrep/Features/Notifications/UIRepresentable/EditableTitleView.swift; sourceTree = SOURCE_ROOT; };
+		5C18A2A42C4FF6930028AE8D /* ListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5C18A2A52C4FF6930028AE8D /* ListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5C2C304A2C3EF8F20093A39A /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		5C363D302C359D2100B2ED0B /* SavedListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsView.swift; sourceTree = "<group>"; };
 		5C363D322C359D3800B2ED0B /* SavedListsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsViewModel.swift; sourceTree = "<group>"; };
@@ -128,8 +134,6 @@
 		5CB608F32C354F66003DB576 /* BabyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyInfoViewModel.swift; sourceTree = "<group>"; };
 		5CEB454C2C37D7C300938B37 /* TaskEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5CEB454D2C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		5CEB454E2C37D7C300938B37 /* ListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		5CEB454F2C37D7C300938B37 /* ListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5CEB455C2C3938F100938B37 /* LikedListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikedListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5CEB455D2C3938F100938B37 /* LikedListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LikedListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5CEB45622C3AA18500938B37 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -459,6 +463,8 @@
 		5CB608FF2C355393003DB576 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5C18A29C2C4FC6800028AE8D /* MultiLineTitleView.swift */,
+				5C18A29E2C4FCC8D0028AE8D /* EditableTitleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -484,12 +490,12 @@
 		5CB609022C3553B3003DB576 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5C18A2A42C4FF6930028AE8D /* ListEntity+CoreDataClass.swift */,
+				5C18A2A52C4FF6930028AE8D /* ListEntity+CoreDataProperties.swift */,
 				4D50C5D32C3A94F500648A2A /* ActiveListEntity+CoreDataClass.swift */,
 				4D50C5D42C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift */,
 				5CEB454C2C37D7C300938B37 /* TaskEntity+CoreDataClass.swift */,
 				5CEB454D2C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift */,
-				5CEB454E2C37D7C300938B37 /* ListEntity+CoreDataClass.swift */,
-				5CEB454F2C37D7C300938B37 /* ListEntity+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -682,11 +688,15 @@
 				4D50C5D62C3A94F500648A2A /* ActiveListEntity+CoreDataProperties.swift in Sources */,
 				5C6F3A472C3ED30500A6D693 /* SettingsView.swift in Sources */,
 				5C5646162C2B10D200956423 /* akaPrep.xcdatamodeld in Sources */,
+				5C18A29D2C4FC6800028AE8D /* MultiLineTitleView.swift in Sources */,
+				5C18A2A62C4FF6930028AE8D /* ListEntity+CoreDataClass.swift in Sources */,
+				5C18A2A72C4FF6930028AE8D /* ListEntity+CoreDataProperties.swift in Sources */,
 				5CB608E52C342999003DB576 /* Enums.swift in Sources */,
 				4D50C5A62C358F3A00648A2A /* GoalEntity.swift in Sources */,
 				5CB608C72C2C4DE7003DB576 /* TasksViewModel.swift in Sources */,
 				5C88C8142C4FAADB009DF963 /* SpinnerViewRepresentable.swift in Sources */,
 				5CEB45632C3AA18500938B37 /* ImagePicker.swift in Sources */,
+				5C18A29F2C4FCC8D0028AE8D /* EditableTitleView.swift in Sources */,
 				5C363D332C359D3800B2ED0B /* SavedListsViewModel.swift in Sources */,
 				5C5646132C2B10D200956423 /* Persistence.swift in Sources */,
 				5CB608E32C3405F2003DB576 /* YearMonthPickerView.swift in Sources */,
@@ -711,8 +721,6 @@
 				4D50C5DC2C3AF3EB00648A2A /* TasksRowView.swift in Sources */,
 				5CEB45512C37D7C300938B37 /* TaskEntity+CoreDataProperties.swift in Sources */,
 				5C88C8102C4FA46D009DF963 /* SpinnerView.swift in Sources */,
-				5CEB45522C37D7C300938B37 /* ListEntity+CoreDataClass.swift in Sources */,
-				5CEB45532C37D7C300938B37 /* ListEntity+CoreDataProperties.swift in Sources */,
 				4D50C5A82C35915200648A2A /* GoalsViewModel.swift in Sources */,
 				5CB608EB2C343C92003DB576 /* PersonalInfoViewModel.swift in Sources */,
 				5CB608D52C302D21003DB576 /* ProfileEntity.swift in Sources */,

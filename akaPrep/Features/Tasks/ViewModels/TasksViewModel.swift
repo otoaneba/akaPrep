@@ -175,6 +175,7 @@ class TasksViewModel: ObservableObject {
         activeList.name = "Active \(taskType.capitalized) Tasks"
         activeList.frequencyRaw = taskType
         activeList.expirationDate = Date().addingTimeInterval(24 * 60 * 60 * (taskType == "daily" ? 1 : (taskType == "weekly" ? 7 : 30)))
+        activeList.lastActivated = Date.now
         for task in tasks {
             activeList.addToTasks(task)
             task.addToLists(activeList)
@@ -372,6 +373,7 @@ class TasksViewModel: ObservableObject {
         activeList.name = "Active \(taskType.capitalized) Tasks"
         activeList.frequencyRaw = taskType
         activeList.expirationDate = Date().addingTimeInterval(24 * 60 * 60 * (taskType == "daily" ? 1 : (taskType == "weekly" ? 7 : 30)))
+        activeList.lastActivated = Date.now
         for task in tasks {
             activeList.addToTasks(task)
             task.addToLists(activeList)
@@ -398,8 +400,9 @@ class TasksViewModel: ObservableObject {
         }
         
         let newList = LikedListEntity(context: context)
-        let timestamp = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
-        newList.name = "\(selectedTaskType.capitalized) Tasks - \(timestamp)"
+        let timestamp = DateUtils.formattedDate(newList.createdDate ?? Date.now)
+        newList.name = "\(timestamp)"
+        newList.createdDate = Date.now
         newList.frequencyRaw = selectedTaskType
         newList.expirationDate = Date().addingTimeInterval(24 * 60 * 60 * (selectedTaskType == "daily" ? 1 : (selectedTaskType == "weekly" ? 7 : 30)))
         
