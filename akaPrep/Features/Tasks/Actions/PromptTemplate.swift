@@ -10,16 +10,30 @@ import Foundation
 struct PromptTemplate {
     static func generatePrompt(taskType: String, context: String, goal: String, workSchedule: String, babyAge: String) -> String {
         return """
-        As a new parent, I need a list of \(taskType) tasks for my newborn. Here are some goals to generate the tasks: \(goal). 
-        
-        Here are some additional context: \(context); My current work schedule is \(workSchedule); and my baby's age is \(babyAge).
-        
-        Please provide a list of clear and actionable tasks in a complete JSON format as follows: {"tasks": ["Task 1", "Task 2", "Task 3", ...]}.
-        
-        Note:
-        1. Each task should be less than 8 words.
-        2. Please make sure the tasks are relevant to the goal.
-        3. Please make sure the tasks take the context into consideration.
+        I need your help to generate a list of \(taskType) tasks specifically designed for my newborn. The tasks should be concise, actionable, and focused on achieving the following goal: \(goal).
+
+        **Here’s the context to consider:**
+        - **Work schedule**: \(workSchedule)
+        - **Baby’s age**: \(babyAge)
+        - **Additional details**: \(context)
+
+        **Your Task:**
+        Generate a JSON list of tasks that meet the following criteria:
+        - **Each task** must be **8 words or fewer**.
+        - Ensure **each task aligns** with the specified goal.
+        - **Consider the provided context** when designing the tasks.
+
+        **Format the response as follows:**
+        ```json
+        {
+          "tasks": ["Task 1", "Task 2", "Task 3", ...]
+        }
+        ```
+
+        **Additional Guidelines:**
+        - Prioritize clarity and relevance.
+        - Focus on realistic, easy-to-complete tasks.
+        - Ensure the tasks are suitable for a busy parent’s schedule.
         """
     }
 }

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D3E97232C8B19DA00B44D08 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3E97222C8B19DA00B44D08 /* Config.swift */; };
 		4D50C5862C30672500648A2A /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D50C5852C30672500648A2A /* Config.plist */; };
-		4D50C5882C30675400648A2A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C5872C30675400648A2A /* Config.swift */; };
 		4D50C5912C342ECC00648A2A /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C58C2C342ECC00648A2A /* OpenAIService.swift */; };
 		4D50C5922C342ECC00648A2A /* PromptTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D50C58D2C342ECC00648A2A /* PromptTemplate.swift */; };
 		4D50C5962C342F9100648A2A /* SampleData.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D50C5952C342F9100648A2A /* SampleData.json */; };
@@ -82,8 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D3E97222C8B19DA00B44D08 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Config.swift; path = akaPrep/Config.swift; sourceTree = "<group>"; };
 		4D50C5852C30672500648A2A /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
-		4D50C5872C30675400648A2A /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		4D50C58C2C342ECC00648A2A /* OpenAIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
 		4D50C58D2C342ECC00648A2A /* PromptTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptTemplate.swift; sourceTree = "<group>"; };
 		4D50C5952C342F9100648A2A /* SampleData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleData.json; sourceTree = "<group>"; };
@@ -202,6 +202,7 @@
 		5C5645FD2C2B10D100956423 = {
 			isa = PBXGroup;
 			children = (
+				4D3E97222C8B19DA00B44D08 /* Config.swift */,
 				4D50C5852C30672500648A2A /* Config.plist */,
 				5C5646082C2B10D100956423 /* akaPrep */,
 				5C56461E2C2B10D200956423 /* akaPrepTests */,
@@ -232,7 +233,6 @@
 				5C5646382C2B12BF00956423 /* CoreData */,
 				5C56460D2C2B10D200956423 /* Assets.xcassets */,
 				5C56460F2C2B10D200956423 /* Preview Content */,
-				4D50C5872C30675400648A2A /* Config.swift */,
 			);
 			path = akaPrep;
 			sourceTree = "<group>";
@@ -695,6 +695,7 @@
 				4D50C5A62C358F3A00648A2A /* GoalEntity.swift in Sources */,
 				5CB608C72C2C4DE7003DB576 /* TasksViewModel.swift in Sources */,
 				5C88C8142C4FAADB009DF963 /* SpinnerViewRepresentable.swift in Sources */,
+				4D3E97232C8B19DA00B44D08 /* Config.swift in Sources */,
 				5CEB45632C3AA18500938B37 /* ImagePicker.swift in Sources */,
 				5C18A29F2C4FCC8D0028AE8D /* EditableTitleView.swift in Sources */,
 				5C363D332C359D3800B2ED0B /* SavedListsViewModel.swift in Sources */,
@@ -724,7 +725,6 @@
 				4D50C5A82C35915200648A2A /* GoalsViewModel.swift in Sources */,
 				5CB608EB2C343C92003DB576 /* PersonalInfoViewModel.swift in Sources */,
 				5CB608D52C302D21003DB576 /* ProfileEntity.swift in Sources */,
-				4D50C5882C30675400648A2A /* Config.swift in Sources */,
 				5CB608D72C303729003DB576 /* BabyEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
