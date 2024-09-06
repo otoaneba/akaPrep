@@ -1,19 +1,28 @@
 //
 //  Config.swift
-//  akaPrep
+//  akaTask
 //
-//  Created by Mengyuan Cynthia Li on 2024-06-29.
+//  Created by Mengyuan Cynthia Li on 2024-09-06.
 //
 
 import Foundation
 
 struct Config {
-    static var openAIAPIKey: String {
+    static var azureOpenAIKey: String {
         guard let filePath = Bundle.main.path(forResource: "Config", ofType: "plist"),
               let plist = NSDictionary(contentsOfFile: filePath),
-              let key = plist["OpenAIAPIKey"] as? String else {
-            fatalError("Couldn't find key 'OpenAIAPIKey' in 'Config.plist'.")
+              let key = plist["AzureOpenAIKey"] as? String else {
+            fatalError("Couldn't find key 'AzureOpenAIKey' in 'Config.plist'.")
         }
         return key
+    }
+    
+    static var azureOpenAIEndpoint: String {
+        guard let filePath = Bundle.main.path(forResource: "Config", ofType: "plist"),
+              let plist = NSDictionary(contentsOfFile: filePath),
+              let endpoint = plist["AzureOpenAIEndpoint"] as? String else {
+            fatalError("Couldn't find key 'AzureOpenAIEndpoint' in 'Config.plist'.")
+        }
+        return endpoint
     }
 }
